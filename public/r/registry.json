@@ -75,6 +75,19 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "documentation-provider",
+      "type": "registry:ui",
+      "title": "Documentation Provider",
+      "description": "Info icon trigger with a simple right drawer for string content.",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/documentation-provider.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

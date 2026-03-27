@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "documentation-provider",
+  "title": "Documentation Provider",
+  "description": "Info icon trigger with a simple right drawer for string content.",
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/ui/documentation-provider.tsx",
+      "content": "\"use client\"\n\nimport * as Dialog from \"@radix-ui/react-dialog\"\nimport { Info, X } from \"lucide-react\"\n\ntype DocumentationField = {\n  label: string\n  value: string\n}\n\ntype DocumentationProviderProps = {\n  content?: string\n  title?: string\n  fields?: DocumentationField[]\n}\n\nfunction DocumentationProvider({\n  content,\n  title = \"Documentation\",\n  fields = [],\n}: DocumentationProviderProps) {\n  const hasFields = fields.length > 0\n  const fallbackContent = content ?? \"\"\n\n  return (\n    <Dialog.Root>\n      <Dialog.Trigger asChild>\n        <button\n          type=\"button\"\n          aria-label=\"Open documentation\"\n          className=\"inline-flex size-9 items-center justify-center rounded-md border bg-background text-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground\"\n        >\n          <Info className=\"size-4\" />\n        </button>\n      </Dialog.Trigger>\n\n      <Dialog.Portal>\n        <Dialog.Overlay className=\"fixed inset-0 z-[9998] bg-black/30 data-[state=closed]:animate-out data-[state=open]:animate-in\" />\n        <Dialog.Content className=\"fixed top-0 right-0 z-[9999] h-full w-full max-w-md border-l bg-white p-6 shadow-xl duration-200 data-[state=closed]:translate-x-full data-[state=open]:translate-x-0\">\n          <div className=\"mb-4 flex items-center justify-between gap-2\">\n            <Dialog.Title className=\"text-lg font-semibold\">{title}</Dialog.Title>\n            <Dialog.Close asChild>\n              <button\n                type=\"button\"\n                aria-label=\"Close documentation\"\n                className=\"inline-flex size-8 items-center justify-center rounded-md border transition-colors hover:bg-accent hover:text-accent-foreground\"\n              >\n                <X className=\"size-4\" />\n              </button>\n            </Dialog.Close>\n          </div>\n\n          {hasFields ? (\n            <div className=\"space-y-4\">\n              {fields.map((field) => (\n                <div key={field.label} className=\"space-y-1\">\n                  <p className=\"text-sm font-medium\">{field.label}</p>\n                  <p className=\"text-sm leading-6 text-muted-foreground\">{field.value}</p>\n                </div>\n              ))}\n            </div>\n          ) : (\n            <Dialog.Description asChild>\n              <p className=\"text-sm leading-6 text-muted-foreground\">{fallbackContent}</p>\n            </Dialog.Description>\n          )}\n        </Dialog.Content>\n      </Dialog.Portal>\n    </Dialog.Root>\n  )\n}\n\nexport { DocumentationProvider }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

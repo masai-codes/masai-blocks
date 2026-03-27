@@ -4,6 +4,7 @@ import { HelloWorld } from "@/registry/new-york/blocks/hello-world/hello-world"
 import { ExampleForm } from "@/registry/new-york/blocks/example-form/example-form"
 import PokemonPage from "@/registry/new-york/blocks/complex-component/page"
 import { ExampleCard } from "@/registry/new-york/blocks/example-with-css/example-card"
+import { DocumentationProvider } from "@/registry/new-york/ui/documentation-provider"
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
 
@@ -62,6 +63,26 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-center min-h-[400px] relative">
             <ExampleCard />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[260px] relative">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm text-muted-foreground sm:pl-3">
+              Documentation provider with simple and field-based content.
+            </h2>
+            <OpenInV0Button name="documentation-provider" className="w-fit" />
+          </div>
+          <div className="flex items-center justify-center gap-6 min-h-[180px] relative">
+            <DocumentationProvider content="This is a simple documentation message shown in the right drawer." />
+            <DocumentationProvider
+              title="Button API"
+              fields={[
+                { label: "Variant", value: "default | outline | ghost" },
+                { label: "Size", value: "sm | default | lg | icon" },
+                { label: "Usage", value: "Use for primary actions across forms and dialogs." },
+              ]}
+            />
           </div>
         </div>
       </main>
