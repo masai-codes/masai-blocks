@@ -9,6 +9,9 @@ import { DocumentationProvider } from "@/registry/new-york/ui/documentation-prov
 // You are free to implement this with your own design as needed.
 
 export default function Home() {
+  const documentationEndpoint =
+    "https://drive.masaischool.com/api/document"
+
   return (
     <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
       <header className="flex flex-col gap-1">
@@ -77,12 +80,12 @@ export default function Home() {
             <DocumentationProvider
               productKey="lms"
               placementKey="lecture-attendance-guide"
-              endpoint="http://localhost:3000/api/document"
+              endpoint={documentationEndpoint}
             />
             <DocumentationProvider
               productKey="lms"
               placementKey="attendance-configuration-guide"
-              endpoint="http://localhost:3000/api/document"
+              endpoint={documentationEndpoint}
             />
           </div>
         </div>
