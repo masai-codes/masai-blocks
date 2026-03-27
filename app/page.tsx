@@ -74,14 +74,15 @@ export default function Home() {
             <OpenInV0Button name="documentation-provider" className="w-fit" />
           </div>
           <div className="flex items-center justify-center gap-6 min-h-[180px] relative">
-            <DocumentationProvider content="This is a simple documentation message shown in the right drawer." />
             <DocumentationProvider
-              title="Button API"
-              fields={[
-                { label: "Variant", value: "default | outline | ghost" },
-                { label: "Size", value: "sm | default | lg | icon" },
-                { label: "Usage", value: "Use for primary actions across forms and dialogs." },
-              ]}
+              productKey="lms"
+              placementKey="lecture-attendance-guide"
+              endpoint="http://localhost:3000/api/document"
+            />
+            <DocumentationProvider
+              productKey="lms"
+              placementKey="attendance-configuration-guide"
+              endpoint="http://localhost:3000/api/document"
             />
           </div>
         </div>
