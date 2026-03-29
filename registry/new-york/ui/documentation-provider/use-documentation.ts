@@ -21,16 +21,17 @@ function useDocumentation({
   const [data, setData] = React.useState<DocumentationApiResponse | null>(null)
   const [isLoading, setIsLoading] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
+  const requestKey = `${endpoint}::${productKey}::${placementKey}`
 
   React.useEffect(() => {
     if (!enabled) return
-    if (data) return
 
     const controller = new AbortController()
 
     async function run() {
       setIsLoading(true)
       setError(null)
+      setData(null)
 
       try {
         const result = await fetchDocumentation({
@@ -55,7 +56,7 @@ function useDocumentation({
     return () => {
       controller.abort()
     }
-  }, [enabled, productKey, placementKey, endpoint, data])
+  }, [enabled, requestKey, productKey, placementKey, endpoint])
 
   return { data, isLoading, error }
 }

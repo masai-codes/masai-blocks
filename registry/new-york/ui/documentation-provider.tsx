@@ -7,15 +7,15 @@ import { DocumentationMarkdown } from "./documentation-provider/markdown"
 import { useDocumentation } from "./documentation-provider/use-documentation"
 
 type DocumentationProviderProps = {
-  productKey: string
-  placementKey: string
-  endpoint: string
+  productKey?: string
+  placementKey?: string
+  endpoint?: string
 }
 
 function DocumentationProvider({
-  productKey,
-  placementKey,
-  endpoint,
+  productKey = "lms",
+  placementKey = "test-media",
+  endpoint = "https://drive.masaischool.com/api/document",
 }: DocumentationProviderProps) {
   const [open, setOpen] = React.useState(false)
   const panelWidthPx = 420

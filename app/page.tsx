@@ -1,8 +1,14 @@
+"use client"
+
+import * as React from "react"
 import { DocumentationProvider } from "@/registry/new-york/ui/documentation-provider"
 
 export default function Home() {
-  const documentationEndpoint =
+  const [productKey, setProductKey] = React.useState("lms")
+  const [placementKey, setPlacementKey] = React.useState("test-media")
+  const [documentationEndpoint, setDocumentationEndpoint] = React.useState(
     "https://drive.masaischool.com/api/document"
+  )
 
   return (
     <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
@@ -24,10 +30,39 @@ export default function Home() {
           <h2 className="text-sm text-muted-foreground sm:pl-3">
             Documentation provider: API content rendered as GitHub-flavored markdown.
           </h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <label className="flex flex-col gap-1 text-xs text-muted-foreground">
+              Product key
+              <input
+                value={productKey}
+                onChange={(event) => setProductKey(event.target.value)}
+                placeholder="lms"
+                className="h-9 rounded-md border bg-background px-3 text-sm text-foreground outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-xs text-muted-foreground">
+              Placement key
+              <input
+                value={placementKey}
+                onChange={(event) => setPlacementKey(event.target.value)}
+                placeholder="test-media"
+                className="h-9 rounded-md border bg-background px-3 text-sm text-foreground outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-3">
+              Endpoint
+              <input
+                value={documentationEndpoint}
+                onChange={(event) => setDocumentationEndpoint(event.target.value)}
+                placeholder="https://drive.masaischool.com/api/document"
+                className="h-9 rounded-md border bg-background px-3 text-sm text-foreground outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+              />
+            </label>
+          </div>
           <div className="flex items-center justify-center gap-6 min-h-[180px] relative">
             <DocumentationProvider
-              productKey="lms"
-              placementKey="test-media"
+              productKey={productKey}
+              placementKey={placementKey}
               endpoint={documentationEndpoint}
             />
 
