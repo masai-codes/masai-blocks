@@ -3,25 +3,13 @@
 import * as React from "react"
 import { Info, X } from "lucide-react"
 
+import { DocumentationMarkdown } from "./documentation-provider/markdown"
 import { useDocumentation } from "./documentation-provider/use-documentation"
 
 type DocumentationProviderProps = {
   productKey: string
   placementKey: string
   endpoint: string
-}
-
-function getRenderableHtml(content: string): string {
-  if (!content) return ""
-
-  // Some APIs return escaped HTML (&lt;p&gt;...&lt;/p&gt;). Decode it first.
-  if (content.includes("&lt;") || content.includes("&gt;")) {
-    const parser = new DOMParser()
-    const decoded = parser.parseFromString(content, "text/html").documentElement.textContent
-    return decoded ?? content
-  }
-
-  return content
 }
 
 function DocumentationProvider({
@@ -38,10 +26,7 @@ function DocumentationProvider({
     enabled: open,
   })
   const heading = data?.heading ?? "Documentation"
-  const contentHtml = React.useMemo(
-    () => getRenderableHtml(data?.content ?? ""),
-    [data?.content]
-  )
+  const markdown = data?.content ?? ""
 
   React.useEffect(() => {
     if (typeof window === "undefined") return
@@ -112,10 +97,10 @@ function DocumentationProvider({
           <p className="text-sm leading-6 text-muted-foreground">Loading documentation...</p>
         ) : error ? (
           <p className="text-sm leading-6 text-red-600">{error}</p>
-        ) : contentHtml ? (
-          <div
-            className="max-w-none text-sm leading-6 text-foreground [&_h1]:mt-6 [&_h1]:mb-3 [&_h1]:text-3xl [&_h1]:font-bold [&_h2]:mt-5 [&_h2]:mb-2 [&_h2]:text-2xl [&_h2]:font-semibold [&_h3]:mt-4 [&_h3]:mb-2 [&_h3]:text-xl [&_h3]:font-semibold [&_p]:my-2 [&_strong]:font-semibold [&_ul]:my-3 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:my-1 [&_a]:text-blue-600 [&_a]:underline"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
+        ) : markdown ? (
+          <DocumentationMarkdown
+            markdown={markdown}
+            className="max-w-none text-sm leading-6 text-foreground [&_h1]:mt-6 [&_h1]:mb-3 [&_h1]:text-3xl [&_h1]:font-bold [&_h2]:mt-5 [&_h2]:mb-2 [&_h2]:text-2xl [&_h2]:font-semibold [&_h3]:mt-4 [&_h3]:mb-2 [&_h3]:text-xl [&_h3]:font-semibold [&_p]:my-2 [&_strong]:font-semibold [&_ul]:my-3 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:my-1 [&_a]:text-blue-600 [&_a]:underline [&_img]:my-3 [&_img]:max-w-full [&_img]:rounded-md [&_img]:border [&_video]:my-3 [&_video]:max-w-full [&_video]:rounded-md [&_blockquote]:border-l-2 [&_blockquote]:pl-4 [&_blockquote]:text-muted-foreground [&_pre]:my-3 [&_pre]:overflow-x-auto [&_pre]:rounded-md [&_pre]:border [&_pre]:bg-muted/40 [&_pre]:p-3 [&_code]:rounded [&_code]:bg-muted/60 [&_code]:px-1 [&_code]:py-0.5 [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_table]:my-3 [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:bg-muted/50 [&_th]:px-2 [&_th]:py-1.5 [&_th]:text-left [&_td]:border [&_td]:px-2 [&_td]:py-1.5"
           />
         ) : (
           <p className="text-sm leading-6 text-muted-foreground">

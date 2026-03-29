@@ -72,14 +72,14 @@ export default function Home() {
         <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[260px] relative">
           <div className="flex items-center justify-between">
             <h2 className="text-sm text-muted-foreground sm:pl-3">
-              Documentation provider with simple and field-based content.
+              Documentation provider: API content rendered as GitHub-flavored markdown.
             </h2>
             <OpenInV0Button name="documentation-provider" className="w-fit" />
           </div>
           <div className="flex items-center justify-center gap-6 min-h-[180px] relative">
             <DocumentationProvider
               productKey="lms"
-              placementKey="lecture-attendance-guide"
+              placementKey="test-media"
               endpoint={documentationEndpoint}
             />
             <DocumentationProvider
