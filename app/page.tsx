@@ -64,6 +64,7 @@ export default function Home() {
               productKey={productKey}
               placementKey={placementKey}
               endpoint={documentationEndpoint}
+              hoverText="Open documentation"
             />
 
           </div>

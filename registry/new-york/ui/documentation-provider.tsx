@@ -10,14 +10,17 @@ type DocumentationProviderProps = {
   productKey?: string
   placementKey?: string
   endpoint?: string
+  hoverText?: string
 }
 
 function DocumentationProvider({
   productKey = "lms",
   placementKey = "test-media",
   endpoint = "https://drive.masaischool.com/api/document",
+  hoverText,
 }: DocumentationProviderProps) {
   const [open, setOpen] = React.useState(false)
+  const hoverTextId = React.useId()
   const panelWidthPx = 420
   const { data, isLoading, error } = useDocumentation({
     productKey,
@@ -66,20 +69,31 @@ function DocumentationProvider({
 
   return (
     <>
-      <button
-        type="button"
-        aria-label="Open documentation"
-        onClick={() => setOpen(true)}
-        className="inline-flex size-9 items-center justify-center rounded-md border bg-background text-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-      >
-        <Info className="size-4" />
-      </button>
+      <div className="group relative inline-flex">
+        <button
+          type="button"
+          aria-label="Open documentation"
+          aria-describedby={hoverText ? hoverTextId : undefined}
+          onClick={() => setOpen(true)}
+          className="cursor-pointer inline-flex size-9 items-center justify-center text-foreground transition-colors hover:text-accent-foreground"
+        >
+          <Info className="size-full" />
+        </button>
+        {hoverText ? (
+          <span
+            id={hoverTextId}
+            role="tooltip"
+            className="pointer-events-none absolute -top-2 left-1/2 z-50 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+          >
+            {hoverText}
+          </span>
+        ) : null}
+      </div>
 
       <aside
         aria-hidden={!open}
-        className={`fixed top-0 right-0 z-[9999] h-full w-full max-w-[420px] border-l bg-white p-6 shadow-xl transition-transform duration-200 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 z-[9999] h-full w-full max-w-[420px] border-l bg-white p-6 shadow-xl transition-transform duration-200 ${open ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="mb-4 flex items-center justify-between gap-2">
           <h2 className="text-lg font-semibold">{heading}</h2>
