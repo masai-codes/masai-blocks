@@ -5,7 +5,7 @@ import { DocumentationProvider } from "@/registry/new-york/ui/documentation-prov
 
 export default function Home() {
   const [productKey, setProductKey] = React.useState("lms")
-  const [placementKey, setPlacementKey] = React.useState("test-media")
+  const [placementKey, setPlacementKey] = React.useState("assignments-guide")
   const [documentationEndpoint, setDocumentationEndpoint] = React.useState(
     "https://drive.masaischool.com/api/document"
   )
