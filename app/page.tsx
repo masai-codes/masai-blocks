@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { Badge } from "@/registry/new-york/ui/badge"
 import { DocumentationProvider } from "@/registry/new-york/ui/documentation-provider"
 
 export default function Home() {
@@ -26,6 +27,32 @@ export default function Home() {
         </div>
       </header>
       <main className="flex flex-col flex-1 gap-8">
+        <div className="flex flex-col gap-4 border rounded-lg p-4">
+          <h2 className="text-sm text-muted-foreground sm:pl-3">
+            Badge: click image to open card in modal or bottom drawer.
+          </h2>
+          <div className="flex flex-wrap items-center justify-center gap-8 py-4">
+            <Badge
+              name="Practice Leader"
+              description="Earned for showing up and staying committed, every session"
+              badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/8496da2d-8c8c-43af-901f-a7c57dc8b953/zLZWh31SFQuzScEi.png"
+              isLocked={false}
+              openIn="modal"
+              bgColor="#FFE8B526"
+              firstUnlockedDate="2026-03-12"
+            />
+            <Badge
+              name="Consistent Contributor"
+              description="Earned for showing up and staying committed, every session"
+              badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/17df44a8-d6a3-499e-ac53-7c07909c1197/2tPtQYmGeGm2aEHh.png"
+              isLocked
+              openIn="bottom-drawer"
+              bgColor="#FFE8B526"
+              firstUnlockedDate="2026-05-13"
+            />
+          </div>
+        </div>
+
         <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[260px] relative">
           <h2 className="text-sm text-muted-foreground sm:pl-3">
             Documentation provider: API content rendered as GitHub-flavored markdown.
