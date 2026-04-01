@@ -147,8 +147,14 @@ function Badge({
                   className={`h-48 w-full object-contain transition-opacity`}
                 />
                 {isLocked ? (
-                  <span className="absolute bottom-[12px] left-1/2 z-10 inline-flex h-[48px] w-[48px] -translate-x-1/2 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] shadow-md">
-                    <img src={LOCK_ICON_URL} alt="" className="size-[32px] object-contain" />
+                  <span className="absolute bottom-3 left-1/2 z-10 inline-flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] shadow-md">
+                    <img
+                      src={LOCK_ICON_URL}
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="h-8 w-8 shrink-0 object-contain"
+                    />
                     <span className="sr-only">Locked</span>
                   </span>
                 ) : null}
