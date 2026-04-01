@@ -35,11 +35,12 @@ export default function Home() {
             <Badge
               name="Practice Leader"
               description="Earned for showing up and staying committed, every session"
-              badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/8496da2d-8c8c-43af-901f-a7c57dc8b953/zLZWh31SFQuzScEi.png"
+              badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/2c174f69-adcf-47e8-b69c-a5c70fd698b6/UBx1eiynLZdmuhyi.png"
               isLocked={false}
               openIn="modal"
               bgColor="#FFE8B526"
               firstUnlockedDate="2026-03-12"
+              countLabel="10"
             />
             <Badge
               name="Consistent Contributor"
