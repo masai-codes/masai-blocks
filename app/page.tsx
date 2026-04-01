@@ -41,6 +41,7 @@ export default function Home() {
               bgColor="#FFE8B526"
               firstUnlockedDate="2026-03-12"
               countLabel="10"
+
             />
             <Badge
               name="Consistent Contributor"
@@ -50,6 +51,7 @@ export default function Home() {
               openIn="modal"
               bgColor="#FFE8B526"
               firstUnlockedDate="2026-05-13"
+              lockedBadgeText="Practice Leader Locked"
             />
           </div>
         </div>

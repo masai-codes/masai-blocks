@@ -148,11 +148,11 @@ function Badge({
                 <img
                   src={badgeUrl}
                   alt={name}
-                  className={`h-48 w-full object-contain transition-opacity ${isLocked ? "opacity-50" : ""}`}
+                  className={`h-48 w-full object-contain transition-opacity ${isLocked ? "" : ""}`}
                 />
                 {isLocked ? (
-                  <span className="absolute bottom-[12px] left-1/2 inline-flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] text-white shadow-md">
-                    <Lock className="size-3.5" />
+                  <span className="absolute bottom-[12px] left-1/2 z-10 inline-flex h-[48px] w-[48px] -translate-x-1/2 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] text-white shadow-md">
+                    <Lock className="size-[32px]" />
                     <span className="sr-only">Locked</span>
                   </span>
                 ) : null}
