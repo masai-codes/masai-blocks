@@ -7,6 +7,7 @@ import { Lock, X } from "lucide-react"
 type BadgeProps = {
   name: string
   description: string
+  lockedBadgeText?: string
   badgeUrl: string
   countLabel?: string
   isLocked: boolean
@@ -55,6 +56,7 @@ function formatUnlockedDate(value: string | Date) {
 function Badge({
   name,
   description,
+  lockedBadgeText,
   badgeUrl,
   countLabel,
   isLocked,
@@ -65,6 +67,7 @@ function Badge({
 }: BadgeProps) {
   const unlockedText = formatUnlockedDate(firstUnlockedDate)
   const drawer = openIn === "bottom-drawer"
+  const detailText = isLocked ? lockedBadgeText || description : description
   const displayCountLabel = React.useMemo(() => {
     if (!countLabel) return undefined
     const trimmed = countLabel.trim()
@@ -82,7 +85,6 @@ function Badge({
         <button
           type="button"
           aria-label={`Open ${name} badge`}
-          disabled={isLocked}
           className="relative inline-flex items-center justify-center rounded-xl outline-none ring-offset-background transition-transform hover:scale-[1.01] focus-visible:ring-2 focus-visible:ring-ring"
         >
           <img
@@ -137,17 +139,23 @@ function Badge({
               }}
             />
             <div className="relative z-10 px-4 sm:px-5">
-              <Dialog.Close className="absolute right-3 top-0 inline-flex size-8 items-center justify-center rounded-md border bg-white/90 text-foreground transition-colors hover:bg-white">
+              <Dialog.Close className="absolute right-3 top-3 z-20 inline-flex size-9 cursor-pointer items-center justify-center rounded-md border bg-white/95 text-foreground pointer-events-auto transition-colors hover:bg-white">
                 <X className="size-4" />
                 <span className="sr-only">Close</span>
               </Dialog.Close>
 
-              <div className="mx-auto mb-4 flex w-full max-w-[340px] justify-center">
+              <div className="relative mx-auto mb-4 flex w-full max-w-[340px] justify-center">
                 <img
                   src={badgeUrl}
                   alt={name}
                   className={`h-48 w-full object-contain transition-opacity ${isLocked ? "opacity-50" : ""}`}
                 />
+                {isLocked ? (
+                  <span className="absolute bottom-[12px] left-1/2 inline-flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] text-white shadow-md">
+                    <Lock className="size-3.5" />
+                    <span className="sr-only">Locked</span>
+                  </span>
+                ) : null}
               </div>
 
               <div className="space-y-2 text-center">
@@ -155,7 +163,7 @@ function Badge({
                   {name}
                 </Dialog.Title>
                 <Dialog.Description className="mx-auto max-w-[460px] text-lg leading-relaxed text-slate-600">
-                  {description}
+                  {detailText}
                 </Dialog.Description>
               </div>
 
