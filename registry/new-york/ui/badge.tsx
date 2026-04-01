@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-import { X } from "lucide-react"
+import { Lock, X } from "lucide-react"
 
 type BadgeProps = {
   name: string
@@ -82,14 +82,20 @@ function Badge({
         <button
           type="button"
           aria-label={`Open ${name} badge`}
+          disabled={isLocked}
           className="relative inline-flex items-center justify-center rounded-xl outline-none ring-offset-background transition-transform hover:scale-[1.01] focus-visible:ring-2 focus-visible:ring-ring"
         >
           <img
             src={badgeUrl}
             alt={name}
-            className={`h-24 w-24 object-contain transition-opacity ${isLocked ? "opacity-50" : ""}`}
+            className={`h-24 w-24 object-contain transition-opacity ${isLocked ? "opacity-40" : ""}`}
           />
-          {displayCountLabel ? (
+          {isLocked ? (
+            <span className="absolute bottom-[16px] right-[12px] inline-flex h-6 w-6 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] text-white shadow-md">
+              <Lock className="size-3.5" />
+              <span className="sr-only">Locked</span>
+            </span>
+          ) : displayCountLabel ? (
             <span
               className="absolute bottom-[16px] right-[4px]  inline-flex items-center justify-center gap-2 rounded-[56px] border border-[#C3DDFD] bg-[#EBF5FF] px-[10px] py-1 text-[12px] font-semibold leading-4 text-[#3F83F8]"
               style={{ fontFamily: "Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" }}

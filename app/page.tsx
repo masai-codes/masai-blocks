@@ -45,8 +45,8 @@ export default function Home() {
             <Badge
               name="Consistent Contributor"
               description="Earned for showing up and staying committed, every session"
-              badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/17df44a8-d6a3-499e-ac53-7c07909c1197/2tPtQYmGeGm2aEHh.png"
-              isLocked
+              badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/2c174f69-adcf-47e8-b69c-a5c70fd698b6/UBx1eiynLZdmuhyi.png"
+              isLocked={true}
               openIn="bottom-drawer"
               bgColor="#FFE8B526"
               firstUnlockedDate="2026-05-13"
