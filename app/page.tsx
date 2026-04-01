@@ -39,8 +39,10 @@ export default function Home() {
               isLocked={false}
               openIn="modal"
               bgColor="#FFE8B526"
+              theme="theme1"
               firstUnlockedDate="2026-03-12"
               countLabel="10"
+
 
             />
             <Badge
@@ -50,8 +52,10 @@ export default function Home() {
               isLocked={true}
               openIn="modal"
               bgColor="#FFE8B526"
+              theme="theme1"
               firstUnlockedDate="2026-05-13"
               lockedBadgeText="Practice Leader Locked"
+
             />
           </div>
         </div>
