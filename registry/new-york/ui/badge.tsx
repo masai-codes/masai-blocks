@@ -15,6 +15,13 @@ const THEME_BACKGROUND_URL: Record<"theme1" | "theme2" | "theme3", string> = {
   theme3: `${STATIC_BASE}/theme3-red.svg`,
 }
 
+/** Header tint behind the decorative SVG; paired with `THEME_BACKGROUND_URL`. */
+const THEME_BACKGROUND_COLOR: Record<"theme1" | "theme2" | "theme3", string> = {
+  theme1: "#FFE8B526",
+  theme2: "#EDFAFA80",
+  theme3: "#F4AF7E1A",
+}
+
 type BadgeProps = {
   name: string
   description: string
@@ -23,8 +30,7 @@ type BadgeProps = {
   countLabel?: string
   isLocked: boolean
   openIn: "bottom-drawer" | "modal"
-  bgColor: string
-  /** Decorative header background lines; pick theme1, theme2, or theme3. */
+  /** Decorative header background (SVG + tint); pick theme1, theme2, or theme3. */
   theme: "theme1" | "theme2" | "theme3"
   firstUnlockedDate: string | Date
 }
@@ -62,7 +68,6 @@ function Badge({
   countLabel,
   isLocked,
   openIn,
-  bgColor,
   theme,
   firstUnlockedDate,
 }: BadgeProps) {
@@ -70,6 +75,7 @@ function Badge({
   const drawer = openIn === "bottom-drawer"
   const detailText = isLocked ? lockedBadgeText || description : description
   const themeBackgroundUrl = THEME_BACKGROUND_URL[theme]
+  const themeBackgroundColor = THEME_BACKGROUND_COLOR[theme]
 
   const displayCountLabel = React.useMemo(() => {
     if (!countLabel) return undefined
@@ -123,7 +129,7 @@ function Badge({
           <div
             className="relative overflow-hidden pb-10 pt-4 sm:pt-5"
             style={{
-              backgroundColor: bgColor,
+              backgroundColor: themeBackgroundColor,
               borderBottomLeftRadius: "50% 12%",
               borderBottomRightRadius: "50% 12%",
             }}

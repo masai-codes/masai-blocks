@@ -38,7 +38,6 @@ export default function Home() {
               badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/2c174f69-adcf-47e8-b69c-a5c70fd698b6/UBx1eiynLZdmuhyi.png"
               isLocked={false}
               openIn="modal"
-              bgColor="#FFE8B526"
               theme="theme1"
               firstUnlockedDate="2026-03-12"
               countLabel="10"
@@ -51,7 +50,6 @@ export default function Home() {
               badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/2c174f69-adcf-47e8-b69c-a5c70fd698b6/UBx1eiynLZdmuhyi.png"
               isLocked={true}
               openIn="modal"
-              bgColor="#FFE8B526"
               theme="theme1"
               firstUnlockedDate="2026-05-13"
               lockedBadgeText="Practice Leader Locked"
