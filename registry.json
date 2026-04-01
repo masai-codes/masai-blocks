@@ -4,6 +4,22 @@
   "homepage": "https://acme.com",
   "items": [
     {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Badge card component with locked/unlocked states that opens in a modal or bottom drawer.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "documentation-provider",
       "type": "registry:ui",
       "title": "Documentation Provider",
