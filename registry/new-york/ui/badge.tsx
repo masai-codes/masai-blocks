@@ -201,23 +201,25 @@ function Badge({
               ) : null}
             </div>
           </div>
-          <div
-            className={`${drawer ? "px-[16px]" : "px-[16px] sm:px-[72px]"} pb-[24px] mt-[32px] flex justify-center`}
-          >
-            <a
-              href={linkedinShareHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex"
+          {!isLocked ? (
+            <div
+              className={`${drawer ? "px-[16px]" : "px-[16px] sm:px-[72px]"} pb-[24px] mt-[32px] flex justify-center`}
             >
-              <span
-                className={`cursor-pointer inline-flex items-center justify-center gap-3 rounded-2xl bg-[#6f67c7] py-3 text-[14px] font-[500] leading-[24px] text-white transition-colors hover:bg-[#625ab9] ${drawer ? "px-4" : "px-4 sm:px-[72px]"}`}
+              <a
+                href={linkedinShareHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex"
               >
-                <img src={LINKEDIN_ICON_URL} alt="" className="h-6 w-6 object-contain" />
-                Share With Your Network
-              </span>
-            </a>
-          </div>
+                <span
+                  className={`cursor-pointer inline-flex items-center justify-center gap-3 rounded-2xl bg-[#6f67c7] py-3 text-[14px] font-[500] leading-[24px] text-white transition-colors hover:bg-[#625ab9] ${drawer ? "px-4" : "px-4 sm:px-[72px]"}`}
+                >
+                  <img src={LINKEDIN_ICON_URL} alt="" className="h-6 w-6 object-contain" />
+                  Share With Your Network
+                </span>
+              </a>
+            </div>
+          ) : null}
 
         </Dialog.Content>
       </Dialog.Portal>
