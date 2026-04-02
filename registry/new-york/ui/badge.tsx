@@ -81,12 +81,20 @@ function Badge({
     if (!countLabel) return undefined
     const trimmed = countLabel.trim()
     if (!trimmed) return undefined
-    return trimmed.toLowerCase().startsWith("x") ? `x${trimmed.slice(1)}` : `x${trimmed}`
+    const numericPart = trimmed.toLowerCase().startsWith("x") ? trimmed.slice(1) : trimmed
+    const count = Number.parseInt(numericPart, 10)
+    if (!Number.isFinite(count) || count <= 1) return undefined
+    return `x${count}`
   }, [countLabel])
   const linkedinShareHref = React.useMemo(() => {
     const encoded = encodeURIComponent(badgeUrl)
     return `https://www.linkedin.com/sharing/share-offsite/?url=${encoded}`
   }, [badgeUrl])
+  const isRepeatedUnlock = React.useMemo(() => {
+    if (!displayCountLabel) return false
+    const count = Number.parseInt(displayCountLabel.replace(/^x/i, ""), 10)
+    return Number.isFinite(count) && count > 2
+  }, [displayCountLabel])
 
   return (
     <Dialog.Root>
@@ -122,12 +130,12 @@ function Badge({
         <Dialog.Content
           className={`fixed z-50 border shadow-xl outline-none ${drawer
             ? "inset-x-0 bottom-0 w-full max-h-[90vh] rounded-t-2xl bg-white data-[state=open]:animate-in data-[state=closed]:animate-out"
-            : "left-1/2 top-1/2 w-[min(92vw,375px)] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white data-[state=open]:animate-in data-[state=closed]:animate-out"
+            : "left-1/2 top-1/2 w-[min(92vw,524px)] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white data-[state=open]:animate-in data-[state=closed]:animate-out"
             }`}
         >
 
           <div
-            className="relative overflow-hidden pb-10 pt-4 sm:pt-5"
+            className="relative overflow-hidden rounded-t-2xl pb-10 pt-4 sm:pt-5"
             style={{
               backgroundColor: themeBackgroundColor,
               borderBottomLeftRadius: "50% 12%",
@@ -146,24 +154,33 @@ function Badge({
                 <span className="sr-only">Close</span>
               </Dialog.Close>
 
-              <div className="relative mx-auto mb-4 flex w-full max-w-[340px] justify-center">
-                <img
-                  src={badgeUrl}
-                  alt={name}
-                  className={`h-48 w-full object-contain transition-opacity`}
-                />
-                {isLocked ? (
-                  <span className="absolute bottom-3 left-1/2 z-10 inline-flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] shadow-md">
-                    <img
-                      src={LOCK_ICON_URL}
-                      alt=""
-                      width={32}
-                      height={32}
-                      className="h-8 w-8 shrink-0 object-contain"
-                    />
-                    <span className="sr-only">Locked</span>
-                  </span>
-                ) : null}
+              <div className="mx-auto mb-4 flex w-full max-w-[340px] justify-center">
+                <div className="relative inline-flex">
+                  <img
+                    src={badgeUrl}
+                    alt={name}
+                    className={`h-48 w-auto max-w-full object-contain transition-opacity`}
+                  />
+                  {isLocked ? (
+                    <span className="absolute bottom-3 left-1/2 z-10 inline-flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] shadow-md">
+                      <img
+                        src={LOCK_ICON_URL}
+                        alt=""
+                        width={32}
+                        height={32}
+                        className="h-8 w-8 shrink-0 object-contain"
+                      />
+                      <span className="sr-only">Locked</span>
+                    </span>
+                  ) : displayCountLabel ? (
+                    <span
+                      className="absolute bottom-5 right-10 z-10 inline-flex items-center justify-center gap-2 rounded-[56px] border border-[#C3DDFD] bg-[#EBF5FF] px-4 py-2 text-sm font-semibold leading-5 text-[#3F83F8]"
+                      style={{ fontFamily: "Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" }}
+                    >
+                      {displayCountLabel}
+                    </span>
+                  ) : null}
+                </div>
               </div>
 
               <div className="space-y-2 text-center">
@@ -178,20 +195,24 @@ function Badge({
               {!isLocked ? (
                 <div className="mt-5 flex justify-center">
                   <p className="rounded-full border border-blue-300 bg-white/80 px-4 py-2 text-base font-medium text-blue-600">
-                    {`Unlocked on ${unlockedText}`}
+                    {`${isRepeatedUnlock ? "First unlocked on" : "Unlocked on"} ${unlockedText}`}
                   </p>
                 </div>
               ) : null}
             </div>
           </div>
-          <div className="px-[16px] pb-[24px] mt-[32px]">
+          <div
+            className={`${drawer ? "px-[16px]" : "px-[16px] sm:px-[72px]"} pb-[24px] mt-[32px] flex justify-center`}
+          >
             <a
               href={linkedinShareHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full"
+              className="inline-flex"
             >
-              <span className="cursor-pointer inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-[#6f67c7] px-4 py-3 text-[14px] font-[500] leading-[24px] text-white transition-colors hover:bg-[#625ab9]">
+              <span
+                className={`cursor-pointer inline-flex items-center justify-center gap-3 rounded-2xl bg-[#6f67c7] py-3 text-[14px] font-[500] leading-[24px] text-white transition-colors hover:bg-[#625ab9] ${drawer ? "px-4" : "px-4 sm:px-[72px]"}`}
+              >
                 <img src={LINKEDIN_ICON_URL} alt="" className="h-6 w-6 object-contain" />
                 Share With Your Network
               </span>
