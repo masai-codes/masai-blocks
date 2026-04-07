@@ -1,9 +1,5 @@
 import type { ClubCardProps } from "./types";
-
-const CTA_THEME_STYLES = {
-  yellow: "bg-[#EF8833] text-[#fff] hover:bg-[#EF8833]",
-  red: "bg-[#EF4444] text-white hover:bg-[#DC2626]",
-} as const;
+import { CardCtaButton } from "../shared/card-cta-button";
 
 type ClubCardPreviewProps = Pick<
   ClubCardProps,
@@ -44,13 +40,12 @@ export function ClubCardPreview({
         </p>
       </div>
       <div className="flex justify-end">
-        <button
-          type="button"
+        <CardCtaButton
+          text={ctaText}
           onClick={onCtaClick}
-          className={`mt-[20px] font-poppins text-[#fff] inline-flex items-center justify-center rounded-[8px] px-[16px] py-[12px] text-[14px] font-[500] leading-[12px] transition-colors ${CTA_THEME_STYLES[ctaTheme]}`}
-        >
-          {ctaText}
-        </button>
+          theme={ctaTheme}
+          className="mt-[20px] leading-[12px]"
+        />
       </div>
     </div>
   );

@@ -3,12 +3,8 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Users } from "@phosphor-icons/react";
 import { X } from "lucide-react";
+import { CardCtaButton } from "../shared/card-cta-button";
 import type { ClubCardProps, DrawerDirection } from "./types";
-
-const CTA_THEME_STYLES = {
-  yellow: "bg-[#EF8833] text-[#fff] hover:bg-[#EF8833]",
-  red: "bg-[#EF4444] text-white hover:bg-[#DC2626]",
-} as const;
 
 type ClubCardDrawerProps = Pick<
   ClubCardProps,
@@ -102,13 +98,7 @@ export function ClubCardDrawer({
             </div>
           </div>
           <div className="border-t p-4">
-            <button
-              type="button"
-              onClick={onCtaClick}
-              className={`inline-flex w-full items-center justify-center rounded-[8px] px-[16px] py-[12px] text-[14px] font-[500] leading-[20px] font-poppins transition-colors ${CTA_THEME_STYLES[ctaTheme]}`}
-            >
-              {ctaText}
-            </button>
+            <CardCtaButton text={ctaText} onClick={onCtaClick} theme={ctaTheme} fullWidth />
           </div>
         </Dialog.Content>
       </Dialog.Portal>

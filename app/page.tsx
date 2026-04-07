@@ -3,6 +3,7 @@
 import { BadgeShowcase } from "@/app/components/badge-showcase"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { DocumentationPlayground } from "@/app/components/documentation-playground"
+import { EventCardPlayground } from "@/app/components/event-card-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
 
 export default function Home() {
@@ -32,6 +33,18 @@ export default function Home() {
             </p>
           </div>
           <BadgeShowcase />
+        </section>
+
+        <section className="space-y-3" aria-labelledby="event-card-heading">
+          <div className="space-y-1">
+            <h2 id="event-card-heading" className="text-lg font-semibold">
+              Event Card
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Preview event card states and drawer timeline details.
+            </p>
+          </div>
+          <EventCardPlayground />
         </section>
 
         <section className="space-y-3" aria-labelledby="documentation-provider-heading">
