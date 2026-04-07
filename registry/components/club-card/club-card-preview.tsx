@@ -22,7 +22,7 @@ export function ClubCardPreview({
   onCtaClick,
 }: ClubCardPreviewProps) {
   return (
-    <div className="w-full max-w-[298px] rounded-[12px] border border-[#E5E7EB] bg-white p-4">
+    <div className="font-poppins w-full max-w-[298px] rounded-[12px] border border-[#E5E7EB] bg-white p-4">
       <div className="flex items-start justify-between">
         <div className="bg-[#EBF5FF] p-[12px] rounded-[50%]">
           <img
@@ -43,11 +43,11 @@ export function ClubCardPreview({
           {miniDescription}
         </p>
       </div>
-      <div className="mt-[20px] flex justify-end">
+      <div className="flex justify-end">
         <button
           type="button"
           onClick={onCtaClick}
-          className={`mt-4 font-poppins text-[#fff] inline-flex items-center justify-center rounded-[8px] px-[16px] py-[12px] text-[14px] font-[500] leading-[20px] transition-colors ${CTA_THEME_STYLES[ctaTheme]}`}
+          className={`mt-[20px] font-poppins text-[#fff] inline-flex items-center justify-center rounded-[8px] px-[16px] py-[12px] text-[14px] font-[500] leading-[20px] transition-colors ${CTA_THEME_STYLES[ctaTheme]}`}
         >
           {ctaText}
         </button>

@@ -29,7 +29,7 @@ export function ClubCardDrawer({
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50 transition-opacity duration-300 ease-out data-[state=closed]:opacity-0 data-[state=open]:opacity-100" />
         <Dialog.Content
-          className={`fixed z-50 border bg-white shadow-xl outline-none ${
+          className={`fixed z-50 border bg-white font-poppins shadow-xl outline-none ${
             resolvedDirection === "right"
               ? "right-0 top-0 h-svh w-full max-w-[420px] border-l transition-transform duration-300 ease-out will-change-transform data-[state=closed]:translate-x-full data-[state=open]:translate-x-0"
               : "bottom-0 left-0 w-full max-h-[88svh] rounded-t-2xl border-t transition-transform duration-300 ease-out will-change-transform data-[state=closed]:translate-y-full data-[state=open]:translate-y-0"
