@@ -20,7 +20,12 @@ type EventMetaTagProps = {
   className?: string;
 };
 
-function EventMetaTag({ icon, value, href, className = "" }: EventMetaTagProps) {
+function EventMetaTag({
+  icon,
+  value,
+  href,
+  className = "",
+}: EventMetaTagProps) {
   return (
     <div
       className={`flex min-w-0 flex-1 items-center gap-2 rounded-[8px] border border-[#E5E7EB] bg-[#FFF4ED] px-2 py-2 text-[12px] text-[#374151] ${className}`}
