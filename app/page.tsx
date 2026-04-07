@@ -1,9 +1,9 @@
 "use client"
 
 import { BadgeShowcase } from "@/app/components/badge-showcase"
+import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { DocumentationPlayground } from "@/app/components/documentation-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
-import { ClubCard } from "@/registry/components/club-card"
 
 export default function Home() {
   return (
@@ -19,30 +19,7 @@ export default function Home() {
               Showing 43 club cards in a single horizontal row.
             </p>
           </div>
-          <div className="w-full overflow-x-auto">
-            <div className="flex w-max gap-4 pb-2">
-              {Array.from({ length: 43 }).map((_, index) => (
-                <ClubCard
-                  key={`club-card-${index}`}
-                  domain="Tech Community"
-                  name={`Frontend Club ${index + 1}`}
-                  imageUrl="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=400&q=80"
-                  miniDescription="Weekly frontend meetups, code reviews, and interview prep sessions."
-                  ctaText="View Details"
-                  onCtaClick={() => console.log(`Club card ${index + 1} CTA clicked`)}
-                  totalMembers="1240"
-                  detailDescription="Frontend Club helps members improve React, JavaScript, and UI engineering with guided sessions and hands-on practice."
-                  detailPoints={[
-                    "Live sessions every Wednesday",
-                    "Peer-led project reviews",
-                    "Monthly frontend challenge",
-                  ]}
-                  drawerDirection="auto"
-                  ctaTheme="yellow"
-                />
-              ))}
-            </div>
-          </div>
+          <ClubCardPlayground cardCount={43} />
         </section>
 
         <section className="space-y-3" aria-labelledby="badge-heading">

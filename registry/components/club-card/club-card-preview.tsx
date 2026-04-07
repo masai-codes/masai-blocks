@@ -47,7 +47,7 @@ export function ClubCardPreview({
         <button
           type="button"
           onClick={onCtaClick}
-          className={`mt-[20px] font-poppins text-[#fff] inline-flex items-center justify-center rounded-[8px] px-[16px] py-[12px] text-[14px] font-[500] leading-[20px] transition-colors ${CTA_THEME_STYLES[ctaTheme]}`}
+          className={`mt-[20px] font-poppins text-[#fff] inline-flex items-center justify-center rounded-[8px] px-[16px] py-[12px] text-[14px] font-[500] leading-[12px] transition-colors ${CTA_THEME_STYLES[ctaTheme]}`}
         >
           {ctaText}
         </button>

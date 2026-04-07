@@ -1,30 +1,37 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ClubCard } from "@/registry/components/club-card"
-import { demoInputClass, demoTextareaClass } from "@/app/components/demo-field-classes"
+import * as React from "react";
+import { ClubCard } from "@/registry/components/club-card";
+import {
+  demoInputClass,
+  demoTextareaClass,
+} from "@/app/components/demo-field-classes";
 
-export function ClubCardPlayground() {
-  const [domain, setDomain] = React.useState("Tech Community")
-  const [name, setName] = React.useState("Frontend Club")
+type ClubCardPlaygroundProps = {
+  cardCount?: number;
+};
+
+export function ClubCardPlayground({ cardCount = 1 }: ClubCardPlaygroundProps) {
+  const [domain, setDomain] = React.useState("Product Management");
+  const [name, setName] = React.useState("Product Circle");
   const [imageUrl, setImageUrl] = React.useState(
-    "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=400&q=80"
-  )
+    "https://masai-drive-uploads-prod.s3.ap-south-1.amazonaws.com/drive/69c5405a1048890fc9f0c63c/1775559488567-081c444cda66b811.png",
+  );
   const [miniDescription, setMiniDescription] = React.useState(
-    "Weekly frontend meetups, code reviews, and interview prep sessions."
-  )
-  const [ctaText, setCtaText] = React.useState("View Details")
-  const [totalMembers, setTotalMembers] = React.useState("1240")
+    "A space to learn how great products are built and scaled",
+  );
+  const [ctaText, setCtaText] = React.useState("View Details");
+  const [totalMembers, setTotalMembers] = React.useState("1240");
   const [detailDescription, setDetailDescription] = React.useState(
-    "Frontend Club helps members improve React, JavaScript, and UI engineering with guided sessions and hands-on practice."
-  )
+    "Frontend Club helps members improve React, JavaScript, and UI engineering with guided sessions and hands-on practice.",
+  );
   const [detailPointsText, setDetailPointsText] = React.useState(
-    "Live sessions every Wednesday\nPeer-led project reviews\nMonthly frontend challenge"
-  )
-  const [ctaTheme, setCtaTheme] = React.useState<"yellow" | "red">("yellow")
-  const [drawerDirection, setDrawerDirection] = React.useState<"auto" | "right" | "bottom">(
-    "auto"
-  )
+    "Live sessions every Wednesday\nPeer-led project reviews\nMonthly frontend challenge",
+  );
+  const [ctaTheme, setCtaTheme] = React.useState<"yellow" | "red">("yellow");
+  const [drawerDirection, setDrawerDirection] = React.useState<
+    "auto" | "right" | "bottom"
+  >("auto");
 
   const detailPoints = React.useMemo(
     () =>
@@ -32,26 +39,39 @@ export function ClubCardPlayground() {
         .split("\n")
         .map((point) => point.trim())
         .filter(Boolean),
-    [detailPointsText]
-  )
+    [detailPointsText],
+  );
 
   return (
     <div className="flex flex-col gap-4 border rounded-lg p-4">
       <h2 className="text-sm text-muted-foreground sm:pl-3">
-        Club card: CTA opens a right drawer on desktop and bottom drawer on mobile.
+        Club card: CTA opens a right drawer on desktop and bottom drawer on
+        mobile.
       </h2>
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="flex flex-col gap-1 text-xs text-muted-foreground">
           Domain
-          <input value={domain} onChange={(e) => setDomain(e.target.value)} className={demoInputClass} />
+          <input
+            value={domain}
+            onChange={(e) => setDomain(e.target.value)}
+            className={demoInputClass}
+          />
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground">
           Name
-          <input value={name} onChange={(e) => setName(e.target.value)} className={demoInputClass} />
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={demoInputClass}
+          />
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-2">
           Image URL
-          <input value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className={demoInputClass} />
+          <input
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            className={demoInputClass}
+          />
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-2">
           Mini description
@@ -63,7 +83,11 @@ export function ClubCardPlayground() {
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground">
           CTA text
-          <input value={ctaText} onChange={(e) => setCtaText(e.target.value)} className={demoInputClass} />
+          <input
+            value={ctaText}
+            onChange={(e) => setCtaText(e.target.value)}
+            className={demoInputClass}
+          />
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground">
           Total members
@@ -115,21 +139,26 @@ export function ClubCardPlayground() {
           />
         </label>
       </div>
-      <div className="flex items-center justify-center py-4">
-        <ClubCard
-          domain={domain}
-          name={name}
-          imageUrl={imageUrl}
-          miniDescription={miniDescription}
-          ctaText={ctaText}
-          onCtaClick={() => console.log("Club card CTA clicked")}
-          totalMembers={totalMembers}
-          detailPoints={detailPoints}
-          detailDescription={detailDescription}
-          drawerDirection={drawerDirection}
-          ctaTheme={ctaTheme}
-        />
+      <div className="w-full overflow-x-auto py-4">
+        <div className="flex w-max gap-4">
+          {Array.from({ length: cardCount }).map((_, index) => (
+            <ClubCard
+              key={`club-card-preview-${index}`}
+              domain={domain}
+              name={cardCount > 1 ? `${name} ${index + 1}` : name}
+              imageUrl={imageUrl}
+              miniDescription={miniDescription}
+              ctaText={ctaText}
+              onCtaClick={() => console.log(`Club card ${index + 1} CTA clicked`)}
+              totalMembers={totalMembers}
+              detailPoints={detailPoints}
+              detailDescription={detailDescription}
+              drawerDirection={drawerDirection}
+              ctaTheme={ctaTheme}
+            />
+          ))}
+        </div>
       </div>
     </div>
-  )
+  );
 }

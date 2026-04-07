@@ -58,6 +58,9 @@ export function ClubCard({
         totalMembers={totalMembers}
         detailPoints={detailPoints}
         detailDescription={detailDescription}
+        ctaText={ctaText}
+        ctaTheme={ctaTheme}
+        onCtaClick={onCtaClick}
         open={open}
         onOpenChange={setOpen}
         resolvedDirection={resolvedDirection}
