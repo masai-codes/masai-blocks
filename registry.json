@@ -14,7 +14,23 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/ui/badge.tsx",
+          "path": "registry/components/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "club-card",
+      "type": "registry:ui",
+      "title": "Club Card",
+      "description": "Club card with CTA that opens a responsive drawer (right on desktop, bottom on mobile).",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/components/club-card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -34,23 +50,23 @@
       ],
       "files": [
         {
-          "path": "registry/new-york/ui/documentation-provider.tsx",
+          "path": "registry/components/documentation-provider.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "registry/new-york/ui/documentation-provider/markdown.tsx",
+          "path": "registry/components/documentation-provider/markdown.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "registry/new-york/ui/documentation-provider/api.ts",
+          "path": "registry/components/documentation-provider/api.ts",
           "type": "registry:ui"
         },
         {
-          "path": "registry/new-york/ui/documentation-provider/types.ts",
+          "path": "registry/components/documentation-provider/types.ts",
           "type": "registry:ui"
         },
         {
-          "path": "registry/new-york/ui/documentation-provider/use-documentation.ts",
+          "path": "registry/components/documentation-provider/use-documentation.ts",
           "type": "registry:ui"
         }
       ]
