@@ -4,6 +4,7 @@ import * as React from "react"
 
 import { demoInputClass, demoTextareaClass } from "@/app/components/demo-field-classes"
 import { DiscussionPostCard } from "@/registry/components/discussion-post-card"
+import { RichTextEditor } from "@/registry/components/discussion-post-card/rich-text-editor"
 
 export function DiscussionPostCardPlayground() {
   const [profileImage, setProfileImage] = React.useState(
@@ -12,7 +13,7 @@ export function DiscussionPostCardPlayground() {
   const [name, setName] = React.useState("Rithik Kumar")
   const [createdAt, setCreatedAt] = React.useState("Today at 04:30 PM")
   const [content, setContent] = React.useState(
-    "Who all are attending today's event happening at 4:30 PM. Share your thoughts and experiences!"
+    "<p>Who all are attending today's event happening at 4:30 PM. Share your thoughts and experiences!</p>"
   )
   const [currentUpvoteCount, setCurrentUpvoteCount] = React.useState("40")
   const [currentDownvoteCount, setCurrentDownvoteCount] = React.useState("4")
@@ -87,11 +88,7 @@ export function DiscussionPostCardPlayground() {
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-2">
           Post content
-          <textarea
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-            className={demoTextareaClass}
-          />
+          <RichTextEditor value={content} onChange={setContent} placeholder="Write post content..." />
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-2">
           Replies (one per line: imageUrl|author|time|content|upvotes|downvotes)

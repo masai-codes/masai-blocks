@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { RichTextContent } from "./rich-text-content";
 import type { DiscussionPostCardProps } from "./types";
 
 type DiscussionPostCardPreviewProps = Pick<
@@ -14,12 +15,15 @@ type DiscussionPostCardPreviewProps = Pick<
 > & {
   currentUpvoteCount: number;
   currentDownvoteCount: number;
-  isBookmarked: boolean;
-  onBookmarkClick: () => void;
+  isBookmarked?: boolean;
+  onBookmarkClick?: () => void;
   onUpvoteClick: () => void;
   onDownvoteClick: () => void;
-  onReplyClick: () => void;
+  onReplyClick?: () => void;
   replyCount: number;
+  showReplyAction?: boolean;
+  showBookmarkAction?: boolean;
+  showDivider?: boolean;
 };
 
 type CountActionButtonProps = {
@@ -57,12 +61,15 @@ export function DiscussionPostCardPreview({
   content,
   currentUpvoteCount,
   currentDownvoteCount,
-  isBookmarked,
+  isBookmarked = false,
   onBookmarkClick,
   onUpvoteClick,
   onDownvoteClick,
   onReplyClick,
   replyCount,
+  showReplyAction = true,
+  showBookmarkAction = true,
+  showDivider = true,
 }: DiscussionPostCardPreviewProps) {
   return (
     <article className="font-poppins w-full w-[100%] rounded-[12px] border border-[#E5E7EB] bg-white p-[12px]">
@@ -83,26 +90,29 @@ export function DiscussionPostCardPreview({
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={onBookmarkClick}
-          className="cursor-pointer"
-        >
-          <Bookmark
-            color="#544D4F"
-            size={24}
-            className={isBookmarked ? "fill-current" : ""}
-          />
-          <span className="sr-only">Bookmark discussion</span>
-        </button>
+        {showBookmarkAction ? (
+          <button
+            type="button"
+            onClick={onBookmarkClick ?? (() => {})}
+            className="cursor-pointer"
+          >
+            <Bookmark
+              color="#544D4F"
+              size={24}
+              className={isBookmarked ? "fill-current" : ""}
+            />
+            <span className="sr-only">Bookmark discussion</span>
+          </button>
+        ) : null}
       </header>
 
-      <p className="mt-[12px] text-[14px] font-[400] leading-[20px] text-[#4B5563]">
-        {content}
-      </p>
+      <RichTextContent
+        html={content}
+        className="mt-[12px] text-[14px] font-[400] leading-[20px] text-[#4B5563]"
+      />
 
-      <div className="h-[1px] my-[16px] w-full bg-[#E5E7EB]" />
-      <div className="">
+      {showDivider ? <div className="h-[1px] my-[16px] w-full bg-[#E5E7EB]" /> : null}
+      <div className={showDivider ? "" : "mt-[16px]"}>
         <div className="flex flex-wrap items-center gap-[16px]">
           <CountActionButton
             icon={<ArrowBigUp size={16} color="#374151" />}
@@ -116,12 +126,14 @@ export function DiscussionPostCardPreview({
             onClick={onDownvoteClick}
             srLabel="Downvote discussion"
           />
-          <CountActionButton
-            icon={<MessageCircle size={16} color="#374151" />}
-            value={replyCount}
-            onClick={onReplyClick}
-            srLabel="Open replies"
-          />
+          {showReplyAction ? (
+            <CountActionButton
+              icon={<MessageCircle size={16} color="#374151" />}
+              value={replyCount}
+              onClick={onReplyClick ?? (() => {})}
+              srLabel="Open replies"
+            />
+          ) : null}
         </div>
       </div>
     </article>

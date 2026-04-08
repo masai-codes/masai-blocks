@@ -2,13 +2,26 @@
 
 import * as React from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-import { ArrowBigDown, ArrowBigUp, Bookmark, MessageCircle, X } from "lucide-react"
+import { X } from "lucide-react"
 
+import { DiscussionPostCardPreview } from "./discussion-post-card-preview"
+import { DiscussionPostCardComposer } from "./discussion-post-card-composer"
 import type { DiscussionPostCardProps, DrawerDirection } from "./types"
 
 type DiscussionPostCardDrawerProps = Pick<
   DiscussionPostCardProps,
-  "profileImage" | "name" | "createdAt" | "content" | "replies" | "replyText" | "onReplyTextChange" | "onReplySubmit"
+  | "profileImage"
+  | "name"
+  | "createdAt"
+  | "content"
+  | "currentUpvoteCount"
+  | "currentDownvoteCount"
+  | "onUpvoteClick"
+  | "onDownvoteClick"
+  | "replies"
+  | "replyText"
+  | "onReplyTextChange"
+  | "onReplySubmit"
 > & {
   isBookmarked: boolean
   onBookmarkClick: () => void
@@ -22,6 +35,10 @@ export function DiscussionPostCardDrawer({
   name,
   createdAt,
   content,
+  currentUpvoteCount,
+  currentDownvoteCount,
+  onUpvoteClick,
+  onDownvoteClick,
   replies = [],
   replyText,
   onReplyTextChange,
@@ -68,90 +85,60 @@ export function DiscussionPostCardDrawer({
           </div>
 
           <div className="min-h-0 flex-1 overflow-y-auto p-4">
-            <div className="rounded-[12px] border border-[#E5E7EB] bg-white p-4">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex min-w-0 items-center gap-3">
-                  <img
-                    src={profileImage}
-                    alt={name}
-                    className="size-10 rounded-full border border-[#E5E7EB] object-cover"
-                  />
-                  <div className="min-w-0">
-                    <p className="truncate text-[16px] font-[600] leading-[24px] text-[#111928]">{name}</p>
-                    <p className="text-[13px] leading-[20px] text-[#4B5563]">{createdAt}</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={onBookmarkClick}
-                  className="inline-flex size-8 items-center justify-center rounded-md border border-[#D1D5DB] text-[#6B7280] transition-colors hover:bg-[#F9FAFB] hover:text-[#111928]"
-                >
-                  <Bookmark size={16} className={isBookmarked ? "fill-current" : ""} />
-                  <span className="sr-only">Bookmark discussion</span>
-                </button>
-              </div>
-              <p className="mt-3 text-[15px] leading-[24px] text-[#111928]">{content}</p>
-            </div>
+            <DiscussionPostCardPreview
+              profileImage={profileImage}
+              name={name}
+              createdAt={createdAt}
+              content={content}
+              currentUpvoteCount={currentUpvoteCount}
+              currentDownvoteCount={currentDownvoteCount}
+              isBookmarked={isBookmarked}
+              onBookmarkClick={onBookmarkClick}
+              onUpvoteClick={onUpvoteClick}
+              onDownvoteClick={onDownvoteClick}
+              replyCount={replies.length}
+              showReplyAction={false}
+            />
 
             <div className="mt-4">
               <p className="text-[14px] font-[600] leading-[20px] text-[#111928]">Replies</p>
               {replies.length ? (
                 <div className="mt-3 space-y-3">
                   {replies.map((reply) => (
-                    <div key={reply.id} className="rounded-[10px] border border-[#E5E7EB] bg-[#F9FAFB] p-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex min-w-0 items-center gap-2">
-                          <img
-                            src={reply.profileImage || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80"}
-                            alt={reply.author}
-                            className="size-7 rounded-full border border-[#E5E7EB] object-cover"
-                          />
-                          <p className="truncate text-[13px] font-[600] leading-[18px] text-[#111928]">
-                            {reply.author}
-                          </p>
-                        </div>
-                        <p className="text-[12px] leading-[16px] text-[#6B7280]">{reply.createdAt}</p>
-                      </div>
-                      <p className="mt-1 text-[14px] leading-[22px] text-[#374151]">{reply.content}</p>
-                      <div className="mt-2 flex flex-wrap items-center gap-2 text-[#4B5563]">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setReplyVotes((current) => ({
-                              ...current,
-                              [reply.id]: {
-                                upvotes: (current[reply.id]?.upvotes ?? 0) + 1,
-                                downvotes: current[reply.id]?.downvotes ?? 0,
-                              },
-                            }))
-                          }
-                          className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 transition-colors hover:bg-[#F3F4F6] hover:text-[#111928]"
-                        >
-                          <ArrowBigUp size={16} />
-                          <span className="text-[12px] font-[500] leading-[16px]">
-                            Upvote {replyVotes[reply.id]?.upvotes ?? 0}
-                          </span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setReplyVotes((current) => ({
-                              ...current,
-                              [reply.id]: {
-                                upvotes: current[reply.id]?.upvotes ?? 0,
-                                downvotes: (current[reply.id]?.downvotes ?? 0) + 1,
-                              },
-                            }))
-                          }
-                          className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 transition-colors hover:bg-[#F3F4F6] hover:text-[#111928]"
-                        >
-                          <ArrowBigDown size={16} />
-                          <span className="text-[12px] font-[500] leading-[16px]">
-                            Downvote {replyVotes[reply.id]?.downvotes ?? 0}
-                          </span>
-                        </button>
-                      </div>
-                    </div>
+                    <DiscussionPostCardPreview
+                      key={reply.id}
+                      profileImage={
+                        reply.profileImage ||
+                        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80"
+                      }
+                      name={reply.author}
+                      createdAt={reply.createdAt}
+                      content={reply.content}
+                      currentUpvoteCount={replyVotes[reply.id]?.upvotes ?? 0}
+                      currentDownvoteCount={replyVotes[reply.id]?.downvotes ?? 0}
+                      onUpvoteClick={() =>
+                        setReplyVotes((current) => ({
+                          ...current,
+                          [reply.id]: {
+                            upvotes: (current[reply.id]?.upvotes ?? 0) + 1,
+                            downvotes: current[reply.id]?.downvotes ?? 0,
+                          },
+                        }))
+                      }
+                      onDownvoteClick={() =>
+                        setReplyVotes((current) => ({
+                          ...current,
+                          [reply.id]: {
+                            upvotes: current[reply.id]?.upvotes ?? 0,
+                            downvotes: (current[reply.id]?.downvotes ?? 0) + 1,
+                          },
+                        }))
+                      }
+                      replyCount={0}
+                      showReplyAction={false}
+                      showBookmarkAction={false}
+                      showDivider={false}
+                    />
                   ))}
                 </div>
               ) : (
@@ -163,24 +150,12 @@ export function DiscussionPostCardDrawer({
           </div>
 
           <div className="border-t p-4">
-            <label className="sr-only" htmlFor="discussion-reply-input">
-              Write a reply
-            </label>
-            <textarea
-              id="discussion-reply-input"
-              value={replyText}
-              onChange={(event) => onReplyTextChange(event.target.value)}
-              placeholder="Write your reply..."
-              className="min-h-24 w-full resize-y rounded-lg border border-[#D1D5DB] px-3 py-2 text-[14px] leading-[22px] text-[#111928] outline-none transition-colors placeholder:text-[#9CA3AF] focus:border-[#EF8833] focus:ring-2 focus:ring-[#FDE8D7]"
+            <DiscussionPostCardComposer
+              profileImage={profileImage}
+              replyText={replyText}
+              onReplyTextChange={onReplyTextChange}
+              onReplySubmit={onReplySubmit}
             />
-            <button
-              type="button"
-              onClick={onReplySubmit}
-              className="mt-3 inline-flex items-center gap-2 rounded-lg bg-[#EF8833] px-4 py-2 text-[14px] font-[500] text-white transition-colors hover:bg-[#DC7A2D]"
-            >
-              <MessageCircle size={16} />
-              Post reply
-            </button>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

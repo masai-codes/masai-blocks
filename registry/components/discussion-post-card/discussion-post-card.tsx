@@ -79,5 +79,3 @@ export function DiscussionPostCard({
     </>
   )
 }
-
-export type { DiscussionPostCardProps, DiscussionReply, DrawerDirection } from "./types"
