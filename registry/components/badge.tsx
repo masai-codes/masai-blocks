@@ -1,49 +1,50 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as Dialog from "@radix-ui/react-dialog"
-import { X } from "lucide-react"
+import * as React from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
 
-const STATIC_BASE = "https://s3.ap-south-1.amazonaws.com/static.masaischool.com"
+const STATIC_BASE =
+  "https://s3.ap-south-1.amazonaws.com/static.masaischool.com";
 
-const LOCK_ICON_URL = `${STATIC_BASE}/lock.svg`
-const LINKEDIN_ICON_URL = `${STATIC_BASE}/linkedin.svg.svg`
+const LOCK_ICON_URL = `${STATIC_BASE}/lock.svg`;
+const LINKEDIN_ICON_URL = `${STATIC_BASE}/linkedin.svg`;
 
 const THEME_BACKGROUND_URL: Record<"theme1" | "theme2" | "theme3", string> = {
   theme1: `${STATIC_BASE}/theme1-yellow.svg`,
   theme2: `${STATIC_BASE}/theme2-blue.svg`,
   theme3: `${STATIC_BASE}/theme3-red.svg`,
-}
+};
 
 /** Header tint behind the decorative SVG; paired with `THEME_BACKGROUND_URL`. */
 const THEME_BACKGROUND_COLOR: Record<"theme1" | "theme2" | "theme3", string> = {
   theme1: "#FFE8B526",
   theme2: "#EDFAFA80",
   theme3: "#F4AF7E1A",
-}
+};
 
 type BadgeProps = {
-  name: string
-  description: string
-  lockedBadgeText?: string
-  badgeUrl: string
-  countLabel?: string
-  isLocked: boolean
-  openIn: "bottom-drawer" | "modal"
+  name: string;
+  description: string;
+  lockedBadgeText?: string;
+  badgeUrl: string;
+  countLabel?: string;
+  isLocked: boolean;
+  openIn: "bottom-drawer" | "modal";
   /** Decorative header background (SVG + tint); pick theme1, theme2, or theme3. */
-  theme: "theme1" | "theme2" | "theme3"
-  firstUnlockedDate: string | Date
-}
+  theme: "theme1" | "theme2" | "theme3";
+  firstUnlockedDate: string | Date;
+};
 
 function formatUnlockedDate(value: string | Date) {
-  const date = value instanceof Date ? value : new Date(value)
+  const date = value instanceof Date ? value : new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    return String(value)
+    return String(value);
   }
 
-  const day = date.getDate()
-  const mod100 = day % 100
+  const day = date.getDate();
+  const mod100 = day % 100;
   const suffix =
     mod100 >= 11 && mod100 <= 13
       ? "th"
@@ -53,11 +54,13 @@ function formatUnlockedDate(value: string | Date) {
           ? "nd"
           : day % 10 === 3
             ? "rd"
-            : "th"
-  const month = new Intl.DateTimeFormat("en-GB", { month: "short" }).format(date)
-  const year = date.getFullYear()
+            : "th";
+  const month = new Intl.DateTimeFormat("en-GB", { month: "short" }).format(
+    date,
+  );
+  const year = date.getFullYear();
 
-  return `${day}${suffix} ${month} ${year}`
+  return `${day}${suffix} ${month} ${year}`;
 }
 
 function Badge({
@@ -71,30 +74,32 @@ function Badge({
   theme,
   firstUnlockedDate,
 }: BadgeProps) {
-  const unlockedText = formatUnlockedDate(firstUnlockedDate)
-  const drawer = openIn === "bottom-drawer"
-  const detailText = isLocked ? lockedBadgeText || description : description
-  const themeBackgroundUrl = THEME_BACKGROUND_URL[theme]
-  const themeBackgroundColor = THEME_BACKGROUND_COLOR[theme]
+  const unlockedText = formatUnlockedDate(firstUnlockedDate);
+  const drawer = openIn === "bottom-drawer";
+  const detailText = isLocked ? lockedBadgeText || description : description;
+  const themeBackgroundUrl = THEME_BACKGROUND_URL[theme];
+  const themeBackgroundColor = THEME_BACKGROUND_COLOR[theme];
 
   const displayCountLabel = React.useMemo(() => {
-    if (!countLabel) return undefined
-    const trimmed = countLabel.trim()
-    if (!trimmed) return undefined
-    const numericPart = trimmed.toLowerCase().startsWith("x") ? trimmed.slice(1) : trimmed
-    const count = Number.parseInt(numericPart, 10)
-    if (!Number.isFinite(count) || count <= 1) return undefined
-    return `x${count}`
-  }, [countLabel])
+    if (!countLabel) return undefined;
+    const trimmed = countLabel.trim();
+    if (!trimmed) return undefined;
+    const numericPart = trimmed.toLowerCase().startsWith("x")
+      ? trimmed.slice(1)
+      : trimmed;
+    const count = Number.parseInt(numericPart, 10);
+    if (!Number.isFinite(count) || count <= 1) return undefined;
+    return `x${count}`;
+  }, [countLabel]);
   const linkedinShareHref = React.useMemo(() => {
-    const encoded = encodeURIComponent(badgeUrl)
-    return `https://www.linkedin.com/sharing/share-offsite/?url=${encoded}`
-  }, [badgeUrl])
+    const encoded = encodeURIComponent(badgeUrl);
+    return `https://www.linkedin.com/sharing/share-offsite/?url=${encoded}`;
+  }, [badgeUrl]);
   const isRepeatedUnlock = React.useMemo(() => {
-    if (!displayCountLabel) return false
-    const count = Number.parseInt(displayCountLabel.replace(/^x/i, ""), 10)
-    return Number.isFinite(count) && count > 2
-  }, [displayCountLabel])
+    if (!displayCountLabel) return false;
+    const count = Number.parseInt(displayCountLabel.replace(/^x/i, ""), 10);
+    return Number.isFinite(count) && count > 2;
+  }, [displayCountLabel]);
 
   return (
     <Dialog.Root>
@@ -111,13 +116,20 @@ function Badge({
           />
           {isLocked ? (
             <span className="absolute bottom-[16px] right-[12px] inline-flex h-6 w-6 items-center justify-center rounded-full border border-[#C3DDFD] bg-[#3F83F8] shadow-md">
-              <img src={LOCK_ICON_URL} alt="" className="size-3.5 object-contain" />
+              <img
+                src={LOCK_ICON_URL}
+                alt=""
+                className="size-3.5 object-contain"
+              />
               <span className="sr-only">Locked</span>
             </span>
           ) : displayCountLabel ? (
             <span
               className="absolute bottom-[16px] right-[4px]  inline-flex items-center justify-center gap-2 rounded-[56px] border border-[#C3DDFD] bg-[#EBF5FF] px-[10px] py-1 text-[12px] font-semibold leading-4 text-[#3F83F8]"
-              style={{ fontFamily: "Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" }}
+              style={{
+                fontFamily:
+                  "Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
+              }}
             >
               {displayCountLabel}
             </span>
@@ -128,12 +140,12 @@ function Badge({
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 data-[state=open]:animate-in data-[state=closed]:animate-out" />
         <Dialog.Content
-          className={`fixed z-50 border shadow-xl outline-none ${drawer
-            ? "inset-x-0 bottom-0 w-full max-h-[90vh] rounded-t-2xl bg-white data-[state=open]:animate-in data-[state=closed]:animate-out"
-            : "left-1/2 top-1/2 w-[min(92vw,524px)] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white data-[state=open]:animate-in data-[state=closed]:animate-out"
-            }`}
+          className={`fixed z-50 border shadow-xl outline-none ${
+            drawer
+              ? "inset-x-0 bottom-0 w-full max-h-[90vh] rounded-t-2xl bg-white data-[state=open]:animate-in data-[state=closed]:animate-out"
+              : "left-1/2 top-1/2 w-[min(92vw,524px)] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white data-[state=open]:animate-in data-[state=closed]:animate-out"
+          }`}
         >
-
           <div
             className="relative overflow-hidden rounded-t-2xl pb-10 pt-4 sm:pt-5"
             style={{
@@ -175,7 +187,10 @@ function Badge({
                   ) : displayCountLabel ? (
                     <span
                       className="absolute bottom-5 right-10 z-10 inline-flex items-center justify-center gap-2 rounded-[56px] border border-[#C3DDFD] bg-[#EBF5FF] px-4 py-2 text-sm font-semibold leading-5 text-[#3F83F8]"
-                      style={{ fontFamily: "Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" }}
+                      style={{
+                        fontFamily:
+                          "Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
+                      }}
                     >
                       {displayCountLabel}
                     </span>
@@ -214,18 +229,21 @@ function Badge({
                 <span
                   className={`cursor-pointer inline-flex items-center justify-center gap-3 rounded-2xl bg-[#6f67c7] py-3 text-[14px] font-[500] leading-[24px] text-white transition-colors hover:bg-[#625ab9] ${drawer ? "px-4" : "px-4 sm:px-[72px]"}`}
                 >
-                  <img src={LINKEDIN_ICON_URL} alt="" className="h-6 w-6 object-contain" />
+                  <img
+                    src={LINKEDIN_ICON_URL}
+                    alt=""
+                    className="h-6 w-6 object-contain"
+                  />
                   Share With Your Network
                 </span>
               </a>
             </div>
           ) : null}
-
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
-  )
+  );
 }
 
-export { Badge }
-export type { BadgeProps }
+export { Badge };
+export type { BadgeProps };
