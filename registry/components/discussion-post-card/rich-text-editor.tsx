@@ -67,6 +67,7 @@ export function RichTextEditor({
       isItalic: editor?.isActive("italic") ?? false,
       isBulletList: editor?.isActive("bulletList") ?? false,
       isOrderedList: editor?.isActive("orderedList") ?? false,
+      isEmpty: editor?.isEmpty ?? true,
     }),
   })
 
@@ -89,7 +90,7 @@ export function RichTextEditor({
   }
 
   return (
-    <div className={`discussion-rich-editor ${className}`}>
+    <div className={`discussion-rich-editor relative ${className}`}>
       {showToolbar ? (
         <div className="flex flex-wrap items-center gap-2 rounded-t-lg border border-[#D1D5DB] p-2">
         <button
@@ -127,7 +128,15 @@ export function RichTextEditor({
         </div>
       ) : null}
       <EditorContent editor={editor} />
-      {!value ? <p className="pointer-events-none -mt-[30px] px-4 text-[#9CA3AF]">{placeholder}</p> : null}
+      {editorState?.isEmpty ? (
+        <p
+          className={`pointer-events-none absolute left-5 text-[14px] leading-[22px] text-[#9CA3AF] ${
+            showToolbar ? "top-[56px]" : "top-4"
+          }`}
+        >
+          {placeholder}
+        </p>
+      ) : null}
     </div>
   )
 }
