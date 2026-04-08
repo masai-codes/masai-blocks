@@ -2,6 +2,7 @@
 
 import { BadgeShowcase } from "@/app/components/badge-showcase"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
+import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-card-playground"
 import { DocumentationPlayground } from "@/app/components/documentation-playground"
 import { EventCardPlayground } from "@/app/components/event-card-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
@@ -57,6 +58,18 @@ export default function Home() {
             </p>
           </div>
           <DocumentationPlayground />
+        </section>
+
+        <section className="space-y-3" aria-labelledby="discussion-post-card-heading">
+          <div className="space-y-1">
+            <h2 id="discussion-post-card-heading" className="text-lg font-semibold">
+              Discussion Post Card
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Interactive post card with voting and responsive reply drawer.
+            </p>
+          </div>
+          <DiscussionPostCardPlayground />
         </section>
       </main>
     </div>
