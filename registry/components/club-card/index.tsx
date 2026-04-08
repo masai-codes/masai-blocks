@@ -36,7 +36,6 @@ export function ClubCard({
   const resolvedDirection = useResolvedDirection(drawerDirection)
 
   const handleCtaClick = () => {
-    onCtaClick?.()
     setOpen(true)
   }
 

@@ -21,17 +21,75 @@
     },
     {
       "name": "club-card",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "Club Card",
       "description": "Club card with CTA that opens a responsive drawer (right on desktop, bottom on mobile).",
       "dependencies": [
         "@radix-ui/react-dialog",
+        "@phosphor-icons/react",
         "lucide-react"
       ],
       "files": [
         {
-          "path": "registry/components/club-card.tsx",
-          "type": "registry:ui"
+          "path": "registry/components/club-card/index.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/club-card/index.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/club-card/club-card-preview.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/club-card/club-card-drawer.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/club-card/types.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/shared/card-cta-button.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "event-card",
+      "type": "registry:block",
+      "title": "Event Card",
+      "description": "Event card with CTA that opens a responsive drawer (right on desktop, bottom on mobile).",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "@phosphor-icons/react",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/components/event-card/index.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/event-card/index.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/event-card/event-card-preview.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/event-card/event-card-drawer.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/event-card/types.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/shared/card-cta-button.tsx",
+          "type": "registry:block"
         }
       ]
     },
