@@ -9,6 +9,10 @@ export type EventCardProps = {
   title: string
   miniDescription: string
   ctaText: string
+  cardCtaText?: string
+  drawerCtaText?: string
+  hideCardCta?: boolean
+  hideDrawerCta?: boolean
   isActive: boolean
   category: string
   image: string
@@ -16,6 +20,8 @@ export type EventCardProps = {
   time: string
   isOnline: boolean
   eventLocationLink?: string
+  showLocationTextInMapsTag?: boolean
+  eventLocationText?: string
   eventMode: string
   eventDetailDescription: string
   eventTimeline: EventTimelineItem[]

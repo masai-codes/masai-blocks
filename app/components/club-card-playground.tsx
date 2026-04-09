@@ -21,6 +21,8 @@ export function ClubCardPlayground({ cardCount = 1 }: ClubCardPlaygroundProps) {
     "A space to learn how great products are built and scaled",
   );
   const [ctaText, setCtaText] = React.useState("View Details");
+  const [cardCtaText, setCardCtaText] = React.useState("Open Club");
+  const [drawerCtaText, setDrawerCtaText] = React.useState("Join Club");
   const [totalMembers, setTotalMembers] = React.useState("1240");
   const [detailDescription, setDetailDescription] = React.useState(
     "Frontend Club helps members improve React, JavaScript, and UI engineering with guided sessions and hands-on practice.",
@@ -29,6 +31,8 @@ export function ClubCardPlayground({ cardCount = 1 }: ClubCardPlaygroundProps) {
     "Live sessions every Wednesday\nPeer-led project reviews\nMonthly frontend challenge",
   );
   const [ctaTheme, setCtaTheme] = React.useState<"yellow" | "red">("yellow");
+  const [shouldCompress, setShouldCompress] = React.useState(false);
+  const [showSuccessIcon, setShowSuccessIcon] = React.useState(false);
   const [drawerDirection, setDrawerDirection] = React.useState<
     "auto" | "right" | "bottom"
   >("auto");
@@ -90,6 +94,22 @@ export function ClubCardPlayground({ cardCount = 1 }: ClubCardPlaygroundProps) {
           />
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground">
+          Card CTA text
+          <input
+            value={cardCtaText}
+            onChange={(e) => setCardCtaText(e.target.value)}
+            className={demoInputClass}
+          />
+        </label>
+        <label className="flex flex-col gap-1 text-xs text-muted-foreground">
+          Drawer CTA text
+          <input
+            value={drawerCtaText}
+            onChange={(e) => setDrawerCtaText(e.target.value)}
+            className={demoInputClass}
+          />
+        </label>
+        <label className="flex flex-col gap-1 text-xs text-muted-foreground">
           Total members
           <input
             value={totalMembers}
@@ -122,6 +142,22 @@ export function ClubCardPlayground({ cardCount = 1 }: ClubCardPlaygroundProps) {
             <option value="bottom">bottom</option>
           </select>
         </label>
+        <label className="flex items-center gap-2 text-xs text-muted-foreground">
+          <input
+            type="checkbox"
+            checked={shouldCompress}
+            onChange={(e) => setShouldCompress(e.target.checked)}
+          />
+          shouldCompress
+        </label>
+        <label className="flex items-center gap-2 text-xs text-muted-foreground">
+          <input
+            type="checkbox"
+            checked={showSuccessIcon}
+            onChange={(e) => setShowSuccessIcon(e.target.checked)}
+          />
+          showSuccessIcon
+        </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-2">
           Detail description
           <textarea
@@ -149,14 +185,58 @@ export function ClubCardPlayground({ cardCount = 1 }: ClubCardPlaygroundProps) {
               imageUrl={imageUrl}
               miniDescription={miniDescription}
               ctaText={ctaText}
-              onCtaClick={() => console.log(`Club card ${index + 1} CTA clicked`)}
+              cardCtaText={cardCtaText}
+              drawerCtaText={drawerCtaText}
+              onCtaClick={() =>
+                console.log(`Club card ${index + 1} CTA clicked`)
+              }
               totalMembers={totalMembers}
               detailPoints={detailPoints}
               detailDescription={detailDescription}
               drawerDirection={drawerDirection}
               ctaTheme={ctaTheme}
+              shouldCompress={shouldCompress}
+              showSuccessIcon={showSuccessIcon}
             />
           ))}
+        </div>
+      </div>
+      <div className="w-full overflow-x-auto py-2">
+        <p className="text-xs text-muted-foreground sm:pl-1">Preset examples</p>
+        <div className="mt-3 flex w-max gap-4">
+          <ClubCard
+            domain={domain}
+            name="Compressed Club Card"
+            imageUrl={imageUrl}
+            miniDescription={miniDescription}
+            ctaText={ctaText}
+            cardCtaText={cardCtaText}
+            drawerCtaText={drawerCtaText}
+            onCtaClick={() => console.log("Compressed card CTA clicked")}
+            totalMembers={totalMembers}
+            detailPoints={detailPoints}
+            detailDescription={detailDescription}
+            drawerDirection={drawerDirection}
+            ctaTheme={ctaTheme}
+            shouldCompress
+            showSuccessIcon
+          />
+          <ClubCard
+            domain={domain}
+            name="Success Icon Club Card"
+            imageUrl={imageUrl}
+            miniDescription={miniDescription}
+            ctaText={ctaText}
+            cardCtaText={cardCtaText}
+            drawerCtaText={drawerCtaText}
+            onCtaClick={() => console.log("Success icon card CTA clicked")}
+            totalMembers={totalMembers}
+            detailPoints={detailPoints}
+            detailDescription={detailDescription}
+            drawerDirection={drawerDirection}
+            ctaTheme={ctaTheme}
+            shouldCompress
+          />
         </div>
       </div>
     </div>

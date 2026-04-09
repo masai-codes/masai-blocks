@@ -24,6 +24,10 @@ export function EventCard({
   title,
   miniDescription,
   ctaText,
+  cardCtaText,
+  drawerCtaText,
+  hideCardCta = false,
+  hideDrawerCta = false,
   isActive,
   category,
   image,
@@ -31,6 +35,8 @@ export function EventCard({
   time,
   isOnline,
   eventLocationLink,
+  showLocationTextInMapsTag = true,
+  eventLocationText,
   eventMode,
   eventDetailDescription,
   eventTimeline,
@@ -39,6 +45,8 @@ export function EventCard({
 }: EventCardProps) {
   const [open, setOpen] = React.useState(false)
   const resolvedDirection = useResolvedDirection(drawerDirection)
+  const resolvedCardCtaText = cardCtaText ?? ctaText
+  const resolvedDrawerCtaText = drawerCtaText ?? ctaText
 
   const handleCtaClick = () => {
     setOpen(true)
@@ -49,7 +57,8 @@ export function EventCard({
       <EventCardPreview
         title={title}
         miniDescription={miniDescription}
-        ctaText={ctaText}
+        ctaText={resolvedCardCtaText}
+        hideCardCta={hideCardCta}
         isActive={isActive}
         category={category}
         image={image}
@@ -57,7 +66,8 @@ export function EventCard({
       />
       <EventCardDrawer
         title={title}
-        ctaText={ctaText}
+        ctaText={resolvedDrawerCtaText}
+        hideDrawerCta={hideDrawerCta}
         isActive={isActive}
         category={category}
         image={image}
@@ -65,6 +75,8 @@ export function EventCard({
         time={time}
         isOnline={isOnline}
         eventLocationLink={eventLocationLink}
+        showLocationTextInMapsTag={showLocationTextInMapsTag}
+        eventLocationText={eventLocationText}
         eventMode={eventMode}
         eventDetailDescription={eventDetailDescription}
         eventTimeline={eventTimeline}

@@ -24,7 +24,11 @@ export function ClubCard({
   name,
   imageUrl,
   miniDescription,
+  shouldCompress = false,
+  showSuccessIcon = false,
   ctaText,
+  cardCtaText,
+  drawerCtaText,
   onCtaClick,
   totalMembers,
   detailPoints,
@@ -34,6 +38,8 @@ export function ClubCard({
 }: ClubCardProps) {
   const [open, setOpen] = React.useState(false)
   const resolvedDirection = useResolvedDirection(drawerDirection)
+  const resolvedCardCtaText = cardCtaText ?? ctaText
+  const resolvedDrawerCtaText = drawerCtaText ?? ctaText
 
   const handleCtaClick = () => {
     setOpen(true)
@@ -46,7 +52,9 @@ export function ClubCard({
         name={name}
         imageUrl={imageUrl}
         miniDescription={miniDescription}
-        ctaText={ctaText}
+        shouldCompress={shouldCompress}
+        showSuccessIcon={showSuccessIcon}
+        ctaText={resolvedCardCtaText}
         ctaTheme={ctaTheme}
         onCtaClick={handleCtaClick}
       />
@@ -57,7 +65,7 @@ export function ClubCard({
         totalMembers={totalMembers}
         detailPoints={detailPoints}
         detailDescription={detailDescription}
-        ctaText={ctaText}
+        ctaText={resolvedDrawerCtaText}
         ctaTheme={ctaTheme}
         onCtaClick={onCtaClick}
         open={open}
