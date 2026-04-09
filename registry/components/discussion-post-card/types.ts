@@ -20,9 +20,10 @@ export type DiscussionPostCardProps = {
   onUpvoteClick: () => void
   onDownvoteClick: () => void
   initialBookmarked?: boolean
-  replies?: DiscussionReply[]
+  replies?: Array<DiscussionReply>
   replyText: string
   onReplyTextChange: (value: string) => void
   onReplySubmit?: () => void
+  replyPlaceholder?: string
   drawerDirection?: DrawerDirection
 }

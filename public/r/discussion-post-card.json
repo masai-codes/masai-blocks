@@ -48,7 +48,7 @@
     },
     {
       "path": "registry/components/discussion-post-card/types.ts",
-      "content": "export type DrawerDirection = \"right\" | \"bottom\" | \"auto\"\n\nexport type DiscussionReply = {\n  id: string\n  profileImage?: string\n  author: string\n  createdAt: string\n  content: string\n  currentUpvoteCount?: number\n  currentDownvoteCount?: number\n}\n\nexport type DiscussionPostCardProps = {\n  profileImage: string\n  name: string\n  createdAt: string\n  content: string\n  currentUpvoteCount: number\n  currentDownvoteCount: number\n  onUpvoteClick: () => void\n  onDownvoteClick: () => void\n  initialBookmarked?: boolean\n  replies?: DiscussionReply[]\n  replyText: string\n  onReplyTextChange: (value: string) => void\n  onReplySubmit?: () => void\n  drawerDirection?: DrawerDirection\n}\n",
+      "content": "export type DrawerDirection = \"right\" | \"bottom\" | \"auto\"\n\nexport type DiscussionReply = {\n  id: string\n  profileImage?: string\n  author: string\n  createdAt: string\n  content: string\n  currentUpvoteCount?: number\n  currentDownvoteCount?: number\n}\n\nexport type DiscussionPostCardProps = {\n  profileImage: string\n  name: string\n  createdAt: string\n  content: string\n  currentUpvoteCount: number\n  currentDownvoteCount: number\n  onUpvoteClick: () => void\n  onDownvoteClick: () => void\n  initialBookmarked?: boolean\n  replies?: Array<DiscussionReply>\n  replyText: string\n  onReplyTextChange: (value: string) => void\n  onReplySubmit?: () => void\n  drawerDirection?: DrawerDirection\n}\n",
       "type": "registry:block"
     }
   ],

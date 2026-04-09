@@ -4,7 +4,7 @@ import * as React from "react"
 
 import { demoInputClass, demoTextareaClass } from "@/app/components/demo-field-classes"
 import { DiscussionPostCard } from "@/registry/components/discussion-post-card"
-import { RichTextEditor } from "@/registry/components/discussion-post-card/rich-text-editor"
+import { DiscussionPostCardComposer } from "@/registry/components/discussion-post-card/discussion-post-card-composer"
 
 export function DiscussionPostCardPlayground() {
   const [profileImage, setProfileImage] = React.useState(
@@ -13,7 +13,7 @@ export function DiscussionPostCardPlayground() {
   const [name, setName] = React.useState("Rithik Kumar")
   const [createdAt, setCreatedAt] = React.useState("Today at 04:30 PM")
   const [content, setContent] = React.useState(
-    "<p>Who all are attending today's event happening at 4:30 PM. Share your thoughts and experiences!</p>"
+    "<p>Who all are attending today's LMS event at <strong>4:30 PM</strong>?</p><p>Share your thoughts and what topics you want covered.</p>"
   )
   const [currentUpvoteCount, setCurrentUpvoteCount] = React.useState("40")
   const [currentDownvoteCount, setCurrentDownvoteCount] = React.useState("4")
@@ -48,6 +48,9 @@ export function DiscussionPostCardPlayground() {
       <h2 className="text-sm text-muted-foreground sm:pl-3">
         Discussion post card with vote controls and responsive reply drawer.
       </h2>
+      <p className="text-xs text-muted-foreground sm:pl-3">
+        Click the reply count chip on the card to open the drawer and preview the compact reply input.
+      </p>
 
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="flex flex-col gap-1 text-xs text-muted-foreground">
@@ -88,7 +91,21 @@ export function DiscussionPostCardPlayground() {
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-2">
           Post content
-          <RichTextEditor value={content} onChange={setContent} placeholder="Write post content..." />
+          <DiscussionPostCardComposer
+            profileImage={profileImage}
+            replyText={content}
+            onReplyTextChange={setContent}
+            onReplySubmit={() => {}}
+          />
+        </label>
+        <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-2">
+          Reply text (composer preview)
+          <DiscussionPostCardComposer
+            profileImage={profileImage}
+            replyText={replyText}
+            onReplyTextChange={setReplyText}
+            onReplySubmit={() => {}}
+          />
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground sm:col-span-2">
           Replies (one per line: imageUrl|author|time|content|upvotes|downvotes)
