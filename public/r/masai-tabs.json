@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "masai-tabs",
+  "title": "Masai Tabs",
+  "description": "Controlled pill-style tabs where parent state owns the selected tab.",
+  "files": [
+    {
+      "path": "registry/components/masai-tabs.tsx",
+      "content": "\"use client\";\n\ntype MasaiTabItem = {\n  value: string;\n  label: string;\n};\n\ntype MasaiTabsProps = {\n  items: MasaiTabItem[];\n  value: string;\n  onValueChange: (value: string) => void;\n  ariaLabel?: string;\n  className?: string;\n};\n\nexport function MasaiTabs({\n  items,\n  value,\n  onValueChange,\n  ariaLabel = \"Tabs\",\n  className = \"\",\n}: MasaiTabsProps) {\n  return (\n    <div\n      className={`inline-flex items-start gap-2 rounded-[48px] bg-[#F3F4F6] p-1 ${className}`.trim()}\n      role=\"tablist\"\n      aria-label={ariaLabel}\n    >\n      {items.map((item) => {\n        const isSelected = item.value === value;\n\n        return (\n          <button\n            key={item.value}\n            type=\"button\"\n            role=\"tab\"\n            aria-selected={isSelected}\n            onClick={() => onValueChange(item.value)}\n            className={`cursor-pointer rounded-[40px] px-4 py-2 text-[14px] font-medium leading-5 transition-colors ${\n              isSelected\n                ? \"bg-white text-[#EF8833]\"\n                : \"bg-transparent text-[#6B7280] hover:text-[#4B5563]\"\n            }`}\n          >\n            {item.label}\n          </button>\n        );\n      })}\n    </div>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "type": "registry:block"
+}
