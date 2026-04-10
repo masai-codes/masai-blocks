@@ -11,7 +11,7 @@ import type { DiscussionPostCardProps } from "./types";
 
 type DiscussionPostCardPreviewProps = Pick<
   DiscussionPostCardProps,
-  "profileImage" | "name" | "createdAt" | "content"
+  "profileImage" | "name" | "createdAt" | "content" | "hideDownvoteCount"
 > & {
   currentUpvoteCount: number;
   currentDownvoteCount: number;
@@ -31,6 +31,7 @@ type CountActionButtonProps = {
   value: number;
   onClick: () => void;
   srLabel: string;
+  hideValue?: boolean;
 };
 
 function CountActionButton({
@@ -38,6 +39,7 @@ function CountActionButton({
   value,
   onClick,
   srLabel,
+  hideValue = false,
 }: CountActionButtonProps) {
   return (
     <button
@@ -46,9 +48,11 @@ function CountActionButton({
       className="cursor-pointer inline-flex items-center gap-[4px] rounded-[16px] bg-[#F3F4F6] px-[8px] py-[4px] text-[#3B3435] transition-colors hover:bg-[#E5E7EB] hover:text-[#111928]"
     >
       {icon}
-      <span className="text-[12px] font-[400] leading-[16px] text-[#111928]">
-        {value}
-      </span>
+      {!hideValue ? (
+        <span className="text-[12px] font-[400] leading-[16px] text-[#111928]">
+          {value}
+        </span>
+      ) : null}
       <span className="sr-only">{srLabel}</span>
     </button>
   );
@@ -61,6 +65,7 @@ export function DiscussionPostCardPreview({
   content,
   currentUpvoteCount,
   currentDownvoteCount,
+  hideDownvoteCount = false,
   isBookmarked = false,
   onBookmarkClick,
   onUpvoteClick,
@@ -125,6 +130,7 @@ export function DiscussionPostCardPreview({
             value={currentDownvoteCount}
             onClick={onDownvoteClick}
             srLabel="Downvote discussion"
+            hideValue={hideDownvoteCount}
           />
           {showReplyAction ? (
             <CountActionButton

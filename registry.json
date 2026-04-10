@@ -175,6 +175,26 @@
           "type": "registry:block"
         }
       ]
+    },
+    {
+      "name": "scrolling-banner",
+      "type": "registry:block",
+      "title": "Scrolling Banner",
+      "description": "Auto-scrolling latest updates notice board with heading, content, and CTA per item.",
+      "files": [
+        {
+          "path": "registry/components/scrolling-banner/index.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/scrolling-banner/index.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/scrolling-banner/types.ts",
+          "type": "registry:block"
+        }
+      ]
     }
   ]
 }

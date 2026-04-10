@@ -27,6 +27,7 @@ export function DiscussionPostCard({
   content,
   currentUpvoteCount,
   currentDownvoteCount,
+  hideDownvoteCount = false,
   onUpvoteClick,
   onDownvoteClick,
   initialBookmarked = false,
@@ -50,6 +51,7 @@ export function DiscussionPostCard({
         content={content}
         currentUpvoteCount={currentUpvoteCount}
         currentDownvoteCount={currentDownvoteCount}
+        hideDownvoteCount={hideDownvoteCount}
         isBookmarked={isBookmarked}
         onBookmarkClick={() => setIsBookmarked((current) => !current)}
         onUpvoteClick={onUpvoteClick}
@@ -65,6 +67,7 @@ export function DiscussionPostCard({
         content={content}
         currentUpvoteCount={currentUpvoteCount}
         currentDownvoteCount={currentDownvoteCount}
+        hideDownvoteCount={hideDownvoteCount}
         onUpvoteClick={onUpvoteClick}
         onDownvoteClick={onDownvoteClick}
         replies={replies}

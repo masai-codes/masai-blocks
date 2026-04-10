@@ -17,6 +17,7 @@ export type DiscussionPostCardProps = {
   content: string
   currentUpvoteCount: number
   currentDownvoteCount: number
+  hideDownvoteCount?: boolean
   onUpvoteClick: () => void
   onDownvoteClick: () => void
   initialBookmarked?: boolean

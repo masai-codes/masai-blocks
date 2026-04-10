@@ -16,6 +16,7 @@ type DiscussionPostCardDrawerProps = Pick<
   | "content"
   | "currentUpvoteCount"
   | "currentDownvoteCount"
+  | "hideDownvoteCount"
   | "onUpvoteClick"
   | "onDownvoteClick"
   | "replies"
@@ -38,6 +39,7 @@ export function DiscussionPostCardDrawer({
   content,
   currentUpvoteCount,
   currentDownvoteCount,
+  hideDownvoteCount = false,
   onUpvoteClick,
   onDownvoteClick,
   replies = [],
@@ -99,6 +101,7 @@ export function DiscussionPostCardDrawer({
               content={content}
               currentUpvoteCount={currentUpvoteCount}
               currentDownvoteCount={currentDownvoteCount}
+              hideDownvoteCount={hideDownvoteCount}
               isBookmarked={isBookmarked}
               onBookmarkClick={onBookmarkClick}
               onUpvoteClick={onUpvoteClick}
@@ -127,6 +130,7 @@ export function DiscussionPostCardDrawer({
                       currentDownvoteCount={
                         replyVotes[reply.id]?.downvotes ?? 0
                       }
+                      hideDownvoteCount={hideDownvoteCount}
                       onUpvoteClick={() =>
                         setReplyVotes((current) => ({
                           ...current,

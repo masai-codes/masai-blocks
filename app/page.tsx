@@ -10,6 +10,7 @@ import { DocumentationPlayground } from "@/app/components/documentation-playgrou
 import { EventCardPlayground } from "@/app/components/event-card-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
 import { MasaiTabsPlayground } from "@/app/components/masai-tabs-playground"
+import { ScrollingBannerPlayground } from "@/app/components/scrolling-banner-playground"
 
 export default function Home() {
   const router = useRouter()
@@ -60,6 +61,13 @@ export default function Home() {
         headingId: "masai-tabs-heading",
         description: "Pill tabs with parent-controlled selected state.",
         content: <MasaiTabsPlayground />,
+      },
+      {
+        id: "scrolling-banner",
+        label: "Scrolling Banner",
+        headingId: "scrolling-banner-heading",
+        description: "Auto-scrolling latest updates notice board with CTA links.",
+        content: <ScrollingBannerPlayground />,
       },
     ],
     []
