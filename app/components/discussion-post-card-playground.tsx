@@ -8,6 +8,7 @@ import {
 } from "@/app/components/demo-field-classes";
 import { DiscussionPostCard } from "@/registry/components/discussion-post-card";
 import { DiscussionPostCardComposer } from "@/registry/components/discussion-post-card/discussion-post-card-composer";
+import { DiscussionPostCardPreview } from "@/registry/components/discussion-post-card/discussion-post-card-preview";
 
 export function DiscussionPostCardPlayground() {
   const [profileImage, setProfileImage] = React.useState(
@@ -155,6 +156,46 @@ export function DiscussionPostCardPlayground() {
           onReplyTextChange={setReplyText}
           onReplySubmit={() => console.log("Reply submitted:", replyText)}
         />
+      </div>
+
+      <div className="space-y-3">
+        <p className="text-xs text-muted-foreground sm:pl-3">
+          Vote icon variants (unfilled vs filled)
+        </p>
+        <div className="grid gap-3 md:grid-cols-2">
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-muted-foreground">Unfilled</p>
+            <DiscussionPostCardPreview
+              profileImage={profileImage}
+              name={name}
+              createdAt={createdAt}
+              content={content}
+              currentUpvoteCount={Number(currentUpvoteCount) || 0}
+              currentDownvoteCount={Number(currentDownvoteCount) || 0}
+              voteDirection={null}
+              onUpvoteClick={() => {}}
+              onDownvoteClick={() => {}}
+              onReplyClick={() => {}}
+              replyCount={replies.length}
+            />
+          </div>
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-muted-foreground">Filled</p>
+            <DiscussionPostCardPreview
+              profileImage={profileImage}
+              name={name}
+              createdAt={createdAt}
+              content={content}
+              currentUpvoteCount={Number(currentUpvoteCount) || 0}
+              currentDownvoteCount={Number(currentDownvoteCount) || 0}
+              voteDirection="up"
+              onUpvoteClick={() => {}}
+              onDownvoteClick={() => {}}
+              onReplyClick={() => {}}
+              replyCount={replies.length}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
