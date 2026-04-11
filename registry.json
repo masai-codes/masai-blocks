@@ -195,6 +195,47 @@
           "type": "registry:block"
         }
       ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:block",
+      "title": "Navbar",
+      "description": "Top navigation with logo, primary links, trailing actions, and profile dropdown.",
+      "dependencies": ["@radix-ui/react-dropdown-menu"],
+      "files": [
+        {
+          "path": "registry/components/navbar/index.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/navbar/index.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/navbar/types.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/navbar/navbar-anchor.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/navbar/navbar-logo.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/navbar/navbar-nav-items.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/navbar/navbar-profile-menu.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/navbar/navbar-trailing-actions.tsx",
+          "type": "registry:block"
+        }
+      ]
     }
   ]
 }
