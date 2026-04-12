@@ -193,7 +193,7 @@ export function EventCardPlayground() {
             checked={showLocationTextInMapsTag}
             onChange={(e) => setShowLocationTextInMapsTag(e.target.checked)}
           />
-          Show location text before "View On Maps"
+          Show location text before &quot;View On Maps&quot;
         </label>
         <label className="flex flex-col gap-1 text-xs text-muted-foreground">
           Active status

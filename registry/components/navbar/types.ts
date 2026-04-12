@@ -1,5 +1,8 @@
 import type { MouseEventHandler, ReactNode } from "react"
 
+/** Hover + active text/icon color for primary nav and profile menu (keep Tailwind `text-[#6962AC]` in sync). */
+export const NAVBAR_ACCENT_HEX = "#6962AC" as const
+
 export type NavbarHref = string
 
 export type NavbarLinkItem = {
@@ -13,6 +16,11 @@ export type NavbarLinkItem = {
    * routing or actions yourself (e.g. Next.js `router.push`).
    */
   onClick?: MouseEventHandler<HTMLAnchorElement>
+  /**
+   * Mark the current route (or logical section). Renders accent color and an underline;
+   * set from the consuming app (e.g. compare `pathname` to `href`).
+   */
+  isActive?: boolean
 }
 
 export type NavbarLogo = {
@@ -56,6 +64,8 @@ export type NavbarIconAction = {
   href: NavbarHref
   openInNewTab?: boolean
   onClick?: MouseEventHandler<HTMLAnchorElement>
+  /** Shown as the native browser tooltip on hover (e.g. "Calendar"). */
+  tooltip?: string
 }
 
 export type NavbarImageAction = {
@@ -68,6 +78,8 @@ export type NavbarImageAction = {
   /** Optional classes for the `<img>` (size, object-fit, etc.). */
   imageClassName?: string
   onClick?: MouseEventHandler<HTMLAnchorElement>
+  /** Native tooltip on hover (e.g. "Download app"). */
+  tooltip?: string
 }
 
 export type NavbarActionItem = NavbarTextAction | NavbarIconAction | NavbarImageAction

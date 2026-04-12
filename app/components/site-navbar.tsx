@@ -21,7 +21,7 @@ export function SiteNavbar() {
             openInNewTab: true,
           }}
           navItems={[
-            { label: "Home", href: "/courses" },
+            { label: "Home", href: "/courses", isActive: true },
             {
               label: "Learn",
               href: "https://www.masaischool.com/hire",
@@ -67,6 +67,7 @@ export function SiteNavbar() {
               {
                 label: "Dashboard",
                 href: "/dashboard",
+                isActive: true,
                 icon: <LayoutDashboard className="size-4" aria-hidden />,
               },
               {

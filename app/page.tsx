@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo } from "react"
+import { Suspense, useEffect, useMemo } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { BadgeShowcase } from "@/app/components/badge-showcase"
@@ -12,7 +12,7 @@ import { HomePageHeader } from "@/app/components/home-page-header"
 import { MasaiTabsPlayground } from "@/app/components/masai-tabs-playground"
 import { ScrollingBannerPlayground } from "@/app/components/scrolling-banner-playground"
 
-export default function Home() {
+function HomeContent() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -142,5 +142,19 @@ export default function Home() {
         </div>
       </main>
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense
+      fallback={
+        <div className="mx-auto min-h-svh max-w-7xl px-4 py-8 text-sm text-muted-foreground">
+          Loading playground…
+        </div>
+      }
+    >
+      <HomeContent />
+    </Suspense>
   )
 }
