@@ -11,6 +11,7 @@ import { EventCardPlayground } from "@/app/components/event-card-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
 import { MasaiTabsPlayground } from "@/app/components/masai-tabs-playground"
 import { ScrollingBannerPlayground } from "@/app/components/scrolling-banner-playground"
+import { TabNavbarPlayground } from "@/app/components/tab-navbar-playground"
 
 function HomeContent() {
   const router = useRouter()
@@ -68,6 +69,13 @@ function HomeContent() {
         headingId: "scrolling-banner-heading",
         description: "Auto-scrolling latest updates notice board with CTA links.",
         content: <ScrollingBannerPlayground />,
+      },
+      {
+        id: "tab-navbar",
+        label: "Tab Navbar",
+        headingId: "tab-navbar-heading",
+        description: "Icon + label row for mobile-style navigation with parent-controlled selection.",
+        content: <TabNavbarPlayground />,
       },
     ],
     []

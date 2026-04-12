@@ -240,6 +240,26 @@
           "type": "registry:block"
         }
       ]
+    },
+    {
+      "name": "tab-navbar",
+      "type": "registry:block",
+      "title": "Tab Navbar",
+      "description": "Bottom-style row of icon + label tabs with parent-controlled active state and per-item click handlers.",
+      "files": [
+        {
+          "path": "registry/components/tab-navbar/index.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/tab-navbar/index.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/tab-navbar/types.ts",
+          "type": "registry:block"
+        }
+      ]
     }
   ]
 }

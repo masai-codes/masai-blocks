@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tab-navbar",
+  "title": "Tab Navbar",
+  "description": "Bottom-style row of icon + label tabs with parent-controlled active state and per-item click handlers.",
+  "files": [
+    {
+      "path": "registry/components/tab-navbar/index.ts",
+      "content": "export { TabNavbar } from \"./index.tsx\"\nexport type { TabNavbarItem, TabNavbarProps } from \"./types\"\n",
+      "type": "registry:block"
+    },
+    {
+      "path": "registry/components/tab-navbar/index.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport type { TabNavbarProps } from \"./types\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport function TabNavbar({\n  items,\n  className,\n  labelClassName,\n  ariaLabel = \"Primary navigation\",\n}: TabNavbarProps) {\n  if (!items.length) {\n    return null\n  }\n\n  return (\n    <nav\n      aria-label={ariaLabel}\n      className={cn(\n        \"flex w-full flex-row items-center bg-white py-2 font-poppins\",\n        className,\n      )}\n    >\n      {items.map((item, index) => {\n        const key = item.id ?? `${item.label}-${index}`\n        const isActive = Boolean(item.isActive)\n\n        return (\n          <button\n            key={key}\n            type=\"button\"\n            onClick={item.onClick}\n            aria-current={isActive ? \"page\" : undefined}\n            className={cn(\n              \"flex min-w-0 basis-0 flex-1 flex-col items-center justify-center gap-1 px-1 py-1 transition-colors\",\n              \"cursor-pointer border-0 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0\",\n              isActive\n                ? \"text-[#6962AC]\"\n                : \"text-[#6B7280] hover:text-[#4B5563]\",\n            )}\n          >\n            <span\n              className=\"flex size-6 shrink-0 items-center justify-center [&_svg]:size-6 [&_svg]:shrink-0\"\n              aria-hidden\n            >\n              {item.icon}\n            </span>\n            <span\n              className={cn(\n                \"truncate text-center text-[11px] font-medium leading-4\",\n                labelClassName,\n              )}\n            >\n              {item.label}\n            </span>\n          </button>\n        )\n      })}\n    </nav>\n  )\n}\n\nexport type { TabNavbarItem, TabNavbarProps } from \"./types\"\n",
+      "type": "registry:block"
+    },
+    {
+      "path": "registry/components/tab-navbar/types.ts",
+      "content": "import type { MouseEventHandler, ReactNode } from \"react\"\n\nexport type TabNavbarItem = {\n  id?: string\n  label: string\n  icon: ReactNode\n  /**\n   * Mark the current section (parent-controlled), same idea as `NavbarLinkItem.isActive`.\n   */\n  isActive?: boolean\n  onClick?: MouseEventHandler<HTMLButtonElement>\n}\n\nexport type TabNavbarProps = {\n  items: TabNavbarItem[]\n  /**\n   * Merged onto the root `<nav>`. Use for elevation when fixed to the bottom (e.g. `shadow-sm`,\n   * `shadow-[0_-4px_24px_rgba(0,0,0,0.08)]`), rounding, or background overrides — no border is applied by default.\n   */\n  className?: string\n  /**\n   * Classes for every tab label (`<span>` under the icon). Defaults include size/weight/leading;\n   * pass e.g. `text-sm font-semibold` to restyle all labels at once.\n   */\n  labelClassName?: string\n  /** Passed to the wrapping `<nav>` for screen readers. */\n  ariaLabel?: string\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "type": "registry:block"
+}
