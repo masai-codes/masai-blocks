@@ -1,10 +1,9 @@
 "use client";
 
-import { Bell, Megaphone, Search } from "lucide-react";
+import { LayoutDashboard, LifeBuoy, LogOut, User } from "lucide-react";
 
 import { Navbar } from "@/registry/components/navbar";
-import { CalendarDots } from "@phosphor-icons/react/dist/ssr/CalendarDots";
-import { ChatCircleIcon, Chats, MegaphoneIcon } from "@phosphor-icons/react";
+import { CalendarDots, Chats, MegaphoneIcon } from "@phosphor-icons/react";
 
 /**
  * Demo shell for the registry `Navbar` block — full-width sticky bar above playground content.
@@ -38,7 +37,7 @@ export function SiteNavbar() {
               src: "https://students.masaischool.com/static/media/download-app.394dce64e9e436e88052.png",
               alt: "Open achievements",
               href: "/achievements",
-              imageClassName: "h-[40px] ",
+              imageClassName: "h-[40px]",
             },
             {
               type: "icon",
@@ -65,14 +64,27 @@ export function SiteNavbar() {
             avatarAlt: "Signed-in learner",
             menuTriggerLabel: "Open account menu",
             menuItems: [
-              { label: "Dashboard", href: "/dashboard" },
-              { label: "Profile settings", href: "/settings/profile" },
+              {
+                label: "Dashboard",
+                href: "/dashboard",
+                icon: <LayoutDashboard className="size-4" aria-hidden />,
+              },
+              {
+                label: "Profile settings",
+                href: "/settings/profile",
+                icon: <User className="size-4" aria-hidden />,
+              },
               {
                 label: "Help center",
                 href: "https://help.masaischool.com",
                 openInNewTab: true,
+                icon: <LifeBuoy className="size-4" aria-hidden />,
               },
-              { label: "Sign out", href: "/logout" },
+              {
+                label: "Sign out",
+                href: "/logout",
+                icon: <LogOut className="size-4" aria-hidden />,
+              },
             ],
           }}
         />

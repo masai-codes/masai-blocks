@@ -26,6 +26,7 @@ export function NavbarNavItems({ items, className }: NavbarNavItemsProps) {
             <NavbarAnchor
               href={item.href}
               openInNewTab={item.openInNewTab}
+              onClick={item.onClick}
               className="font-poppins rounded-md px-2 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 text-[16px] font-[500] leading-[24px]"
             >
               {item.label}

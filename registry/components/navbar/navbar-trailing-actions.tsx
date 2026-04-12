@@ -31,6 +31,7 @@ export function NavbarTrailingActions({
               key={key}
               href={item.href}
               openInNewTab={item.openInNewTab}
+              onClick={item.onClick}
               className="rounded-md px-2 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               {item.label}
@@ -48,6 +49,7 @@ export function NavbarTrailingActions({
               key={key}
               href={item.href}
               openInNewTab={item.openInNewTab}
+              onClick={item.onClick}
               className="inline-flex items-center justify-center rounded-md p-1 text-muted-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <img
@@ -67,6 +69,7 @@ export function NavbarTrailingActions({
             key={key}
             href={item.href}
             openInNewTab={item.openInNewTab}
+            onClick={item.onClick}
             aria-label={item.ariaLabel}
             className="inline-flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >

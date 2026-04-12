@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import type { MouseEventHandler, ReactNode } from "react"
 
 export type NavbarHref = string
 
@@ -8,6 +8,11 @@ export type NavbarLinkItem = {
   href: NavbarHref
   /** When omitted, `http(s)://` URLs open in a new tab; app paths stay in the same tab. */
   openInNewTab?: boolean
+  /**
+   * Fires on the anchor click before navigation. Call `event.preventDefault()` to handle
+   * routing or actions yourself (e.g. Next.js `router.push`).
+   */
+  onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
 export type NavbarLogo = {
@@ -15,9 +20,14 @@ export type NavbarLogo = {
   alt: string
   href: NavbarHref
   openInNewTab?: boolean
+  /** Same as link items: optional handler on the logo anchor (e.g. `preventDefault` + client routing). */
+  onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
-export type NavbarProfileMenuItem = NavbarLinkItem
+export type NavbarProfileMenuItem = NavbarLinkItem & {
+  /** Leading icon next to the label (treat as decorative when `label` is set). */
+  icon?: ReactNode
+}
 
 export type NavbarProfile = {
   avatarSrc?: string
@@ -35,6 +45,7 @@ export type NavbarTextAction = {
   label: string
   href: NavbarHref
   openInNewTab?: boolean
+  onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
 export type NavbarIconAction = {
@@ -44,6 +55,7 @@ export type NavbarIconAction = {
   ariaLabel: string
   href: NavbarHref
   openInNewTab?: boolean
+  onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
 export type NavbarImageAction = {
@@ -55,6 +67,7 @@ export type NavbarImageAction = {
   openInNewTab?: boolean
   /** Optional classes for the `<img>` (size, object-fit, etc.). */
   imageClassName?: string
+  onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
 export type NavbarActionItem = NavbarTextAction | NavbarIconAction | NavbarImageAction
