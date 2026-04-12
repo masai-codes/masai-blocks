@@ -66,6 +66,11 @@ export type NavbarIconAction = {
   onClick?: MouseEventHandler<HTMLAnchorElement>
   /** Shown as the native browser tooltip on hover (e.g. "Calendar"). */
   tooltip?: string
+  /**
+   * Optional unread / notification count. When greater than zero, a red pill is shown on the icon
+   * (values above 9 display as `9+`).
+   */
+  notificationCount?: number
 }
 
 export type NavbarImageAction = {

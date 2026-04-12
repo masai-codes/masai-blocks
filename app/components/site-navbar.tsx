@@ -45,14 +45,16 @@ export function SiteNavbar() {
         },
         {
           type: "icon",
-          ariaLabel: "Notifications",
+          ariaLabel: "Chat",
           href: "/notifications",
+          notificationCount: 3,
           icon: <Chats className="size-[28px]" aria-hidden />,
         },
         {
           type: "icon",
-          ariaLabel: "Notifications",
+          ariaLabel: "Announcements",
           href: "/notifications",
+          notificationCount: 12,
           icon: <MegaphoneIcon className="size-[28px]" aria-hidden />,
         },
       ]}
