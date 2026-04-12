@@ -8,7 +8,10 @@ import { NavbarProfileMenu } from "./navbar-profile-menu";
 import { NavbarTrailingActions } from "./navbar-trailing-actions";
 import type { NavbarProps } from "./types";
 
-import { LAYOUT_NAVBAR_INNER_CLASSES, LAYOUT_NAVBAR_OUTER_CLASSES } from "@/lib/layout";
+import {
+  LAYOUT_NAVBAR_INNER_CLASSES,
+  LAYOUT_NAVBAR_OUTER_CLASSES,
+} from "@/lib/layout";
 import { cn } from "@/lib/utils";
 
 export function Navbar({
@@ -29,7 +32,7 @@ export function Navbar({
       <div
         className={cn(
           LAYOUT_NAVBAR_INNER_CLASSES,
-          "justify-between py-3 md:py-4",
+          "justify-between py-3 md:py-3.5",
         )}
       >
         <div className="flex min-w-0 flex-1 items-center gap-8">
