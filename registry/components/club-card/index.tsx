@@ -35,6 +35,7 @@ export function ClubCard({
   detailDescription,
   drawerDirection = "auto",
   ctaTheme,
+  className,
 }: ClubCardProps) {
   const [open, setOpen] = React.useState(false)
   const resolvedDirection = useResolvedDirection(drawerDirection)
@@ -57,6 +58,7 @@ export function ClubCard({
         ctaText={resolvedCardCtaText}
         ctaTheme={ctaTheme}
         onCtaClick={handleCtaClick}
+        className={className}
       />
       <ClubCardDrawer
         domain={domain}

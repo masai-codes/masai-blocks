@@ -212,6 +212,10 @@
           "type": "registry:block"
         },
         {
+          "path": "lib/layout.ts",
+          "type": "registry:lib"
+        },
+        {
           "path": "registry/components/navbar/types.ts",
           "type": "registry:block"
         },
