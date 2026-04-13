@@ -50,6 +50,7 @@ export function ScrollingBanner({
   className = "",
   maxHeight,
   maxWidth,
+  autoScroll = true,
   itemDurationSeconds = 3,
   pauseOnHover = true,
   allowManualScroll = true,
@@ -68,7 +69,7 @@ export function ScrollingBanner({
 
   React.useEffect(() => {
     const container = scrollContainerRef.current;
-    if (!container || safeItems.length === 0) {
+    if (!autoScroll || !container || safeItems.length === 0) {
       return;
     }
 
@@ -111,7 +112,7 @@ export function ScrollingBanner({
     return () => {
       window.cancelAnimationFrame(frameId);
     };
-  }, [safeItems.length, itemDurationSeconds, pauseOnHover]);
+  }, [autoScroll, safeItems.length, itemDurationSeconds, pauseOnHover]);
 
   if (!safeItems.length) {
     return (
