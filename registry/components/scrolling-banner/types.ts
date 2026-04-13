@@ -2,8 +2,8 @@ export type ScrollingBannerItem = {
   id?: string;
   heading: string;
   content: string;
-  ctaText: string;
-  ctaLink: string;
+  ctaText?: string;
+  ctaLink?: string;
   openInNewTab?: boolean;
 };
 

@@ -23,9 +23,11 @@ export function ScrollingBanner({
   allowManualScroll = true,
   ariaLabel = "Latest updates",
 }: ScrollingBannerProps) {
+  const CONTENT_TRUNCATE_LIMIT = 50;
   const scrollContainerRef = React.useRef<HTMLDivElement | null>(null);
   const isHoveredRef = React.useRef(false);
   const safeItems = React.useMemo(() => items.filter(Boolean), [items]);
+  const [expandedItems, setExpandedItems] = React.useState<Record<string, boolean>>({});
 
   const containerStyle: React.CSSProperties = {
     maxHeight: toCssSize(maxHeight),
@@ -116,8 +118,21 @@ export function ScrollingBanner({
         <div className="relative flex flex-col">
           <span className="pointer-events-none absolute inset-y-0 left-8 w-[2px] -translate-x-1/2 bg-[#D1D5DB]" />
           {safeItems.map((item, index) => (
+            (() => {
+              const itemKey = `${item.id ?? item.heading}-${index}`;
+              const contentText = item.content ?? "";
+              const hasLongContent = contentText.length > CONTENT_TRUNCATE_LIMIT;
+              const isExpanded = Boolean(expandedItems[itemKey]);
+              const visibleContent =
+                hasLongContent && !isExpanded
+                  ? `${contentText.slice(0, CONTENT_TRUNCATE_LIMIT).trimEnd()}...`
+                  : contentText;
+              const hasCtaText = (item.ctaText ?? "").trim().length > 0;
+              const hasCtaLink = (item.ctaLink ?? "").trim().length > 0;
+
+              return (
             <article
-              key={`${item.id ?? item.heading}-${index}`}
+              key={itemKey}
               className="flex w-full gap-2 px-4 py-4"
             >
               <div className="relative flex w-8 shrink-0 justify-center">
@@ -128,9 +143,23 @@ export function ScrollingBanner({
                   {item.heading}
                 </h3>
                 <p className="text-[13px] font-[400] leading-[20px] text-[#4B5563]">
-                  {item.content}
+                  {visibleContent}
                 </p>
-                {item.ctaText.trim().length > 0 && item.ctaLink.trim().length > 0 ? (
+                {hasLongContent ? (
+                  <button
+                    type="button"
+                    className="inline-flex w-fit text-[12px] font-[500] leading-[18px] text-[#EF8833] hover:text-[#DC7A2D]"
+                    onClick={() => {
+                      setExpandedItems((prev) => ({
+                        ...prev,
+                        [itemKey]: !Boolean(prev[itemKey]),
+                      }));
+                    }}
+                  >
+                    {isExpanded ? "View less" : "View more"}
+                  </button>
+                ) : null}
+                {hasCtaText && hasCtaLink ? (
                   <a
                     href={item.ctaLink}
                     target={item.openInNewTab ? "_blank" : "_self"}
@@ -143,6 +172,8 @@ export function ScrollingBanner({
                 ) : null}
               </div>
             </article>
+              );
+            })()
           ))}
         </div>
       </div>
