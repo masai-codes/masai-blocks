@@ -128,6 +128,73 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "app-sidebar",
+      "type": "registry:ui",
+      "title": "App Sidebar",
+      "description": "Collapsible app sidebar with icon-mapped items and nested submenus.",
+      "dependencies": [
+        "@radix-ui/react-tooltip",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/components/masai-registry/app-sidebar/index.ts",
+          "type": "registry:ui",
+          "target": "components/masai-registry/app-sidebar/index.ts"
+        },
+        {
+          "path": "registry/components/masai-registry/app-sidebar/index.tsx",
+          "type": "registry:ui",
+          "target": "components/masai-registry/app-sidebar/index.tsx"
+        },
+        {
+          "path": "registry/components/masai-registry/app-sidebar/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/masai-registry/app-sidebar/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "modal",
+      "type": "registry:ui",
+      "title": "Modal",
+      "description": "Reusable modal with size variants, header, body, footer, and close behavior controls.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/components/masai-registry/modal/index.ts",
+          "type": "registry:ui",
+          "target": "components/masai-registry/modal/index.ts"
+        },
+        {
+          "path": "registry/components/masai-registry/modal/index.tsx",
+          "type": "registry:ui",
+          "target": "components/masai-registry/modal/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toaster",
+      "type": "registry:ui",
+      "title": "Toaster",
+      "description": "Simple fixed-position toaster with required text and position props, and optional icon support.",
+      "files": [
+        {
+          "path": "registry/components/masai-registry/toaster/index.ts",
+          "type": "registry:ui",
+          "target": "components/masai-registry/toaster/index.ts"
+        },
+        {
+          "path": "registry/components/masai-registry/toaster/index.tsx",
+          "type": "registry:ui",
+          "target": "components/masai-registry/toaster/index.tsx"
+        }
+      ]
     }
   ]
 }

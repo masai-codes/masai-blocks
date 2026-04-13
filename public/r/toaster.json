@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toaster",
+  "title": "Toaster",
+  "description": "Simple fixed-position toaster with required text and position props, and optional icon support.",
+  "files": [
+    {
+      "path": "registry/components/masai-registry/toaster/index.ts",
+      "content": "export { Toaster } from \"./index.tsx\"\nexport type { ToasterPosition, ToasterProps } from \"./index.tsx\"\n",
+      "type": "registry:ui",
+      "target": "components/masai-registry/toaster/index.ts"
+    },
+    {
+      "path": "registry/components/masai-registry/toaster/index.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nexport type ToasterPosition =\n  | \"top-left\"\n  | \"top-center\"\n  | \"top-right\"\n  | \"bottom-left\"\n  | \"bottom-center\"\n  | \"bottom-right\"\n\nconst POSITION_CLASSNAME: Record<ToasterPosition, string> = {\n  \"top-left\": \"left-4 top-4\",\n  \"top-center\": \"left-1/2 top-4 -translate-x-1/2\",\n  \"top-right\": \"right-4 top-4\",\n  \"bottom-left\": \"bottom-4 left-4\",\n  \"bottom-center\": \"bottom-4 left-1/2 -translate-x-1/2\",\n  \"bottom-right\": \"bottom-4 right-4\",\n}\n\nfunction cn(...inputs: Array<string | undefined | false | null>) {\n  return inputs.filter(Boolean).join(\" \")\n}\n\nexport type ToasterProps = {\n  text: React.ReactNode\n  position: ToasterPosition\n  icon?: React.ReactNode\n  duration?: number\n  backgroundColor?: string\n  textColor?: string\n  className?: string\n}\n\nexport function Toaster({\n  text,\n  position,\n  icon,\n  duration = 3000,\n  backgroundColor,\n  textColor,\n  className,\n}: ToasterProps) {\n  const [isVisible, setIsVisible] = React.useState(true)\n\n  React.useEffect(() => {\n    setIsVisible(true)\n\n    if (duration <= 0) {\n      return\n    }\n\n    const timer = window.setTimeout(() => {\n      setIsVisible(false)\n    }, duration)\n\n    return () => {\n      window.clearTimeout(timer)\n    }\n  }, [duration, text, position, icon, backgroundColor, textColor])\n\n  if (!isVisible) {\n    return null\n  }\n\n  return (\n    <div\n      role=\"status\"\n      aria-live=\"polite\"\n      className={cn(\n        \"fixed z-50 flex min-w-[220px] max-w-sm items-center gap-2 rounded-lg border border-slate-200 px-4 py-3 text-sm shadow-lg\",\n        POSITION_CLASSNAME[position],\n        className\n      )}\n      style={{\n        backgroundColor: backgroundColor ?? \"#ffffff\",\n        color: textColor ?? \"#0f172a\",\n      }}\n    >\n      {icon ? <span className=\"shrink-0\">{icon}</span> : null}\n      <span className=\"min-w-0 break-words\">{text}</span>\n    </div>\n  )\n}\n",
+      "type": "registry:ui",
+      "target": "components/masai-registry/toaster/index.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

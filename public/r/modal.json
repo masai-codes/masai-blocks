@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "modal",
+  "title": "Modal",
+  "description": "Reusable modal with size variants, header, body, footer, and close behavior controls.",
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/components/masai-registry/modal/index.ts",
+      "content": "export { Modal } from \"./index.tsx\"\nexport type { ModalProps, ModalSize } from \"./index.tsx\"\n",
+      "type": "registry:ui",
+      "target": "components/masai-registry/modal/index.ts"
+    },
+    {
+      "path": "registry/components/masai-registry/modal/index.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as Dialog from \"@radix-ui/react-dialog\"\nimport { X } from \"lucide-react\"\n\ntype ModalSize = \"sm\" | \"md\" | \"lg\" | \"xl\" | \"full\"\n\nconst MODAL_SIZE_CLASSNAME: Record<ModalSize, string> = {\n  sm: \"max-w-md\",\n  md: \"max-w-xl\",\n  lg: \"max-w-2xl\",\n  xl: \"max-w-4xl\",\n  full: \"max-w-[96vw]\",\n}\n\nfunction cn(...inputs: Array<string | undefined | false | null>) {\n  return inputs.filter(Boolean).join(\" \")\n}\n\nexport type ModalProps = {\n  open?: boolean\n  defaultOpen?: boolean\n  onOpenChange?: (open: boolean) => void\n  trigger?: React.ReactNode\n  title?: React.ReactNode\n  description?: React.ReactNode\n  children: React.ReactNode\n  footer?: React.ReactNode\n  size?: ModalSize\n  showCloseButton?: boolean\n  closeButtonLabel?: string\n  closeOnOverlayClick?: boolean\n  closeOnEscape?: boolean\n  className?: string\n  overlayClassName?: string\n  contentClassName?: string\n  modal?: boolean\n}\n\nexport function Modal({\n  open,\n  defaultOpen,\n  onOpenChange,\n  trigger,\n  title,\n  description,\n  children,\n  footer,\n  size = \"md\",\n  showCloseButton = true,\n  closeButtonLabel = \"Close modal\",\n  closeOnOverlayClick = true,\n  closeOnEscape = true,\n  className,\n  overlayClassName,\n  contentClassName,\n  modal = true,\n}: ModalProps) {\n  return (\n    <Dialog.Root\n      open={open}\n      defaultOpen={defaultOpen}\n      onOpenChange={onOpenChange}\n      modal={modal}\n    >\n      {trigger ? <Dialog.Trigger asChild>{trigger}</Dialog.Trigger> : null}\n      <Dialog.Portal>\n        <Dialog.Overlay\n          className={cn(\n            \"fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out\",\n            overlayClassName\n          )}\n        />\n        <Dialog.Content\n          onPointerDownOutside={(event) => {\n            if (!closeOnOverlayClick) {\n              event.preventDefault()\n            }\n          }}\n          onEscapeKeyDown={(event) => {\n            if (!closeOnEscape) {\n              event.preventDefault()\n            }\n          }}\n          className={cn(\n            \"fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-[92vw] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl outline-none\",\n            MODAL_SIZE_CLASSNAME[size],\n            className\n          )}\n        >\n          <div className={cn(\"flex max-h-[90vh] flex-col\", contentClassName)}>\n            {(title || description || showCloseButton) && (\n              <div className=\"flex items-start justify-between gap-4 border-b border-slate-100 px-5 py-4\">\n                <div className=\"min-w-0\">\n                  {title ? (\n                    <Dialog.Title className=\"text-lg font-semibold text-slate-900\">\n                      {title}\n                    </Dialog.Title>\n                  ) : null}\n                  {description ? (\n                    <Dialog.Description className=\"mt-1 text-sm text-slate-600\">\n                      {description}\n                    </Dialog.Description>\n                  ) : null}\n                </div>\n                {showCloseButton ? (\n                  <Dialog.Close\n                    aria-label={closeButtonLabel}\n                    className=\"inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-900\"\n                  >\n                    <X className=\"size-4\" />\n                  </Dialog.Close>\n                ) : null}\n              </div>\n            )}\n\n            <div className=\"overflow-y-auto px-5 py-4\">{children}</div>\n\n            {footer ? (\n              <div className=\"border-t border-slate-100 px-5 py-4\">{footer}</div>\n            ) : null}\n          </div>\n        </Dialog.Content>\n      </Dialog.Portal>\n    </Dialog.Root>\n  )\n}\n\nexport type { ModalSize }\n",
+      "type": "registry:ui",
+      "target": "components/masai-registry/modal/index.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
