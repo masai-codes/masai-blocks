@@ -15,6 +15,22 @@ const DEFAULT_ITEMS_TEXT = [
   "Placement Milestone|500+ learners placed in top startups this quarter.|View stories|https://www.masaischool.com/success-stories",
 ].join("\n");
 
+const MARKDOWN_DEMO_ITEMS: Array<ScrollingBannerItem> = [
+  {
+    id: "markdown-demo",
+    heading: "Markdown demo banner",
+    content: `Test
+- qw **dq**
+- qwd
+
+1. weqq
+2. qwe`,
+    ctaText: "Know more",
+    ctaLink: "https://www.masaischool.com",
+    openInNewTab: true,
+  },
+];
+
 export function ScrollingBannerPlayground() {
   const [itemsText, setItemsText] = React.useState(DEFAULT_ITEMS_TEXT);
   const [bannerHeading, setBannerHeading] = React.useState(
@@ -129,6 +145,23 @@ export function ScrollingBannerPlayground() {
           pauseOnHover={pauseOnHover}
           allowManualScroll={allowManualScroll}
         />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <h3 className="text-xs text-muted-foreground">
+          Dummy markdown render example
+        </h3>
+        <div className="flex h-[280px] max-w-[500px] w-full items-center justify-center rounded-md bg-[#F9FAFB] p-3">
+          <ScrollingBanner
+            items={MARKDOWN_DEMO_ITEMS}
+            bannerHeading="Markdown rendering check"
+            maxHeight={280}
+            maxWidth="100%"
+            itemDurationSeconds={6}
+            pauseOnHover
+            allowManualScroll
+          />
+        </div>
       </div>
     </div>
   );

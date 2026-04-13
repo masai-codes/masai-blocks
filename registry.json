@@ -181,6 +181,10 @@
       "type": "registry:block",
       "title": "Scrolling Banner",
       "description": "Auto-scrolling latest updates notice board with heading, content, and CTA per item.",
+      "dependencies": [
+        "react-markdown",
+        "remark-gfm"
+      ],
       "files": [
         {
           "path": "registry/components/scrolling-banner/index.ts",

@@ -1,6 +1,9 @@
 "use client";
 
 import * as React from "react";
+import ReactMarkdown from "react-markdown";
+import type { Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import type { ScrollingBannerProps } from "./types";
 
@@ -11,6 +14,35 @@ function toCssSize(value: number | string | undefined) {
 
   return value;
 }
+
+function getCollapsedPreview(markdown: string, limit: number): string {
+  const withoutMarkdownSyntax = markdown
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, "$1")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
+    .replace(/[*_>#-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (withoutMarkdownSyntax.length <= limit) {
+    return withoutMarkdownSyntax;
+  }
+
+  return `${withoutMarkdownSyntax.slice(0, limit).trimEnd()}...`;
+}
+
+const markdownComponents: Components = {
+  p: ({ children }) => <p className="m-0 whitespace-pre-wrap">{children}</p>,
+  ul: ({ children }) => (
+    <ul className="my-1 list-outside list-disc space-y-1 pl-5">{children}</ul>
+  ),
+  ol: ({ children }) => (
+    <ol className="my-1 list-outside list-decimal space-y-1 pl-5">{children}</ol>
+  ),
+  li: ({ children }) => <li className="marker:text-[#4B5563]">{children}</li>,
+  strong: ({ children }) => <strong className="font-semibold text-[#111928]">{children}</strong>,
+};
 
 export function ScrollingBanner({
   items,
@@ -125,7 +157,7 @@ export function ScrollingBanner({
               const isExpanded = Boolean(expandedItems[itemKey]);
               const visibleContent =
                 hasLongContent && !isExpanded
-                  ? `${contentText.slice(0, CONTENT_TRUNCATE_LIMIT).trimEnd()}...`
+                  ? getCollapsedPreview(contentText, CONTENT_TRUNCATE_LIMIT)
                   : contentText;
               const hasCtaText = (item.ctaText ?? "").trim().length > 0;
               const hasCtaLink = (item.ctaLink ?? "").trim().length > 0;
@@ -142,9 +174,18 @@ export function ScrollingBanner({
                 <h3 className="text-[15px] font-[600] leading-[22px] text-[#111928]">
                   {item.heading}
                 </h3>
-                <p className="text-[13px] font-[400] leading-[20px] text-[#4B5563]">
-                  {visibleContent}
-                </p>
+                <div className="banner-markdown text-[13px] font-[400] leading-[20px] text-[#4B5563]">
+                  {hasLongContent && !isExpanded ? (
+                    <p>{visibleContent}</p>
+                  ) : (
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={markdownComponents}
+                    >
+                      {visibleContent}
+                    </ReactMarkdown>
+                  )}
+                </div>
                 {hasLongContent ? (
                   <button
                     type="button"
@@ -188,6 +229,7 @@ export function ScrollingBanner({
           height: 0;
           display: none;
         }
+
       `}</style>
     </section>
   );
