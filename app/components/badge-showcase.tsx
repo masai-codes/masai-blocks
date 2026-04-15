@@ -1,4 +1,4 @@
-import { Badge } from "@/registry/components/badge"
+import { Badge } from "@/registry/components/badge";
 
 export function BadgeShowcase() {
   return (
@@ -27,7 +27,19 @@ export function BadgeShowcase() {
           firstUnlockedDate="2026-05-13"
           lockedBadgeText="Practice Leader Locked"
         />
+        <Badge
+          name="Module Finisher"
+          description="Earned for completing your learning journey with consistency."
+          badgeUrl="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/2c174f69-adcf-47e8-b69c-a5c70fd698b6/UBx1eiynLZdmuhyi.png"
+          isLocked={false}
+          openIn="modal"
+          theme="theme2"
+          firstUnlockedDate="2026-04-14"
+          courseTitle="Product Management in 
+Generative and Agentic AI by BITSoM"
+          sectionModuleName="Module 1"
+        />
       </div>
     </div>
-  )
+  );
 }

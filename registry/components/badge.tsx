@@ -27,6 +27,8 @@ type BadgeProps = {
   name: string;
   description: string;
   lockedBadgeText?: string;
+  courseTitle?: string;
+  sectionModuleName?: string;
   badgeUrl: string;
   countLabel?: string;
   isLocked: boolean;
@@ -67,6 +69,8 @@ function Badge({
   name,
   description,
   lockedBadgeText,
+  courseTitle,
+  sectionModuleName,
   badgeUrl,
   countLabel,
   isLocked,
@@ -79,6 +83,10 @@ function Badge({
   const detailText = isLocked ? lockedBadgeText || description : description;
   const themeBackgroundUrl = THEME_BACKGROUND_URL[theme];
   const themeBackgroundColor = THEME_BACKGROUND_COLOR[theme];
+  const hasContextSection = Boolean(
+    (courseTitle && courseTitle.trim()) ||
+    (sectionModuleName && sectionModuleName.trim()),
+  );
 
   const displayCountLabel = React.useMemo(() => {
     if (!countLabel) return undefined;
@@ -208,7 +216,7 @@ function Badge({
               </div>
 
               {!isLocked ? (
-                <div className="mt-5 flex justify-center">
+                <div className="mt-5 flex flex-col items-center gap-3">
                   <p className="rounded-full border border-blue-300 bg-white/80 px-4 py-2 text-base font-medium text-blue-600">
                     {`${isRepeatedUnlock ? "First unlocked on" : "Unlocked on"} ${unlockedText}`}
                   </p>
@@ -218,13 +226,27 @@ function Badge({
           </div>
           {!isLocked ? (
             <div
-              className={`${drawer ? "px-[16px]" : "px-[16px] sm:px-[72px]"} pb-[24px] mt-[32px] flex justify-center`}
+              className={`${drawer ? "px-[16px]" : "px-[16px] sm:px-[72px]"} pb-[24px] mt-[16px]`}
             >
+              {hasContextSection ? (
+                <div className="mb-4 w-full rounded-[16px] bg-[#F9FAFB] p-3 text-center">
+                  {sectionModuleName ? (
+                    <p className="text-[12px] font-[500] leading-[18px] text-[#0694A2] border border-[#0694A2] w-fit px-[8px] py-[2px] rounded-[32px] mx-auto">
+                      {sectionModuleName}
+                    </p>
+                  ) : null}
+                  {courseTitle ? (
+                    <p className="mt-2 text-[14px] font-[500] leading-[18px] text-[#374151]">
+                      {courseTitle}
+                    </p>
+                  ) : null}
+                </div>
+              ) : null}
               <a
                 href={linkedinShareHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex"
+                className="inline-flex justify-center w-full"
               >
                 <span
                   className={`cursor-pointer inline-flex items-center justify-center gap-3 rounded-2xl bg-[#6f67c7] py-3 text-[14px] font-[500] leading-[24px] text-white transition-colors hover:bg-[#625ab9] ${drawer ? "px-4" : "px-4 sm:px-[72px]"}`}
