@@ -27,7 +27,11 @@
       "dependencies": [
         "@radix-ui/react-dialog",
         "@phosphor-icons/react",
-        "lucide-react"
+        "lucide-react",
+        "react-markdown",
+        "remark-gfm",
+        "rehype-raw",
+        "rehype-sanitize"
       ],
       "files": [
         {
@@ -44,6 +48,10 @@
         },
         {
           "path": "registry/components/club-card/club-card-drawer.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/club-card/rich-content.tsx",
           "type": "registry:block"
         },
         {
@@ -64,7 +72,11 @@
       "dependencies": [
         "@radix-ui/react-dialog",
         "@phosphor-icons/react",
-        "lucide-react"
+        "lucide-react",
+        "react-markdown",
+        "remark-gfm",
+        "rehype-raw",
+        "rehype-sanitize"
       ],
       "files": [
         {
@@ -81,6 +93,10 @@
         },
         {
           "path": "registry/components/event-card/event-card-drawer.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/event-card/rich-content.tsx",
           "type": "registry:block"
         },
         {
