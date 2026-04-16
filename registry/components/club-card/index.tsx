@@ -68,6 +68,7 @@ export function ClubCard({
         domain={domain}
         name={name}
         imageUrl={imageUrl}
+        shouldCompress={shouldCompress}
         totalMembers={totalMembers}
         detailPoints={detailPoints}
         detailDescription={detailDescription}

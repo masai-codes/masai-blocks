@@ -206,6 +206,22 @@ export function ClubCardPlayground({ cardCount = 1 }: ClubCardPlaygroundProps) {
         <div className="mt-3 flex w-max gap-4">
           <ClubCard
             domain={domain}
+            name="Compressed Drawer CTA Hidden"
+            imageUrl={imageUrl}
+            miniDescription={miniDescription}
+            ctaText={ctaText}
+            cardCtaText={cardCtaText}
+            drawerCtaText={drawerCtaText}
+            onCtaClick={() => console.log("Compressed hidden CTA card clicked")}
+            totalMembers={totalMembers}
+            detailPoints={detailPoints}
+            detailDescription={detailDescription}
+            drawerDirection={drawerDirection}
+            ctaTheme={ctaTheme}
+            shouldCompress
+          />
+          <ClubCard
+            domain={domain}
             name="Compressed Club Card"
             imageUrl={imageUrl}
             miniDescription={miniDescription}
