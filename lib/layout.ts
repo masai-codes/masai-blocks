@@ -5,4 +5,4 @@
 export const LAYOUT_NAVBAR_OUTER_CLASSES = "w-full";
 
 export const LAYOUT_NAVBAR_INNER_CLASSES =
-  "mx-auto flex w-full max-w-[1440px] flex-row items-center px-4";
+  "mx-auto flex w-full max-w-[1440px] flex-row items-center";
