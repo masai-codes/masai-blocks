@@ -1,5 +1,3 @@
-export type DrawerDirection = "right" | "bottom" | "auto"
-
 export type EvaluationStatus =
   | "upcoming"
   | "not_attempted"
@@ -40,6 +38,6 @@ export type EvaluationCardProps = {
   data: EvaluationCardData
   ctaText: string
   drawerHeading: string
-  drawerDirection?: DrawerDirection
+  isMobile?: boolean
   className?: string
 }

@@ -12,19 +12,19 @@ import {
 } from "@phosphor-icons/react";
 import * as React from "react";
 
-import type { DrawerDirection, EvaluationCardData } from "./types";
+import type { EvaluationCardData } from "./types";
 import { RichContent } from "./rich-content";
 import { formatDecimal } from "./evaluation-card-preview";
 import { EvaluationSummaryRow } from "./evaluation-summary-row";
 
-import { cn } from "@/lib/utils";
+const cn = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ");
 
 type EvaluationCardDrawerProps = {
   data: EvaluationCardData;
   heading: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  resolvedDirection: Exclude<DrawerDirection, "auto">;
+  resolvedDirection: "right" | "bottom";
 };
 
 function formatDateTime(value: string) {
@@ -100,21 +100,21 @@ export function EvaluationCardDrawer({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50 transition-opacity duration-300 ease-out data-[state=closed]:opacity-0 data-[state=open]:opacity-100" />
+        <Dialog.Overlay className="fixed inset-0 z-[9998] bg-black/50 transition-opacity duration-300 ease-out data-[state=closed]:opacity-0 data-[state=open]:opacity-100" />
         <Dialog.Content
           className={cn(
-            "fixed z-50 border bg-white font-poppins shadow-xl outline-none",
+            "fixed z-[9999] border bg-white font-poppins shadow-xl outline-none",
             resolvedDirection === "right"
-              ? "right-0 top-0 flex h-svh w-full max-w-[1080px] flex-col border-l transition-transform duration-300 ease-out will-change-transform data-[state=closed]:translate-x-full data-[state=open]:translate-x-0"
-              : "bottom-0 left-0 flex max-h-[88svh] w-full flex-col rounded-t-2xl border-t transition-transform duration-300 ease-out will-change-transform data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
+              ? "right-3 top-3 bottom-3 flex h-auto w-[80vw] max-w-[1080px] flex-col rounded-2xl border transition-transform duration-300 ease-out will-change-transform data-[state=closed]:translate-x-full data-[state=open]:translate-x-0"
+              : "bottom-0 left-0 flex h-[85vh] w-full flex-col rounded-t-[16px] border-t transition-transform duration-300 ease-out will-change-transform data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
           )}
         >
           <div className="flex items-start justify-between p-4 pb-[0px]">
             <Dialog.Title className="text-[20px] font-[600] leading-[28px] text-[#111928]">
               {heading}
             </Dialog.Title>
-            <Dialog.Close className="inline-flex size-8 items-center justify-center rounded-md border text-slate-500 hover:bg-slate-50 hover:text-slate-800">
-              <X size={16} />
+            <Dialog.Close className="inline-flex size-8 items-center justify-center rounded-md border text-[#111111] hover:bg-slate-50">
+              <X size={24} />
               <span className="sr-only">Close</span>
             </Dialog.Close>
           </div>

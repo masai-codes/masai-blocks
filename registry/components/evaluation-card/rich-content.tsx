@@ -1,11 +1,12 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import remarkGfm from "remark-gfm"
 import type { Options as SanitizeOptions } from "rehype-sanitize"
+
+const cn = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ")
 
 type RichContentProps = {
   value: string

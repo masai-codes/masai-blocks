@@ -189,9 +189,7 @@ const demoData: EvaluationCardData = {
 export function EvaluationCardPlayground() {
   const [ctaText, setCtaText] = React.useState("View Assignment Report");
   const [drawerHeading, setDrawerHeading] = React.useState("Assignment Report");
-  const [drawerDirection, setDrawerDirection] = React.useState<
-    "auto" | "right" | "bottom"
-  >("auto");
+  const [isMobile, setIsMobile] = React.useState(false);
 
   return (
     <div className="flex flex-col gap-4 rounded-lg border p-4">
@@ -216,19 +214,13 @@ export function EvaluationCardPlayground() {
             className={demoInputClass}
           />
         </label>
-        <label className="flex flex-col gap-1 text-xs text-muted-foreground">
-          Drawer direction
-          <select
-            value={drawerDirection}
-            onChange={(e) =>
-              setDrawerDirection(e.target.value as "auto" | "right" | "bottom")
-            }
-            className={demoInputClass}
-          >
-            <option value="auto">auto</option>
-            <option value="right">right</option>
-            <option value="bottom">bottom</option>
-          </select>
+        <label className="flex items-center gap-2 text-xs text-muted-foreground mt-5">
+          <input
+            type="checkbox"
+            checked={isMobile}
+            onChange={(e) => setIsMobile(e.target.checked)}
+          />
+          Open as mobile (bottom drawer)
         </label>
       </div>
 
@@ -237,7 +229,7 @@ export function EvaluationCardPlayground() {
           data={demoData}
           ctaText={ctaText}
           drawerHeading={drawerHeading}
-          drawerDirection={drawerDirection}
+          isMobile={isMobile}
         />
       </div>
     </div>

@@ -5,5 +5,4 @@ export type {
   EvaluationDetail,
   EvaluationItem,
   EvaluationStatus,
-  DrawerDirection,
 } from "./evaluation-card/types"

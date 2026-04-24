@@ -2,7 +2,7 @@ import { CardCtaButton } from "../shared/card-cta-button"
 import type { EvaluationCardProps, EvaluationStatus } from "./types"
 import { EvaluationSummaryRow } from "./evaluation-summary-row"
 
-import { cn } from "@/lib/utils"
+const cn = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ")
 
 type EvaluationCardPreviewProps = Pick<EvaluationCardProps, "data" | "ctaText" | "className"> & {
   onCtaClick: () => void
