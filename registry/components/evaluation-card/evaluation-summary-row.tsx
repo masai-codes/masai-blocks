@@ -3,7 +3,8 @@ import { CaretDown } from "@phosphor-icons/react";
 import type { EvaluationStatus } from "./types";
 import { StatusPill, formatDecimal } from "./evaluation-card-preview";
 
-const cn = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ");
+const cn = (...classes: Array<string | false | null | undefined>) =>
+  classes.filter(Boolean).join(" ");
 
 type EvaluationSummaryRowProps = {
   title: string;

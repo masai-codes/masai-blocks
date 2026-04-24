@@ -17,7 +17,8 @@ import { RichContent } from "./rich-content";
 import { formatDecimal } from "./evaluation-card-preview";
 import { EvaluationSummaryRow } from "./evaluation-summary-row";
 
-const cn = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ");
+const cn = (...classes: Array<string | false | null | undefined>) =>
+  classes.filter(Boolean).join(" ");
 
 type EvaluationCardDrawerProps = {
   data: EvaluationCardData;
@@ -61,7 +62,7 @@ type StatBoxProps = {
 
 function StatBox({ title, value, valueSuffix, icon }: StatBoxProps) {
   return (
-    <div className="flex gap-[12px] rounded-[8px] border border-[#F3F4F6] bg-[#F9FAFB] p-[12px]">
+    <div className="flex gap-[12px] rounded-[8px] border border-oklch(0.92 0.004 286.32) border-[#F3F4F6] bg-[#F9FAFB] p-[12px] dark:border-oklch(1 0 0 / 10%)">
       <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-[8px] bg-white text-[#0694A2]">
         {icon}
       </span>
@@ -103,7 +104,7 @@ export function EvaluationCardDrawer({
         <Dialog.Overlay className="fixed inset-0 z-[9998] bg-black/50 transition-opacity duration-300 ease-out data-[state=closed]:opacity-0 data-[state=open]:opacity-100" />
         <Dialog.Content
           className={cn(
-            "fixed z-[9999] border bg-white font-poppins shadow-xl outline-none",
+            "fixed z-[9999] border border-oklch(0.92 0.004 286.32) bg-white font-poppins shadow-xl outline-none dark:border-oklch(1 0 0 / 10%)",
             resolvedDirection === "right"
               ? "right-3 top-3 bottom-3 flex h-auto w-[80vw] max-w-[1080px] flex-col rounded-2xl border transition-transform duration-300 ease-out will-change-transform data-[state=closed]:translate-x-full data-[state=open]:translate-x-0"
               : "bottom-0 left-0 flex h-[85vh] w-full flex-col rounded-t-[16px] border-t transition-transform duration-300 ease-out will-change-transform data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
@@ -113,7 +114,7 @@ export function EvaluationCardDrawer({
             <Dialog.Title className="text-[20px] font-[600] leading-[28px] text-[#111928]">
               {heading}
             </Dialog.Title>
-            <Dialog.Close className="inline-flex size-8 items-center justify-center rounded-md border text-[#111111] hover:bg-slate-50">
+            <Dialog.Close className="inline-flex size-8 items-center justify-center rounded-md border border-oklch(0.92 0.004 286.32) text-[#111111] hover:bg-slate-50 dark:border-oklch(1 0 0 / 10%)">
               <X size={24} />
               <span className="sr-only">Close</span>
             </Dialog.Close>
@@ -155,7 +156,7 @@ export function EvaluationCardDrawer({
                 return (
                   <div
                     key={detail.id}
-                    className="overflow-hidden rounded-[8px] border border-[#E5E7EB] bg-white"
+                    className="overflow-hidden rounded-[8px] border border-oklch(0.92 0.004 286.32) border-[#E5E7EB] bg-white dark:border-oklch(1 0 0 / 10%)"
                   >
                     <EvaluationSummaryRow
                       title={detail.title}
@@ -176,7 +177,7 @@ export function EvaluationCardDrawer({
                         <div className="mb-3 text-[14px] font-[400] leading-[20px] text-[#4B5563]">
                           {detail.rules}
                         </div>
-                        <div className="overflow-hidden rounded-[8px] border border-[#E5E7EB] bg-white">
+                        <div className="overflow-hidden rounded-[8px] border border-oklch(0.92 0.004 286.32) border-[#E5E7EB] bg-white dark:border-oklch(1 0 0 / 10%)">
                           <div className="grid grid-cols-[minmax(0,1fr)_300px_170px] gap-2 bg-[#F9FAFB] px-7 py-2 text-[12px] font-[500] uppercase tracking-[0.24px] text-[#4B5563]">
                             <p>Attempts</p>
                             <p className="text-center">Date</p>

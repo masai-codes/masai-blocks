@@ -1,35 +1,41 @@
-import { CardCtaButton } from "../shared/card-cta-button"
-import type { EvaluationCardProps, EvaluationStatus } from "./types"
-import { EvaluationSummaryRow } from "./evaluation-summary-row"
+import { CardCtaButton } from "../shared/card-cta-button";
+import type { EvaluationCardProps, EvaluationStatus } from "./types";
+import { EvaluationSummaryRow } from "./evaluation-summary-row";
 
-const cn = (...classes: Array<string | false | null | undefined>) => classes.filter(Boolean).join(" ")
+const cn = (...classes: Array<string | false | null | undefined>) =>
+  classes.filter(Boolean).join(" ");
 
-type EvaluationCardPreviewProps = Pick<EvaluationCardProps, "data" | "ctaText" | "className"> & {
-  onCtaClick: () => void
-}
+type EvaluationCardPreviewProps = Pick<
+  EvaluationCardProps,
+  "data" | "ctaText" | "className"
+> & {
+  onCtaClick: () => void;
+};
 
 type StatusPillProps = {
-  status: EvaluationStatus
-  score?: number | null
-  className?: string
-  completedTemplate?: "score-only" | "cgpa" | "cgpa-out-of-10"
-}
+  status: EvaluationStatus;
+  score?: number | null;
+  className?: string;
+  completedTemplate?: "score-only" | "cgpa" | "cgpa-out-of-10";
+};
 
 const STATUS_STYLES: Record<EvaluationStatus, string> = {
   upcoming: "bg-[#EBF5FF] text-[#3F83F8]",
   not_attempted: "bg-[#FDF2F2] text-[#F05252]",
   score_pending: "bg-[#FDFDEA] text-[#C27803]",
   completed: "bg-[#F3FAF7] text-[#0E9F6E]",
-}
+};
 
 function toLabel(value: EvaluationStatus) {
   return value
     .replace(/_/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase())
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 function formatDecimal(value: number) {
-  return Number.isInteger(value) ? value.toString() : value.toFixed(2).replace(/\.?0+$/, "")
+  return Number.isInteger(value)
+    ? value.toString()
+    : value.toFixed(2).replace(/\.?0+$/, "");
 }
 
 function StatusPill({
@@ -45,7 +51,7 @@ function StatusPill({
         : completedTemplate === "cgpa"
           ? `${formatDecimal(score)} CGPA`
           : formatDecimal(score)
-      : toLabel(status)
+      : toLabel(status);
 
   return (
     <span
@@ -57,14 +63,19 @@ function StatusPill({
     >
       {text}
     </span>
-  )
+  );
 }
 
-export function EvaluationCardPreview({ data, ctaText, className, onCtaClick }: EvaluationCardPreviewProps) {
+export function EvaluationCardPreview({
+  data,
+  ctaText,
+  className,
+  onCtaClick,
+}: EvaluationCardPreviewProps) {
   return (
     <div
       className={cn(
-        "font-poppins w-full max-w-[760px] rounded-[12px] border border-[#E5E7EB] bg-white p-4",
+        "font-poppins w-full max-w-[760px] rounded-[12px] border border-oklch(0.92 0.004 286.32) border-[#E5E7EB] bg-white p-4 dark:border-oklch(1 0 0 / 10%)",
         className,
       )}
     >
@@ -72,7 +83,7 @@ export function EvaluationCardPreview({ data, ctaText, className, onCtaClick }: 
         {data.evaluationDetails.map((detail) => (
           <div
             key={detail.id}
-            className="overflow-hidden rounded-[8px] border border-[#E5E7EB]"
+            className="overflow-hidden rounded-[8px] border border-oklch(0.92 0.004 286.32) border-[#E5E7EB] dark:border-oklch(1 0 0 / 10%)"
           >
             <EvaluationSummaryRow
               title={detail.title}
@@ -89,7 +100,7 @@ export function EvaluationCardPreview({ data, ctaText, className, onCtaClick }: 
         <CardCtaButton text={ctaText} onClick={onCtaClick} theme="purple" />
       </div>
     </div>
-  )
+  );
 }
 
-export { StatusPill, formatDecimal }
+export { StatusPill, formatDecimal };
