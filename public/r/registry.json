@@ -110,6 +110,54 @@
       ]
     },
     {
+      "name": "evaluation-card",
+      "type": "registry:block",
+      "title": "Evaluation Card",
+      "description": "Evaluation summary card with CTA that opens a responsive drawer containing detailed module-wise attempts.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "@phosphor-icons/react",
+        "react-markdown",
+        "remark-gfm",
+        "rehype-raw",
+        "rehype-sanitize"
+      ],
+      "files": [
+        {
+          "path": "registry/components/evaluation-card/index.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/evaluation-card/index.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/evaluation-card/evaluation-card-preview.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/evaluation-card/evaluation-card-drawer.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/evaluation-card/evaluation-summary-row.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/evaluation-card/rich-content.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/evaluation-card/types.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/components/shared/card-cta-button.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
       "name": "documentation-provider",
       "type": "registry:ui",
       "title": "Documentation Provider",
