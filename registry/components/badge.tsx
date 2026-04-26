@@ -224,24 +224,24 @@ function Badge({
               ) : null}
             </div>
           </div>
-          {!isLocked ? (
-            <div
-              className={`${drawer ? "px-[16px]" : "px-[16px] sm:px-[72px]"} pb-[24px] mt-[16px]`}
-            >
-              {hasContextSection ? (
-                <div className="mb-4 w-full rounded-[16px] bg-[#F9FAFB] p-3 text-center">
-                  {sectionModuleName ? (
-                    <p className="text-[12px] font-[500] leading-[18px] text-[#0694A2] border border-[#0694A2] w-fit px-[8px] py-[2px] rounded-[32px] mx-auto">
-                      {sectionModuleName}
-                    </p>
-                  ) : null}
-                  {courseTitle ? (
-                    <p className="mt-2 text-[14px] font-[500] leading-[18px] text-[#374151]">
-                      {courseTitle}
-                    </p>
-                  ) : null}
-                </div>
-              ) : null}
+          <div
+            className={`${drawer ? "px-[16px]" : "px-[16px] sm:px-[72px]"} pb-[24px] mt-[16px]`}
+          >
+            {hasContextSection ? (
+              <div className="mb-4 w-full rounded-[16px] bg-[#F9FAFB] p-3 text-center">
+                {sectionModuleName ? (
+                  <p className="text-[12px] font-[500] leading-[18px] text-[#0694A2] border border-[#0694A2] w-fit px-[8px] py-[2px] rounded-[32px] mx-auto">
+                    {sectionModuleName}
+                  </p>
+                ) : null}
+                {courseTitle ? (
+                  <p className="mt-2 text-[14px] font-[500] leading-[18px] text-[#374151]">
+                    {courseTitle}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+            {!isLocked ? (
               <a
                 href={linkedinShareHref}
                 target="_blank"
@@ -259,8 +259,8 @@ function Badge({
                   Share With Your Network
                 </span>
               </a>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
