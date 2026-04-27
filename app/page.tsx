@@ -7,7 +7,6 @@ import { BadgeShowcase } from "@/app/components/badge-showcase"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-card-playground"
 import { DocumentationPlayground } from "@/app/components/documentation-playground"
-import { EvaluationCardPlayground } from "@/app/components/evaluation-card-playground"
 import { EventCardPlayground } from "@/app/components/event-card-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
 import { MasaiTabsPlayground } from "@/app/components/masai-tabs-playground"
@@ -42,13 +41,6 @@ function HomeContent() {
         headingId: "event-card-heading",
         description: "Preview event card states and drawer timeline details.",
         content: <EventCardPlayground />,
-      },
-      {
-        id: "evaluation-card",
-        label: "Evaluation Card",
-        headingId: "evaluation-card-heading",
-        description: "Evaluation summary rows with detailed assignment report drawer.",
-        content: <EvaluationCardPlayground />,
       },
       {
         id: "documentation-provider",
