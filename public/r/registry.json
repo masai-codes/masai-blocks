@@ -4,6 +4,15 @@
   "homepage": "https://acme.com",
   "items": [
     {
+      "name": "colors",
+      "type": "registry:style",
+      "title": "Colors",
+      "description": "Masai LMS V11 Tailwind color scales (primary/gray/blue/red/orange/yellow/green/teal/indigo/purple/pink, shades 50-900).",
+      "css": {
+        "@import \"https://blocks.masaischool.com/r/colors.css\"": {}
+      }
+    },
+    {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",

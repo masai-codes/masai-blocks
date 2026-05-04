@@ -1,0 +1,26 @@
+{
+  "name": "@masai-blocks/colors",
+  "version": "0.1.0",
+  "description": "LMS V11 color scales (50–900) for Tailwind v4 / CSS. Sourced from Figma Main-Colors; primary from LMS V11 brand ramp.",
+  "license": "UNLICENSED",
+  "sideEffects": [
+    "*.css"
+  ],
+  "type": "module",
+  "files": [
+    "theme.css",
+    "palette.ts"
+  ],
+  "exports": {
+    "./theme.css": "./theme.css",
+    "./palette": "./palette.ts"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}
