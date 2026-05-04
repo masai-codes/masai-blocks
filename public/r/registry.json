@@ -5,12 +5,16 @@
   "items": [
     {
       "name": "colors",
-      "type": "registry:style",
+      "type": "registry:lib",
       "title": "Colors",
       "description": "Masai LMS V11 Tailwind color scales (primary/gray/blue/red/orange/yellow/green/teal/indigo/purple/pink, shades 50-900).",
-      "css": {
-        "@import \"https://blocks.masaischool.com/r/colors.css\"": {}
-      }
+      "files": [
+        {
+          "path": "registry/styles/masai-colors.css",
+          "type": "registry:lib",
+          "target": "src/lib/masai-colors.css"
+        }
+      ]
     },
     {
       "name": "badge",
