@@ -17,6 +17,7 @@ import { MasaiTabsPlayground } from "@/app/components/masai-tabs-playground"
 import { RadioPlayground } from "@/app/components/radio-playground"
 import { ScrollingBannerPlayground } from "@/app/components/scrolling-banner-playground"
 import { TabNavbarPlayground } from "@/app/components/tab-navbar-playground"
+import { ToastPlayground } from "@/app/components/toast-playground"
 import { TooltipPlayground } from "@/app/components/tooltip-playground"
 import { TypographyPlayground } from "@/app/components/typography-playground"
 
@@ -76,6 +77,13 @@ function HomeContent() {
         headingId: "tooltip-heading",
         description: "Tooltip directions (top/bottom/left/right) and CTA variant.",
         content: <TooltipPlayground />,
+      },
+      {
+        id: "toast",
+        label: "Toast",
+        headingId: "toast-heading",
+        description: "Toast variants (success/info/alert/generic) with and without CTA.",
+        content: <ToastPlayground />,
       },
       {
         id: "club-card",

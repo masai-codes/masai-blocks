@@ -145,6 +145,19 @@
       ]
     },
     {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Toast component with success/info/alert/generic variants and optional CTA.",
+      "dependencies": ["@phosphor-icons/react"],
+      "files": [
+        {
+          "path": "registry/components/toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "club-card",
       "type": "registry:block",
       "title": "Club Card",
