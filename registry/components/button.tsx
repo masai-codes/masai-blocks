@@ -9,20 +9,20 @@ type ButtonSize = "sm" | "md" | "lg";
 type IconDirection = "left" | "right";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 disabled:pointer-events-none disabled:opacity-60",
+  "inline-flex cursor-pointer items-center justify-center rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:pointer-events-none disabled:opacity-30",
   {
     variants: {
       kind: {
         primary: "bg-primary-600 !text-white hover:bg-primary-700",
         secondary:
-          "border border-gray-300 bg-white !text-[#6962AC] hover:bg-gray-100",
-        tertiary: "bg-gray-100 !text-[#6962AC] hover:bg-gray-200",
+          "bg-purple-50 !text-[#6962AC] hover:bg-purple-100",
+        tertiary: "bg-transparent !text-[#6962AC] hover:bg-purple-50",
         link: "bg-transparent !text-[#6962AC] hover:!text-[#6962AC] underline-offset-4 hover:underline",
       },
       size: {
-        sm: "h-9 px-3 type-b2-md gap-1.5",
-        md: "h-11 px-4 type-b1-md gap-2",
-        lg: "h-12 px-5 type-b1-md gap-2",
+        sm: "py-2 px-3 type-b2-md gap-1.5 [&_svg]:size-3.5",
+        md: "py-2.5 px-4 type-b1-md gap-2 [&_svg]:size-5",
+        lg: "py-3 px-5 type-b1-md gap-2 [&_svg]:size-5",
       },
       iconOnly: {
         true: "px-0",
@@ -30,12 +30,12 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      { size: "sm", iconOnly: true, className: "w-9" },
-      { size: "md", iconOnly: true, className: "w-11" },
-      { size: "lg", iconOnly: true, className: "w-12" },
-      { kind: "link", size: "sm", className: "h-auto px-0 type-b2-md" },
-      { kind: "link", size: "md", className: "h-auto px-0 type-b1-md" },
-      { kind: "link", size: "lg", className: "h-auto px-0 type-s3" },
+      { size: "sm", iconOnly: true, className: "h-9 w-9" },
+      { size: "md", iconOnly: true, className: "h-11 w-11" },
+      { size: "lg", iconOnly: true, className: "h-12 w-12" },
+      { kind: "link", size: "sm", className: "h-auto py-0 px-0 type-b2-md" },
+      { kind: "link", size: "md", className: "h-auto py-0 px-0 type-b1-md" },
+      { kind: "link", size: "lg", className: "h-auto py-0 px-0 type-s3" },
       { kind: "link", iconOnly: true, className: "h-auto w-auto" },
     ],
     defaultVariants: {
@@ -114,4 +114,3 @@ export function Button({
     </button>
   );
 }
-
