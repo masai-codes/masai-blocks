@@ -17,7 +17,7 @@ export function ChipsPlayground() {
                 size={size}
                 type={type}
                 label="Design"
-                icon={<X size={size === "large" ? 16 : 14} />}
+                icon={<X size={16} />}
                 aria-label={type === "icon-only" ? "Remove chip" : undefined}
               />
             ))}

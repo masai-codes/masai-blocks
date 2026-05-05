@@ -29,20 +29,6 @@ function HomeContent() {
   const playgroundSections = useMemo(
     () => [
       {
-        id: "club-card",
-        label: "Club Card",
-        headingId: "club-card-heading",
-        description: "Showing 43 club cards in a single horizontal row.",
-        content: <ClubCardPlayground cardCount={43} />,
-      },
-      {
-        id: "badge",
-        label: "Badges",
-        headingId: "badge-heading",
-        description: "Variant and style combinations for badge components.",
-        content: <BadgeShowcase />,
-      },
-      {
         id: "colors",
         label: "Colors",
         headingId: "colors-heading",
@@ -90,6 +76,20 @@ function HomeContent() {
         headingId: "tooltip-heading",
         description: "Tooltip directions (top/bottom/left/right) and CTA variant.",
         content: <TooltipPlayground />,
+      },
+      {
+        id: "club-card",
+        label: "Club Card",
+        headingId: "club-card-heading",
+        description: "Showing 43 club cards in a single horizontal row.",
+        content: <ClubCardPlayground cardCount={43} />,
+      },
+      {
+        id: "badge",
+        label: "Badges",
+        headingId: "badge-heading",
+        description: "Variant and style combinations for badge components.",
+        content: <BadgeShowcase />,
       },
       {
         id: "event-card",
@@ -163,7 +163,7 @@ function HomeContent() {
     <div className="max-w-7xl mx-auto min-h-svh px-4 py-8">
       <HomePageHeader />
       <main className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-[240px_minmax(0,1fr)]">
-        <aside className="md:sticky md:top-8 md:self-start">
+        <aside className="md:sticky md:top-24 md:self-start">
           <nav aria-label="Component playground navigation" className="space-y-1">
             {playgroundSections.map((section) => {
               const isActive = section.id === activeSection
@@ -191,7 +191,7 @@ function HomeContent() {
             <section
               key={section.id}
               id={section.id}
-              className="scroll-mt-8 space-y-3"
+              className="scroll-mt-24 space-y-3"
               aria-labelledby={section.headingId}
             >
               <div className="space-y-1">
