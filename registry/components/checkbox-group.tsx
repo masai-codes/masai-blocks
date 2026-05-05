@@ -4,17 +4,16 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/registry/components/checkbox";
 
-type CheckboxType = "default" | "default-with-label";
 type CheckboxSize = "regular" | "large";
 
 export type CheckboxOption = {
   value: string;
   label?: string;
+  description?: string;
   disabled?: boolean;
 };
 
 export type CheckboxGroupProps = {
-  type?: CheckboxType;
   size?: CheckboxSize;
   values: string[];
   onValueChange: (values: string[]) => void;
@@ -23,7 +22,6 @@ export type CheckboxGroupProps = {
 };
 
 export function CheckboxGroup({
-  type = "default-with-label",
   size = "regular",
   values,
   onValueChange,
@@ -37,11 +35,11 @@ export function CheckboxGroup({
         return (
           <Checkbox
             key={option.value}
-            type={type}
             size={size}
             isSelected={checked}
             disabled={option.disabled}
             label={option.label ?? option.value}
+            description={option.description}
             onSelect={(shouldCheck) => {
               if (shouldCheck) {
                 onValueChange(Array.from(new Set([...values, option.value])));

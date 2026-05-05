@@ -12,24 +12,23 @@ export function RadioPlayground() {
       <div className="space-y-2">
         <h3 className="text-sm font-semibold">Radio Button</h3>
         <div className="flex flex-wrap gap-4">
-          <RadioButton type="default" size="regular" isSelected />
-          <RadioButton type="default" size="large" isSelected={false} />
-          <RadioButton type="default-with-label" size="regular" isSelected label="Regular label" />
-          <RadioButton type="default-with-label" size="large" isSelected={false} label="Large label" />
+          <RadioButton size="regular" isSelected />
+          <RadioButton size="large" isSelected={false} />
+          <RadioButton size="regular" isSelected label="Regular label" description="Helper text" />
+          <RadioButton size="large" isSelected={false} label="Large label" description="Helper text" />
         </div>
       </div>
 
       <div className="space-y-2">
         <h3 className="text-sm font-semibold">Radio Group</h3>
         <RadioGroup
-          type="default-with-label"
           size="regular"
           value={selected}
           onValueChange={setSelected}
           options={[
-            { value: "option-1", label: "Option 1" },
-            { value: "option-2", label: "Option 2" },
-            { value: "option-3", label: "Option 3" },
+            { value: "option-1", label: "Option 1", description: "First option description" },
+            { value: "option-2", label: "Option 2", description: "Second option description" },
+            { value: "option-3", label: "Option 3", description: "Third option description" },
           ]}
         />
       </div>

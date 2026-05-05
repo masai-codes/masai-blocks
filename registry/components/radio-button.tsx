@@ -4,15 +4,14 @@ import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { cn } from "@/lib/utils";
 
-type RadioType = "default" | "default-with-label";
 type RadioSize = "regular" | "large";
 
 export type RadioButtonProps = {
-  type?: RadioType;
   size?: RadioSize;
   isSelected?: boolean;
   disabled?: boolean;
   label?: string;
+  description?: string;
   onSelect?: (selected: boolean) => void;
   className?: string;
 };
@@ -27,25 +26,26 @@ const radioSizeClasses: Record<RadioSize, { root: string; dot: string }> = {
  * Useful for standalone previews and custom layouts.
  */
 export function RadioButton({
-  type = "default",
   size = "regular",
   isSelected = false,
   disabled = false,
-  label = "Option",
+  label,
+  description,
   onSelect,
   className,
 }: RadioButtonProps) {
   const value = isSelected ? "selected" : "unselected";
   const { root, dot } = radioSizeClasses[size];
+  const labelClassName = size === "large" ? "type-b1-regular text-gray-900" : "type-b2-regular text-gray-900";
 
   return (
     <RadioGroupPrimitive.Root
       value={value}
       onValueChange={(next) => onSelect?.(next === "selected")}
       disabled={disabled}
-      className={cn("inline-flex items-center", className)}
+      className={cn("inline-flex items-start", className)}
     >
-      <label className="inline-flex cursor-pointer items-center gap-2">
+      <label className="inline-flex cursor-pointer items-start gap-2">
         <RadioGroupPrimitive.Item
           value="selected"
           className={cn(
@@ -57,8 +57,11 @@ export function RadioButton({
             <span className={cn("rounded-full bg-[#6962AC]", dot)} />
           </RadioGroupPrimitive.Indicator>
         </RadioGroupPrimitive.Item>
-        {type === "default-with-label" ? (
-          <span className="type-b2-regular text-gray-900">{label}</span>
+        {label || description ? (
+          <span className="flex flex-col">
+            {label ? <span className={labelClassName}>{label}</span> : null}
+            {description ? <span className="type-caption text-gray-700">{description}</span> : null}
+          </span>
         ) : null}
       </label>
     </RadioGroupPrimitive.Root>
