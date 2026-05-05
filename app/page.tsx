@@ -4,7 +4,9 @@ import { Suspense, useEffect, useMemo } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { BadgeShowcase } from "@/app/components/badge-showcase"
+import { ButtonPlayground } from "@/app/components/button-playground"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
+import { ColorsPlayground } from "@/app/components/colors-playground"
 import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-card-playground"
 import { DocumentationPlayground } from "@/app/components/documentation-playground"
 import { EventCardPlayground } from "@/app/components/event-card-playground"
@@ -12,6 +14,7 @@ import { HomePageHeader } from "@/app/components/home-page-header"
 import { MasaiTabsPlayground } from "@/app/components/masai-tabs-playground"
 import { ScrollingBannerPlayground } from "@/app/components/scrolling-banner-playground"
 import { TabNavbarPlayground } from "@/app/components/tab-navbar-playground"
+import { TypographyPlayground } from "@/app/components/typography-playground"
 
 function HomeContent() {
   const router = useRouter()
@@ -34,6 +37,27 @@ function HomeContent() {
         headingId: "badge-heading",
         description: "Variant and style combinations for badge components.",
         content: <BadgeShowcase />,
+      },
+      {
+        id: "colors",
+        label: "Colors",
+        headingId: "colors-heading",
+        description: "Core color scales used across Masai blocks.",
+        content: <ColorsPlayground />,
+      },
+      {
+        id: "typography",
+        label: "Typography",
+        headingId: "typography-heading",
+        description: "All supported typography tokens and their rendered preview.",
+        content: <TypographyPlayground />,
+      },
+      {
+        id: "button",
+        label: "Button",
+        headingId: "button-heading",
+        description: "All button types, sizes, icon directions, icon-only and disabled variants.",
+        content: <ButtonPlayground />,
       },
       {
         id: "event-card",

@@ -17,6 +17,19 @@
       ]
     },
     {
+      "name": "typography",
+      "type": "registry:lib",
+      "title": "Typography",
+      "description": "Masai LMS V11 typography classes: h1-h6, s1-s3, b1/b2/b3 (md/regular), caption, t1, t2.",
+      "files": [
+        {
+          "path": "registry/styles/masai-typography.css",
+          "type": "registry:lib",
+          "target": "src/lib/masai-typography.css"
+        }
+      ]
+    },
+    {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
@@ -28,6 +41,19 @@
       "files": [
         {
           "path": "registry/components/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Reusable CTA button with primary/secondary/tertiary/link types, icon support, and sm/md/lg sizes.",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/components/button.tsx",
           "type": "registry:ui"
         }
       ]
