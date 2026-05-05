@@ -59,6 +59,92 @@
       ]
     },
     {
+      "name": "radio-button",
+      "type": "registry:ui",
+      "title": "Radio Button",
+      "description": "Standalone radio button with default and default-with-label variants in regular/large sizes.",
+      "dependencies": ["@radix-ui/react-radio-group"],
+      "files": [
+        {
+          "path": "registry/components/radio-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Composed radio group built with Radix; includes standalone radio button component on install.",
+      "dependencies": ["@radix-ui/react-radio-group"],
+      "files": [
+        {
+          "path": "registry/components/radio-button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Standalone checkbox with default and default-with-label variants in regular/large sizes.",
+      "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/components/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-group",
+      "type": "registry:ui",
+      "title": "Checkbox Group",
+      "description": "Composed checkbox group built with Radix; includes standalone checkbox component on install.",
+      "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/components/checkbox.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/checkbox-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "chips",
+      "type": "registry:ui",
+      "title": "Chips",
+      "description": "Chips component with regular/large sizes and default/left-icon/right-icon/icon-only variants.",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/components/chips.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Tooltip with direction (top/bottom/left/right) and optional CTA action.",
+      "dependencies": ["@radix-ui/react-tooltip"],
+      "files": [
+        {
+          "path": "registry/components/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "club-card",
       "type": "registry:block",
       "title": "Club Card",

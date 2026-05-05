@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chips",
+  "title": "Chips",
+  "description": "Chips component with regular/large sizes and default/left-icon/right-icon/icon-only variants.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/components/chips.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\ntype ChipsType = \"default\" | \"left-icon\" | \"right-icon\" | \"icon-only\";\ntype ChipsSize = \"regular\" | \"large\";\n\nconst chipsVariants = cva(\n  \"inline-flex items-center justify-center rounded-full border border-primary-200 bg-primary-50 !text-primary-700 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:bg-primary-100 active:bg-primary-200 disabled:pointer-events-none disabled:border-gray-200 disabled:bg-gray-100 disabled:!text-gray-400\",\n  {\n    variants: {\n      size: {\n        regular: \"h-8 px-3 gap-1.5 type-b3-md\",\n        large: \"h-10 px-4 gap-2 type-b2-md\",\n      },\n      type: {\n        default: \"\",\n        \"left-icon\": \"\",\n        \"right-icon\": \"\",\n        \"icon-only\": \"px-0\",\n      },\n    },\n    compoundVariants: [\n      { size: \"regular\", type: \"icon-only\", className: \"w-8\" },\n      { size: \"large\", type: \"icon-only\", className: \"w-10\" },\n    ],\n    defaultVariants: {\n      size: \"regular\",\n      type: \"default\",\n    },\n  },\n);\n\nexport type ChipsProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"type\"> &\n  VariantProps<typeof chipsVariants> & {\n    type?: ChipsType;\n    size?: ChipsSize;\n    label?: string;\n    icon?: React.ReactNode;\n    htmlType?: \"button\" | \"submit\" | \"reset\";\n  };\n\nexport function Chips({\n  className,\n  type = \"default\",\n  size = \"regular\",\n  label = \"Chip\",\n  icon,\n  htmlType = \"button\",\n  ...props\n}: ChipsProps) {\n  if ((type === \"left-icon\" || type === \"right-icon\" || type === \"icon-only\") && !icon) {\n    // eslint-disable-next-line no-console\n    console.warn(\"[Chips] Icon variant selected without passing `icon`.\");\n  }\n\n  return (\n    <button type={htmlType} className={cn(chipsVariants({ size, type }), className)} {...props}>\n      {type === \"left-icon\" ? <span className=\"shrink-0\">{icon}</span> : null}\n      {type !== \"icon-only\" ? label : null}\n      {type === \"right-icon\" ? <span className=\"shrink-0\">{icon}</span> : null}\n      {type === \"icon-only\" ? <span className=\"shrink-0\">{icon}</span> : null}\n    </button>\n  );\n}\n\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

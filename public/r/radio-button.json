@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-button",
+  "title": "Radio Button",
+  "description": "Standalone radio button with default and default-with-label variants in regular/large sizes.",
+  "dependencies": [
+    "@radix-ui/react-radio-group"
+  ],
+  "files": [
+    {
+      "path": "registry/components/radio-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as RadioGroupPrimitive from \"@radix-ui/react-radio-group\";\nimport { cn } from \"@/lib/utils\";\n\ntype RadioType = \"default\" | \"default-with-label\";\ntype RadioSize = \"regular\" | \"large\";\n\nexport type RadioButtonProps = {\n  type?: RadioType;\n  size?: RadioSize;\n  isSelected?: boolean;\n  disabled?: boolean;\n  label?: string;\n  onSelect?: (selected: boolean) => void;\n  className?: string;\n};\n\nconst radioSizeClasses: Record<RadioSize, { root: string; dot: string }> = {\n  regular: { root: \"h-5 w-5\", dot: \"h-2.5 w-2.5\" },\n  large: { root: \"h-6 w-6\", dot: \"h-3 w-3\" },\n};\n\n/**\n * Single radio button wrapper built on Radix RadioGroup.\n * Useful for standalone previews and custom layouts.\n */\nexport function RadioButton({\n  type = \"default\",\n  size = \"regular\",\n  isSelected = false,\n  disabled = false,\n  label = \"Option\",\n  onSelect,\n  className,\n}: RadioButtonProps) {\n  const value = isSelected ? \"selected\" : \"unselected\";\n  const { root, dot } = radioSizeClasses[size];\n\n  return (\n    <RadioGroupPrimitive.Root\n      value={value}\n      onValueChange={(next) => onSelect?.(next === \"selected\")}\n      disabled={disabled}\n      className={cn(\"inline-flex items-center\", className)}\n    >\n      <label className=\"inline-flex cursor-pointer items-center gap-2\">\n        <RadioGroupPrimitive.Item\n          value=\"selected\"\n          className={cn(\n            \"rounded-full border border-[#6962AC] bg-white outline-none focus-visible:ring-2 focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-60\",\n            root,\n          )}\n        >\n          <RadioGroupPrimitive.Indicator className=\"flex items-center justify-center\">\n            <span className={cn(\"rounded-full bg-[#6962AC]\", dot)} />\n          </RadioGroupPrimitive.Indicator>\n        </RadioGroupPrimitive.Item>\n        {type === \"default-with-label\" ? (\n          <span className=\"type-b2-regular text-gray-900\">{label}</span>\n        ) : null}\n      </label>\n    </RadioGroupPrimitive.Root>\n  );\n}\n\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

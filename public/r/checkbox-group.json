@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-group",
+  "title": "Checkbox Group",
+  "description": "Composed checkbox group built with Radix; includes standalone checkbox component on install.",
+  "dependencies": [
+    "@radix-ui/react-checkbox",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/components/checkbox.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\";\nimport { Check } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\ntype CheckboxType = \"default\" | \"default-with-label\";\ntype CheckboxSize = \"regular\" | \"large\";\n\nexport type CheckboxProps = {\n  type?: CheckboxType;\n  size?: CheckboxSize;\n  isSelected?: boolean;\n  disabled?: boolean;\n  label?: string;\n  onSelect?: (selected: boolean) => void;\n  className?: string;\n};\n\nconst checkboxSizeClasses: Record<CheckboxSize, { root: string; icon: string }> = {\n  regular: { root: \"h-5 w-5 rounded-md\", icon: \"h-3 w-3\" },\n  large: { root: \"h-6 w-6 rounded-md\", icon: \"h-3.5 w-3.5\" },\n};\n\nexport function Checkbox({\n  type = \"default\",\n  size = \"regular\",\n  isSelected = false,\n  disabled = false,\n  label = \"Option\",\n  onSelect,\n  className,\n}: CheckboxProps) {\n  const { root, icon } = checkboxSizeClasses[size];\n\n  return (\n    <label\n      className={cn(\n        \"inline-flex items-center gap-2\",\n        disabled ? \"cursor-not-allowed opacity-60\" : \"cursor-pointer\",\n        className,\n      )}\n    >\n      <CheckboxPrimitive.Root\n        checked={isSelected}\n        onCheckedChange={(next) => onSelect?.(next === true)}\n        disabled={disabled}\n        className={cn(\n          \"flex items-center justify-center border border-[#6962AC] bg-white text-white outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-400 data-[state=checked]:bg-[#6962AC] data-[state=checked]:border-[#6962AC] disabled:data-[state=checked]:bg-primary-300\",\n          root,\n        )}\n      >\n        <CheckboxPrimitive.Indicator>\n          <Check className={icon} />\n        </CheckboxPrimitive.Indicator>\n      </CheckboxPrimitive.Root>\n      {type === \"default-with-label\" ? (\n        <span className=\"type-b2-regular text-gray-900\">{label}</span>\n      ) : null}\n    </label>\n  );\n}\n\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/components/checkbox-group.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Checkbox } from \"@/registry/components/checkbox\";\n\ntype CheckboxType = \"default\" | \"default-with-label\";\ntype CheckboxSize = \"regular\" | \"large\";\n\nexport type CheckboxOption = {\n  value: string;\n  label?: string;\n  disabled?: boolean;\n};\n\nexport type CheckboxGroupProps = {\n  type?: CheckboxType;\n  size?: CheckboxSize;\n  values: string[];\n  onValueChange: (values: string[]) => void;\n  options: CheckboxOption[];\n  className?: string;\n};\n\nexport function CheckboxGroup({\n  type = \"default-with-label\",\n  size = \"regular\",\n  values,\n  onValueChange,\n  options,\n  className,\n}: CheckboxGroupProps) {\n  return (\n    <div className={cn(\"flex flex-col gap-3\", className)}>\n      {options.map((option) => {\n        const checked = values.includes(option.value);\n        return (\n          <Checkbox\n            key={option.value}\n            type={type}\n            size={size}\n            isSelected={checked}\n            disabled={option.disabled}\n            label={option.label ?? option.value}\n            onSelect={(shouldCheck) => {\n              if (shouldCheck) {\n                onValueChange(Array.from(new Set([...values, option.value])));\n              } else {\n                onValueChange(values.filter((v) => v !== option.value));\n              }\n            }}\n          />\n        );\n      })}\n    </div>\n  );\n}\n\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

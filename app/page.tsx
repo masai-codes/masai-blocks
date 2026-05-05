@@ -5,6 +5,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { BadgeShowcase } from "@/app/components/badge-showcase"
 import { ButtonPlayground } from "@/app/components/button-playground"
+import { CheckboxPlayground } from "@/app/components/checkbox-playground"
+import { ChipsPlayground } from "@/app/components/chips-playground"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { ColorsPlayground } from "@/app/components/colors-playground"
 import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-card-playground"
@@ -12,8 +14,10 @@ import { DocumentationPlayground } from "@/app/components/documentation-playgrou
 import { EventCardPlayground } from "@/app/components/event-card-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
 import { MasaiTabsPlayground } from "@/app/components/masai-tabs-playground"
+import { RadioPlayground } from "@/app/components/radio-playground"
 import { ScrollingBannerPlayground } from "@/app/components/scrolling-banner-playground"
 import { TabNavbarPlayground } from "@/app/components/tab-navbar-playground"
+import { TooltipPlayground } from "@/app/components/tooltip-playground"
 import { TypographyPlayground } from "@/app/components/typography-playground"
 
 function HomeContent() {
@@ -58,6 +62,34 @@ function HomeContent() {
         headingId: "button-heading",
         description: "All button types, sizes, icon directions, icon-only and disabled variants.",
         content: <ButtonPlayground />,
+      },
+      {
+        id: "radio",
+        label: "Radio",
+        headingId: "radio-heading",
+        description: "Radio button and radio group variants with regular/large sizing and label modes.",
+        content: <RadioPlayground />,
+      },
+      {
+        id: "checkbox",
+        label: "Checkbox",
+        headingId: "checkbox-heading",
+        description: "Checkbox and checkbox-group variants with regular/large sizes and label modes.",
+        content: <CheckboxPlayground />,
+      },
+      {
+        id: "chips",
+        label: "Chips",
+        headingId: "chips-heading",
+        description: "Chips in regular/large sizes with default, left/right icon and icon-only variants.",
+        content: <ChipsPlayground />,
+      },
+      {
+        id: "tooltip",
+        label: "Tooltip",
+        headingId: "tooltip-heading",
+        description: "Tooltip directions (top/bottom/left/right) and CTA variant.",
+        content: <TooltipPlayground />,
       },
       {
         id: "event-card",
