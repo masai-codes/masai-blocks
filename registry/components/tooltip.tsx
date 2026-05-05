@@ -33,14 +33,19 @@ export function Tooltip({
 }: TooltipProps) {
   return (
     <TooltipPrimitive.Provider delayDuration={120}>
-      <TooltipPrimitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
+      <TooltipPrimitive.Root
+        open={open}
+        defaultOpen={defaultOpen}
+        onOpenChange={onOpenChange}
+      >
         <TooltipPrimitive.Trigger asChild>{trigger}</TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Content
             side={direction}
+            align="end"
             sideOffset={10}
             className={cn(
-              "z-50 max-w-72 rounded-lg border border-primary-700 bg-primary-800 px-3 py-2.5 text-white shadow-[0_6px_16px_rgba(24,24,27,0.28)]",
+              "z-50 max-w-72 rounded-lg border border-gray-700 bg-gray-800 px-3 py-2.5 text-white shadow-[0_6px_16px_rgba(24,24,27,0.28)]",
               "data-[state=delayed-open]:animate-in data-[state=closed]:animate-out",
               "data-[state=closed]:fade-out-0 data-[state=delayed-open]:fade-in-0",
               "data-[side=bottom]:slide-in-from-top-1 data-[side=left]:slide-in-from-right-1",
@@ -49,22 +54,25 @@ export function Tooltip({
             )}
           >
             <div className="flex flex-col gap-1.5">
-              <div className="type-b3-regular text-white">{content}</div>
+              <div className="type-b3-regular !text-white">{content}</div>
               {withCta ? (
                 <button
                   type="button"
                   onClick={onCtaClick}
-                  className="w-fit p-0 type-b3-md text-primary-100 underline underline-offset-2 hover:text-white"
+                  className="mt-2 w-fit self-end rounded-md bg-primary-500 px-2 py-1 type-b3-md !text-white hover:bg-primary-600 hover:!text-white"
                 >
                   {ctaText}
                 </button>
               ) : null}
             </div>
-            <TooltipPrimitive.Arrow className="fill-primary-800" width={14} height={7} />
+            <TooltipPrimitive.Arrow
+              className="fill-gray-800"
+              width={14}
+              height={7}
+            />
           </TooltipPrimitive.Content>
         </TooltipPrimitive.Portal>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>
   );
 }
-

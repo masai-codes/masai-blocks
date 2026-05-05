@@ -1,27 +1,27 @@
 const COLOR_SCALES = {
   primary: {
-    50: "#F1F0F9",
-    100: "#E2E1F2",
-    200: "#C4C2E6",
-    300: "#A7A3D9",
-    400: "#8985CD",
-    500: "#6B66C0",
-    600: "#5C58A7",
-    700: "#4D4A8E",
-    800: "#3F3C75",
-    900: "#312E5C",
+    50: "#F0EFF7",
+    100: "#D1CEE5",
+    200: "#BAB7D9",
+    300: "#9B96C7",
+    400: "#8781BD",
+    500: "#60599D",
+    600: "#60599D",
+    700: "#4B467A",
+    800: "#3A365F",
+    900: "#2C2948",
   },
   gray: {
-    50: "#FAFAFA",
-    100: "#F4F4F5",
-    200: "#E4E4E7",
-    300: "#D4D4D8",
-    400: "#A1A1AA",
-    500: "#71717A",
-    600: "#52525B",
-    700: "#3F3F46",
-    800: "#27272A",
-    900: "#18181B",
+    50: "#F9FAFB",
+    100: "#F3F4F6",
+    200: "#E5E7EB",
+    300: "#D1D5DB",
+    400: "#9CA3AF",
+    500: "#6B7280",
+    600: "#4B5563",
+    700: "#374151",
+    800: "#1F2A37",
+    900: "#111928",
   },
   blue: {
     50: "#EBF5FF",
@@ -131,7 +131,7 @@ const COLOR_SCALES = {
     800: "#99154B",
     900: "#751A3D",
   },
-} as const
+} as const;
 
 export function ColorsPlayground() {
   return (
@@ -148,10 +148,14 @@ export function ColorsPlayground() {
                   className="rounded-md border p-2"
                   style={{ backgroundColor: hex }}
                 >
-                  <p className={`type-b3-md ${Number(shade) >= 500 ? "text-white" : "text-black"}`}>
+                  <p
+                    className={`type-b3-md ${Number(shade) >= 500 ? "text-white" : "text-black"}`}
+                  >
                     {shade}
                   </p>
-                  <p className={`type-caption ${Number(shade) >= 500 ? "text-white" : "text-black"}`}>
+                  <p
+                    className={`type-caption ${Number(shade) >= 500 ? "text-white" : "text-black"}`}
+                  >
                     {hex}
                   </p>
                 </div>
@@ -160,5 +164,5 @@ export function ColorsPlayground() {
         </div>
       ))}
     </div>
-  )
+  );
 }
