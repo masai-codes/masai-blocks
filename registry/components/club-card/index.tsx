@@ -30,6 +30,8 @@ export function ClubCard({
   cardCtaText,
   drawerCtaText,
   onCtaClick,
+  onDrawerOpen,
+  onDrawerCtaClick,
   totalMembers,
   detailPoints,
   detailDescription,
@@ -42,6 +44,7 @@ export function ClubCard({
   className,
 }: ClubCardProps) {
   const [open, setOpen] = React.useState(false)
+  const wasOpenRef = React.useRef(false)
   const resolvedDirection = useResolvedDirection(drawerDirection)
   const resolvedCardCtaText = cardCtaText ?? ctaText
   const resolvedDrawerCtaText = drawerCtaText ?? ctaText
@@ -49,6 +52,17 @@ export function ClubCard({
   const handleCtaClick = () => {
     setOpen(true)
   }
+  const handleDrawerCtaClick = () => {
+    onDrawerCtaClick?.()
+    onCtaClick?.()
+  }
+
+  React.useEffect(() => {
+    if (open && !wasOpenRef.current) {
+      onDrawerOpen?.()
+    }
+    wasOpenRef.current = open
+  }, [open, onDrawerOpen])
 
   return (
     <>
@@ -74,7 +88,7 @@ export function ClubCard({
         detailDescription={detailDescription}
         ctaText={resolvedDrawerCtaText}
         ctaTheme={ctaTheme}
-        onCtaClick={onCtaClick}
+        onCtaClick={handleDrawerCtaClick}
         open={open}
         onOpenChange={setOpen}
         resolvedDirection={resolvedDirection}
