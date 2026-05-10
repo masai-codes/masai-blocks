@@ -8,6 +8,7 @@ import { ButtonPlayground } from "@/app/components/button-playground"
 import { CheckboxPlayground } from "@/app/components/checkbox-playground"
 import { MasaiChipsPlayground } from "@/app/components/masai-chips-playground"
 import { MasaiPaginationPlayground } from "@/app/components/masai-pagination-playground"
+import { MasaiInputPlayground } from "@/app/components/masai-input-playground"
 import { MasaiTabPlayground } from "@/app/components/masai-tab-playground"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { ColorsPlayground } from "@/app/components/colors-playground"
@@ -89,6 +90,14 @@ function HomeContent() {
         description:
           "Single outlined tab item with default/selected states and optional left/right icons.",
         content: <MasaiTabPlayground />,
+      },
+      {
+        id: "masai-input",
+        label: "Masai Input",
+        headingId: "masai-input-heading",
+        description:
+          "Outlined text field with optional left/right icons and regular size (more sizes later).",
+        content: <MasaiInputPlayground />,
       },
       {
         id: "tooltip",

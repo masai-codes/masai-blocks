@@ -158,6 +158,19 @@
       ]
     },
     {
+      "name": "masai-input",
+      "type": "registry:ui",
+      "title": "Masai Input",
+      "description": "Outlined text field with optional left/right icons and size tokens (regular today).",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/components/masai-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",
