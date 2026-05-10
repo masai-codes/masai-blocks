@@ -46,14 +46,14 @@
       ]
     },
     {
-      "name": "button",
+      "name": "masai-button",
       "type": "registry:ui",
-      "title": "Button",
+      "title": "Masai Button",
       "description": "Reusable CTA button with primary/secondary/tertiary/link types, icon support, and sm/md/lg sizes.",
       "dependencies": ["class-variance-authority"],
       "files": [
         {
-          "path": "registry/components/button.tsx",
+          "path": "registry/components/masai-button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -327,6 +327,19 @@
         {
           "path": "registry/components/discussion-post-card/types.ts",
           "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "masai-drawer",
+      "type": "registry:ui",
+      "title": "Masai Drawer",
+      "description": "Controlled drawer component with bottom/right/left directions and swipe-close behavior on mobile.",
+      "dependencies": ["vaul", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/components/masai-drawer.tsx",
+          "type": "registry:ui"
         }
       ]
     },

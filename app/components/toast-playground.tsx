@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "@/registry/components/button";
+import { Button } from "@/registry/components/masai-button";
 import { Toast } from "@/registry/components/toast";
 
 const TOAST_TYPES = ["success", "info", "alert", "generic"] as const;

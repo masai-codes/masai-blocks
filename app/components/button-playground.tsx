@@ -1,5 +1,5 @@
 import { ArrowRight, Download } from "lucide-react"
-import { Button } from "@/registry/components/button"
+import { Button } from "@/registry/components/masai-button"
 
 const TYPES = ["primary", "secondary", "tertiary", "link"] as const
 const SIZES = ["sm", "md", "lg"] as const

@@ -46,7 +46,7 @@ const buttonVariants = cva(
   },
 );
 
-export type ButtonProps = Omit<
+export type MasaiButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   "type"
 > &
@@ -67,12 +67,14 @@ export type ButtonProps = Omit<
     htmlType?: "button" | "submit" | "reset";
   };
 
+export type ButtonProps = MasaiButtonProps;
+
 /**
  * Masai reusable CTA button.
  * - if iconDirection is provided, icon should also be provided
  * - if iconOnly=true, only icon is rendered and ctaText is ignored
  */
-export function Button({
+export function MasaiButton({
   className,
   type = "primary",
   size = "md",
@@ -84,7 +86,7 @@ export function Button({
   iconOnly = false,
   htmlType = "button",
   ...props
-}: ButtonProps) {
+}: MasaiButtonProps) {
   if (!icon && iconDirection) {
     // Keep this non-throwing to avoid crashing consumers.
     // eslint-disable-next-line no-console
@@ -114,3 +116,6 @@ export function Button({
     </button>
   );
 }
+
+// Backward-compatible alias for existing imports.
+export const Button = MasaiButton;

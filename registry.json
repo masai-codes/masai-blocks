@@ -46,14 +46,14 @@
       ]
     },
     {
-      "name": "button",
+      "name": "masai-button",
       "type": "registry:ui",
-      "title": "Button",
+      "title": "Masai Button",
       "description": "Reusable CTA button with primary/secondary/tertiary/link types, icon support, and sm/md/lg sizes.",
       "dependencies": ["class-variance-authority"],
       "files": [
         {
-          "path": "registry/components/button.tsx",
+          "path": "registry/components/masai-button.tsx",
           "type": "registry:ui"
         }
       ]

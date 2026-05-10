@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { CheckCircle, Warning, WarningCircle, X } from "@phosphor-icons/react";
-import { Button } from "@/registry/components/button";
+import { Button } from "@/registry/components/masai-button";
 import { cn } from "@/lib/utils";
 
 type ToastType = "success" | "info" | "alert" | "generic";

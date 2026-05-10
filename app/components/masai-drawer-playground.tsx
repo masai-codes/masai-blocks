@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { Button } from "@/registry/components/button";
+import { Button } from "@/registry/components/masai-button";
 import {
   MasaiDrawer,
   type DrawerDirection,
