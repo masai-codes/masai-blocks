@@ -119,14 +119,14 @@
       ]
     },
     {
-      "name": "chips",
+      "name": "masai-chips",
       "type": "registry:ui",
-      "title": "Chips",
-      "description": "Chips component with regular/large sizes and default/left-icon/right-icon/icon-only variants.",
+      "title": "Masai Chips",
+      "description": "Masai chips component with regular/large sizes and default/left-icon/right-icon/icon-only variants.",
       "dependencies": ["class-variance-authority"],
       "files": [
         {
-          "path": "registry/components/chips.tsx",
+          "path": "registry/components/masai-chips.tsx",
           "type": "registry:ui"
         }
       ]

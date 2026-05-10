@@ -1,10 +1,10 @@
 import { X } from "lucide-react";
-import { Chips } from "@/registry/components/chips";
+import { MasaiChips } from "@/registry/components/masai-chips";
 
 const SIZES = ["regular", "large"] as const;
 const TYPES = ["default", "left-icon", "right-icon", "icon-only"] as const;
 
-export function ChipsPlayground() {
+export function MasaiChipsPlayground() {
   return (
     <div className="space-y-4 rounded-lg border p-4">
       {SIZES.map((size) => (
@@ -12,7 +12,7 @@ export function ChipsPlayground() {
           <h3 className="text-sm font-semibold capitalize">{size}</h3>
           <div className="flex flex-wrap items-center gap-3">
             {TYPES.map((type) => (
-              <Chips
+              <MasaiChips
                 key={`${size}-${type}`}
                 size={size}
                 type={type}
@@ -27,4 +27,3 @@ export function ChipsPlayground() {
     </div>
   );
 }
-

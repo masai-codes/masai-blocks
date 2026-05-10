@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { BadgeShowcase } from "@/app/components/badge-showcase"
 import { ButtonPlayground } from "@/app/components/button-playground"
 import { CheckboxPlayground } from "@/app/components/checkbox-playground"
-import { ChipsPlayground } from "@/app/components/chips-playground"
+import { MasaiChipsPlayground } from "@/app/components/masai-chips-playground"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { ColorsPlayground } from "@/app/components/colors-playground"
 import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-card-playground"
@@ -66,11 +66,11 @@ function HomeContent() {
         content: <CheckboxPlayground />,
       },
       {
-        id: "chips",
-        label: "Chips",
-        headingId: "chips-heading",
-        description: "Chips in regular/large sizes with default, left/right icon and icon-only variants.",
-        content: <ChipsPlayground />,
+        id: "masai-chips",
+        label: "Masai Chips",
+        headingId: "masai-chips-heading",
+        description: "Masai chips in regular/large sizes with default, left/right icon and icon-only variants.",
+        content: <MasaiChipsPlayground />,
       },
       {
         id: "tooltip",
