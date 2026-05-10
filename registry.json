@@ -331,6 +331,19 @@
       ]
     },
     {
+      "name": "masai-drawer",
+      "type": "registry:ui",
+      "title": "Masai Drawer",
+      "description": "Controlled drawer component with bottom/right/left directions and swipe-close behavior on mobile.",
+      "dependencies": ["vaul", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/components/masai-drawer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "scrolling-banner",
       "type": "registry:block",
       "title": "Scrolling Banner",

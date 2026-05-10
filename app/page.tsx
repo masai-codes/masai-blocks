@@ -13,6 +13,7 @@ import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-c
 import { DocumentationPlayground } from "@/app/components/documentation-playground"
 import { EventCardPlayground } from "@/app/components/event-card-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
+import { MasaiDrawerPlayground } from "@/app/components/masai-drawer-playground"
 import { MasaiTabsPlayground } from "@/app/components/masai-tabs-playground"
 import { RadioPlayground } from "@/app/components/radio-playground"
 import { ScrollingBannerPlayground } from "@/app/components/scrolling-banner-playground"
@@ -119,6 +120,14 @@ function HomeContent() {
         headingId: "discussion-post-card-heading",
         description: "Interactive post card with voting and responsive reply drawer.",
         content: <DiscussionPostCardPlayground />,
+      },
+      {
+        id: "masai-drawer",
+        label: "Masai Drawer",
+        headingId: "masai-drawer-heading",
+        description:
+          "Controlled drawer component with bottom/right/left directions and swipe-close on mobile.",
+        content: <MasaiDrawerPlayground />,
       },
       {
         id: "masai-tabs",
