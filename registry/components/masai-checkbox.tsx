@@ -5,10 +5,10 @@ import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type CheckboxSize = "regular" | "large";
+type MasaiCheckboxSize = "regular" | "large";
 
-export type CheckboxProps = {
-  size?: CheckboxSize;
+export type MasaiCheckboxProps = {
+  size?: MasaiCheckboxSize;
   isSelected?: boolean;
   disabled?: boolean;
   label?: string;
@@ -17,12 +17,12 @@ export type CheckboxProps = {
   className?: string;
 };
 
-const checkboxSizeClasses: Record<CheckboxSize, { root: string; icon: string }> = {
+const checkboxSizeClasses: Record<MasaiCheckboxSize, { root: string; icon: string }> = {
   regular: { root: "h-[18px] w-[18px] rounded-[2px]", icon: "h-3 w-3" },
   large: { root: "h-[18px] w-[18px] rounded-[2px]", icon: "h-3.5 w-3.5" },
 };
 
-export function Checkbox({
+export function MasaiCheckbox({
   size = "regular",
   isSelected = false,
   disabled = false,
@@ -30,7 +30,7 @@ export function Checkbox({
   description,
   onSelect,
   className,
-}: CheckboxProps) {
+}: MasaiCheckboxProps) {
   const { root, icon } = checkboxSizeClasses[size];
   const labelClassName = size === "large" ? "type-b1-regular text-gray-900" : "type-b2-regular text-gray-900";
 
@@ -64,4 +64,3 @@ export function Checkbox({
     </label>
   );
 }
-

@@ -8,6 +8,7 @@ import { ButtonPlayground } from "@/app/components/button-playground"
 import { CheckboxPlayground } from "@/app/components/checkbox-playground"
 import { MasaiChipsPlayground } from "@/app/components/masai-chips-playground"
 import { MasaiPaginationPlayground } from "@/app/components/masai-pagination-playground"
+import { MasaiDateSelectionPlayground } from "@/app/components/masai-date-selection-playground"
 import { MasaiInputPlayground } from "@/app/components/masai-input-playground"
 import { MasaiTabPlayground } from "@/app/components/masai-tab-playground"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
@@ -56,17 +57,19 @@ function HomeContent() {
         content: <ButtonPlayground />,
       },
       {
-        id: "radio",
-        label: "Radio",
-        headingId: "radio-heading",
-        description: "Radio button and radio group variants with regular/large sizing and label modes.",
+        id: "masai-radio",
+        label: "Masai Radio",
+        headingId: "masai-radio-heading",
+        description:
+          "MasaiRadioButton and MasaiRadioGroup variants with regular/large sizing and label modes.",
         content: <RadioPlayground />,
       },
       {
-        id: "checkbox",
-        label: "Checkbox",
-        headingId: "checkbox-heading",
-        description: "Checkbox and checkbox-group variants with regular/large sizes and label modes.",
+        id: "masai-checkbox",
+        label: "Masai Checkbox",
+        headingId: "masai-checkbox-heading",
+        description:
+          "MasaiCheckbox and MasaiCheckboxGroup variants with regular/large sizes and label modes.",
         content: <CheckboxPlayground />,
       },
       {
@@ -107,6 +110,14 @@ function HomeContent() {
         description:
           "Outlined text field with optional left/right icons and regular size (more sizes later).",
         content: <MasaiInputPlayground />,
+      },
+      {
+        id: "masai-date-selection",
+        label: "Masai Date Selection",
+        headingId: "masai-date-selection-heading",
+        description:
+          "Native date control with optional label and calendar icon — single variation for now.",
+        content: <MasaiDateSelectionPlayground />,
       },
       {
         id: "tooltip",

@@ -4,10 +4,10 @@ import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { cn } from "@/lib/utils";
 
-type RadioSize = "regular" | "large";
+type MasaiRadioButtonSize = "regular" | "large";
 
-export type RadioButtonProps = {
-  size?: RadioSize;
+export type MasaiRadioButtonProps = {
+  size?: MasaiRadioButtonSize;
   isSelected?: boolean;
   disabled?: boolean;
   label?: string;
@@ -16,16 +16,16 @@ export type RadioButtonProps = {
   className?: string;
 };
 
-const radioSizeClasses: Record<RadioSize, { root: string; dot: string }> = {
+const radioSizeClasses: Record<MasaiRadioButtonSize, { root: string; dot: string }> = {
   regular: { root: "h-5 w-5", dot: "h-2.5 w-2.5" },
   large: { root: "h-6 w-6", dot: "h-3 w-3" },
 };
 
 /**
- * Single radio button wrapper built on Radix RadioGroup.
+ * MasaiRadioButton — single radio wrapper on Radix RadioGroup.
  * Useful for standalone previews and custom layouts.
  */
-export function RadioButton({
+export function MasaiRadioButton({
   size = "regular",
   isSelected = false,
   disabled = false,
@@ -33,7 +33,7 @@ export function RadioButton({
   description,
   onSelect,
   className,
-}: RadioButtonProps) {
+}: MasaiRadioButtonProps) {
   const value = isSelected ? "selected" : "unselected";
   const { root, dot } = radioSizeClasses[size];
   const labelClassName = size === "large" ? "type-b1-regular text-gray-900" : "type-b2-regular text-gray-900";
@@ -67,4 +67,3 @@ export function RadioButton({
     </RadioGroupPrimitive.Root>
   );
 }
-

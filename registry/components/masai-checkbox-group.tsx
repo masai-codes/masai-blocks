@@ -2,38 +2,48 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Checkbox } from "@/registry/components/checkbox";
+import { MasaiCheckbox } from "@/registry/components/masai-checkbox";
 
-type CheckboxSize = "regular" | "large";
+type MasaiCheckboxGroupSize = "regular" | "large";
 
-export type CheckboxOption = {
+export type MasaiCheckboxOption = {
   value: string;
   label?: string;
   description?: string;
   disabled?: boolean;
 };
 
-export type CheckboxGroupProps = {
-  size?: CheckboxSize;
+export type MasaiCheckboxGroupOrientation = "vertical" | "horizontal";
+
+export type MasaiCheckboxGroupProps = {
+  size?: MasaiCheckboxGroupSize;
   values: string[];
   onValueChange: (values: string[]) => void;
-  options: CheckboxOption[];
-  className?: string;
+  options: MasaiCheckboxOption[];
+  /** Default stacking; overridden by `className` when using `grid`/other display (tailwind-merge). */
+  orientation?: MasaiCheckboxGroupOrientation;
+} & Omit<React.ComponentPropsWithoutRef<"div">, "children">;
+
+const orientationLayoutClasses: Record<MasaiCheckboxGroupOrientation, string> = {
+  vertical: "flex flex-col gap-3",
+  horizontal: "flex flex-row flex-wrap items-start gap-x-6 gap-y-3",
 };
 
-export function CheckboxGroup({
+export function MasaiCheckboxGroup({
   size = "regular",
   values,
   onValueChange,
   options,
+  orientation = "vertical",
   className,
-}: CheckboxGroupProps) {
+  ...divProps
+}: MasaiCheckboxGroupProps) {
   return (
-    <div className={cn("flex flex-col gap-3", className)}>
+    <div className={cn(orientationLayoutClasses[orientation], className)} {...divProps}>
       {options.map((option) => {
         const checked = values.includes(option.value);
         return (
-          <Checkbox
+          <MasaiCheckbox
             key={option.value}
             size={size}
             isSelected={checked}
@@ -53,4 +63,3 @@ export function CheckboxGroup({
     </div>
   );
 }
-

@@ -4,47 +4,63 @@ import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { cn } from "@/lib/utils";
 
-type RadioSize = "regular" | "large";
+type MasaiRadioGroupSize = "regular" | "large";
 
-export type RadioOption = {
+export type MasaiRadioOption = {
   value: string;
   label?: string;
   description?: string;
   disabled?: boolean;
 };
 
-export type RadioGroupProps = {
-  size?: RadioSize;
+export type MasaiRadioGroupOrientation = "vertical" | "horizontal";
+
+export type MasaiRadioGroupProps = {
+  size?: MasaiRadioGroupSize;
   value: string;
   onValueChange: (value: string) => void;
-  options: RadioOption[];
-  className?: string;
+  options: MasaiRadioOption[];
+  /** Default stacking; use `className` for grids (e.g. `grid grid-cols-2 gap-4`). */
+  orientation?: MasaiRadioGroupOrientation;
+} & Omit<
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>,
+  "children" | "value" | "defaultValue" | "onValueChange"
+>;
+
+const orientationLayoutClasses: Record<MasaiRadioGroupOrientation, string> = {
+  vertical: "flex flex-col gap-3",
+  horizontal: "flex flex-row flex-wrap items-start gap-x-6 gap-y-3",
 };
 
-const radioSizeClasses: Record<RadioSize, { root: string; dot: string }> = {
+const radioSizeClasses: Record<MasaiRadioGroupSize, { root: string; dot: string }> = {
   regular: { root: "h-5 w-5", dot: "h-2.5 w-2.5" },
   large: { root: "h-6 w-6", dot: "h-3 w-3" },
 };
 
 /**
- * Grouped radios built on Radix.
- * Installing this component also installs the standalone radio button file.
+ * MasaiRadioGroup — grouped radios on Radix.
+ * Registry install includes `masai-radio-button.tsx` for standalone use.
  */
-export function RadioGroup({
+export function MasaiRadioGroup({
   size = "regular",
   value,
   onValueChange,
   options,
+  orientation = "vertical",
   className,
-}: RadioGroupProps) {
+  disabled,
+  ...rootProps
+}: MasaiRadioGroupProps) {
   const { root, dot } = radioSizeClasses[size];
   const labelClassName = size === "large" ? "type-b1-regular text-gray-900" : "type-b2-regular text-gray-900";
 
   return (
     <RadioGroupPrimitive.Root
+      {...rootProps}
       value={value}
+      disabled={disabled}
       onValueChange={onValueChange}
-      className={cn("flex flex-col gap-3", className)}
+      className={cn(orientationLayoutClasses[orientation], className)}
     >
       {options.map((option) => (
         <label
@@ -77,4 +93,3 @@ export function RadioGroup({
     </RadioGroupPrimitive.Root>
   );
 }
-
