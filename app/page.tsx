@@ -1,5 +1,6 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { Suspense, useEffect, useMemo } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
@@ -26,6 +27,23 @@ import { TabNavbarPlayground } from "@/app/components/tab-navbar-playground"
 import { ToastPlayground } from "@/app/components/toast-playground"
 import { TooltipPlayground } from "@/app/components/tooltip-playground"
 import { TypographyPlayground } from "@/app/components/typography-playground"
+
+/** Client-only: avoids hydration mismatches when extensions inject attributes into `<a>` before React loads. */
+const MasaiBreadcrumbPlayground = dynamic(
+  () =>
+    import("@/app/components/masai-breadcrumb-playground").then((mod) => ({
+      default: mod.MasaiBreadcrumbPlayground,
+    })),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        className="min-h-[160px] rounded-lg border border-dashed border-muted-foreground/25 bg-muted/20"
+        aria-hidden
+      />
+    ),
+  },
+)
 
 function HomeContent() {
   const router = useRouter()
@@ -94,6 +112,14 @@ function HomeContent() {
         description:
           "Pagination control with prev/next chevrons, numbered pages, ellipsis truncation, and regular/large sizes.",
         content: <MasaiPaginationPlayground />,
+      },
+      {
+        id: "masai-breadcrumb",
+        label: "Masai Breadcrumb",
+        headingId: "masai-breadcrumb-heading",
+        description:
+          "MasaiBreadcrumb builds an accessible ordered trail with optional links, chevron separators, and typography tokens.",
+        content: <MasaiBreadcrumbPlayground />,
       },
       {
         id: "masai-tab",

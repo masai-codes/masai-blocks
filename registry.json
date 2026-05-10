@@ -46,6 +46,19 @@
       ]
     },
     {
+      "name": "masai-breadcrumb",
+      "type": "registry:ui",
+      "title": "Masai Breadcrumb",
+      "description": "Accessible breadcrumb navigation (nav + ordered list): optional href per segment, chevron separators, Masai typography tokens.",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/components/masai-breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "masai-button",
       "type": "registry:ui",
       "title": "Masai Button",
