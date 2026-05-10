@@ -132,6 +132,19 @@
       ]
     },
     {
+      "name": "masai-pagination",
+      "type": "registry:ui",
+      "title": "Masai Pagination",
+      "description": "Pagination control with prev/next chevrons, numbered pages, ellipsis truncation, and regular/large sizes.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/components/masai-pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",

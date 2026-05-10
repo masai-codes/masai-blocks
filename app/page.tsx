@@ -7,6 +7,7 @@ import { BadgeShowcase } from "@/app/components/badge-showcase"
 import { ButtonPlayground } from "@/app/components/button-playground"
 import { CheckboxPlayground } from "@/app/components/checkbox-playground"
 import { MasaiChipsPlayground } from "@/app/components/masai-chips-playground"
+import { MasaiPaginationPlayground } from "@/app/components/masai-pagination-playground"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { ColorsPlayground } from "@/app/components/colors-playground"
 import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-card-playground"
@@ -71,6 +72,14 @@ function HomeContent() {
         headingId: "masai-chips-heading",
         description: "Masai chips in regular/large sizes with default, left/right icon and icon-only variants.",
         content: <MasaiChipsPlayground />,
+      },
+      {
+        id: "masai-pagination",
+        label: "Masai Pagination",
+        headingId: "masai-pagination-heading",
+        description:
+          "Pagination control with prev/next chevrons, numbered pages, ellipsis truncation, and regular/large sizes.",
+        content: <MasaiPaginationPlayground />,
       },
       {
         id: "tooltip",

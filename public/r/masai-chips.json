@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "masai-chips",
   "title": "Masai Chips",
-  "description": "Masai chips: layout + brand or custom palette via backgroundClassName/textClassName; sizes and icon variants.",
+  "description": "Masai chips component with regular/large sizes and default/left-icon/right-icon/icon-only variants.",
   "dependencies": [
     "class-variance-authority"
   ],
