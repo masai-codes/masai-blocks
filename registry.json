@@ -145,6 +145,19 @@
       ]
     },
     {
+      "name": "masai-tab",
+      "type": "registry:ui",
+      "title": "Masai Tab",
+      "description": "Single outlined tab item with default/selected states, optional left/right icons, and regular/large sizes.",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/components/masai-tab.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "masai-tab",
+  "title": "Masai Tab",
+  "description": "Single outlined tab item with default/selected states, optional left/right icons, and regular/large sizes.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/components/masai-tab.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst tabVariants = cva(\n  \"inline-flex cursor-pointer items-center justify-center rounded-lg border outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50\",\n  {\n    variants: {\n      size: {\n        regular: \"h-10 px-3 gap-2 type-b2-md [&_svg]:size-4\",\n        large: \"h-12 px-4 gap-2 type-b1-md [&_svg]:size-5\",\n      },\n      selected: {\n        true: \"bg-primary-50 border-primary-500 !text-primary-600 hover:bg-primary-100\",\n        false:\n          \"bg-white border-gray-200 !text-gray-700 hover:bg-gray-50 hover:border-gray-300\",\n      },\n    },\n    defaultVariants: {\n      size: \"regular\",\n      selected: false,\n    },\n  },\n);\n\nexport type MasaiTabSize = \"regular\" | \"large\";\n\nexport type MasaiTabProps = Omit<\n  React.ButtonHTMLAttributes<HTMLButtonElement>,\n  \"type\"\n> &\n  VariantProps<typeof tabVariants> & {\n    /** Tab label text. */\n    label: string;\n    /** Whether this tab is the active/selected one. */\n    selected?: boolean;\n    /** Icon rendered to the left of the label. */\n    iconLeft?: React.ReactNode;\n    /** Icon rendered to the right of the label. */\n    iconRight?: React.ReactNode;\n    /** Visual size token. Default: regular. */\n    size?: MasaiTabSize;\n    /** Native button type attribute. */\n    htmlType?: \"button\" | \"submit\" | \"reset\";\n  };\n\n/**\n * MasaiTab — single outlined tab item with default/selected states and\n * optional left/right icons. Composes inside any layout (row, grid, etc.).\n */\nexport function MasaiTab({\n  label,\n  selected = false,\n  iconLeft,\n  iconRight,\n  size = \"regular\",\n  htmlType = \"button\",\n  className,\n  disabled,\n  ...props\n}: MasaiTabProps) {\n  return (\n    <button\n      type={htmlType}\n      role=\"tab\"\n      aria-selected={selected}\n      disabled={disabled}\n      className={cn(tabVariants({ size, selected }), className)}\n      {...props}\n    >\n      {iconLeft ? (\n        <span className=\"inline-flex shrink-0 items-center\" aria-hidden>\n          {iconLeft}\n        </span>\n      ) : null}\n      <span className=\"truncate\">{label}</span>\n      {iconRight ? (\n        <span className=\"inline-flex shrink-0 items-center\" aria-hidden>\n          {iconRight}\n        </span>\n      ) : null}\n    </button>\n  );\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

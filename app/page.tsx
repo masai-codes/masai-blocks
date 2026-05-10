@@ -8,6 +8,7 @@ import { ButtonPlayground } from "@/app/components/button-playground"
 import { CheckboxPlayground } from "@/app/components/checkbox-playground"
 import { MasaiChipsPlayground } from "@/app/components/masai-chips-playground"
 import { MasaiPaginationPlayground } from "@/app/components/masai-pagination-playground"
+import { MasaiTabPlayground } from "@/app/components/masai-tab-playground"
 import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { ColorsPlayground } from "@/app/components/colors-playground"
 import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-card-playground"
@@ -80,6 +81,14 @@ function HomeContent() {
         description:
           "Pagination control with prev/next chevrons, numbered pages, ellipsis truncation, and regular/large sizes.",
         content: <MasaiPaginationPlayground />,
+      },
+      {
+        id: "masai-tab",
+        label: "Masai Tab",
+        headingId: "masai-tab-heading",
+        description:
+          "Single outlined tab item with default/selected states and optional left/right icons.",
+        content: <MasaiTabPlayground />,
       },
       {
         id: "tooltip",
