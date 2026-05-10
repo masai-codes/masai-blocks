@@ -14,6 +14,7 @@ import { ClubCardPlayground } from "@/app/components/club-card-playground"
 import { ColorsPlayground } from "@/app/components/colors-playground"
 import { DiscussionPostCardPlayground } from "@/app/components/discussion-post-card-playground"
 import { DocumentationPlayground } from "@/app/components/documentation-playground"
+import { MasaiDropdownCheckboxFilterPlayground } from "@/app/components/masai-dropdown-checkbox-filter-playground"
 import { EventCardPlayground } from "@/app/components/event-card-playground"
 import { HomePageHeader } from "@/app/components/home-page-header"
 import { MasaiDrawerPlayground } from "@/app/components/masai-drawer-playground"
@@ -67,6 +68,14 @@ function HomeContent() {
         headingId: "checkbox-heading",
         description: "Checkbox and checkbox-group variants with regular/large sizes and label modes.",
         content: <CheckboxPlayground />,
+      },
+      {
+        id: "masai-dropdown-checkbox-filter",
+        label: "Masai Dropdown Checkbox Filter",
+        headingId: "masai-dropdown-checkbox-filter-heading",
+        description:
+          "Radix dropdown with checkbox options; controlled value array lifted to parent via onValueChange.",
+        content: <MasaiDropdownCheckboxFilterPlayground />,
       },
       {
         id: "masai-chips",

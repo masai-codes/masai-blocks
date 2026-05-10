@@ -119,6 +119,19 @@
       ]
     },
     {
+      "name": "masai-dropdown-checkbox-filter",
+      "type": "registry:ui",
+      "title": "Masai Dropdown Checkbox Filter",
+      "description": "Radix dropdown with multi-select checkbox rows; controlled selected values surfaced to parent via onValueChange.",
+      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/components/masai-dropdown-checkbox-filter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "masai-chips",
       "type": "registry:ui",
       "title": "Masai Chips",
